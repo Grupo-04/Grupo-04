@@ -37,6 +37,11 @@ public class Estabelecimento {
         this.endereco = endereco;
     }
 
+    public Estabelecimento(String email_estabelecimento, String senha_estabelecimento) {
+        this.email_estabelecimento = email_estabelecimento;
+        this.senha_estabelecimento = senha_estabelecimento;
+    }
+
     public Estabelecimento() {
     }
 

@@ -1,4 +1,4 @@
-package sptech.mysql.connection;
+package sptech.unlock;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

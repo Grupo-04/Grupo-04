@@ -1,12 +1,16 @@
-package sptech.mysql.connection;
+package sptech.unlock.estabelecimento.model;
+
+import sptech.unlock.endereco.model.Endereco;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Estabelecimento")
 public class Estabelecimento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     private String cnpj;
@@ -17,12 +21,11 @@ public class Estabelecimento {
     private String horario_atendimento;
     private String tipo_estabelecimento;
 
-    //@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
-    //private Endereco endereco;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
+    private Endereco endereco;
 
-
-    public Estabelecimento(Integer id, String cnpj, String nome_estabelecimento, String telefone_estabelecimento, String email_estabelecimento, String senha_estabelecimento, String horario_atendimento, String tipo_estabelecimento) {
+    public Estabelecimento(Integer id, String cnpj, String nome_estabelecimento, String telefone_estabelecimento, String email_estabelecimento, String senha_estabelecimento, String horario_atendimento, String tipo_estabelecimento, Endereco endereco) {
         this.id = id;
         this.cnpj = cnpj;
         this.nome_estabelecimento = nome_estabelecimento;
@@ -31,6 +34,7 @@ public class Estabelecimento {
         this.senha_estabelecimento = senha_estabelecimento;
         this.horario_atendimento = horario_atendimento;
         this.tipo_estabelecimento = tipo_estabelecimento;
+        this.endereco = endereco;
     }
 
     public Estabelecimento() {
@@ -100,6 +104,14 @@ public class Estabelecimento {
         this.tipo_estabelecimento = tipo_estabelecimento;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public String toString() {
         return "Estabelecimento{" +
@@ -111,6 +123,7 @@ public class Estabelecimento {
                 ", senha_estabelecimento='" + senha_estabelecimento + '\'' +
                 ", horario_atendimento='" + horario_atendimento + '\'' +
                 ", tipo_estabelecimento='" + tipo_estabelecimento + '\'' +
+                ", endereco=" + endereco +
                 '}';
     }
 }

@@ -1,15 +1,16 @@
-package sptech.mysql.connection;
+package sptech.unlock.endereco.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import sptech.unlock.estabelecimento.model.Estabelecimento;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Endereco")
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     private String cep;
@@ -19,7 +20,10 @@ public class Endereco {
     private String cidade;
     private String bairro;
 
-    public Endereco(Integer id, String cep, String logradouro, String numero, String estado, String cidade, String bairro) {
+    @OneToOne(mappedBy = "endereco")
+    private Estabelecimento estabelecimento;
+
+    public Endereco(Integer id, String cep, String logradouro, String numero, String estado, String cidade, String bairro, Estabelecimento estabelecimento) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -27,6 +31,7 @@ public class Endereco {
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
+        this.estabelecimento = estabelecimento;
     }
 
     public Endereco() {
@@ -88,6 +93,14 @@ public class Endereco {
         this.bairro = bairro;
     }
 
+    public Estabelecimento getEstabelecimento() {
+        return estabelecimento;
+    }
+
+    public void setEstabelecimento(Estabelecimento estabelecimento) {
+        this.estabelecimento = estabelecimento;
+    }
+
     @Override
     public String toString() {
         return "Endereco{" +
@@ -98,6 +111,7 @@ public class Endereco {
                 ", estado='" + estado + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", bairro='" + bairro + '\'' +
+                ", estabelecimento=" + estabelecimento +
                 '}';
     }
 }

@@ -1,8 +1,10 @@
-package sptech.mysql.connection;
+package sptech.unlock.endereco.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sptech.unlock.endereco.repositorio.RepositorioEndereco;
+import sptech.unlock.endereco.model.Endereco;
 
 @Controller
 @RequestMapping(path = "/endereco")

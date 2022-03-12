@@ -229,6 +229,7 @@ ul{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-top: 5vh;
     /* height: 55vh;
     width: 30vw; */
     grid-area: t;
@@ -269,6 +270,7 @@ ul{
     display: flex;
     align-items: flex-start;
     text-align: justify;
+    margin-top: 5vh;
 }
 
 .imagem{
@@ -280,6 +282,7 @@ ul{
 .div_button{
     width: 100%;
     height: 100%;
+    margin-top: 12vh;
 }
 
 .button{

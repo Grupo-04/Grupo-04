@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ******* SETUP ********* */
+:root
+{
+    --background: #fff;
+    --orange-button: #F2994A;
+    --dark-orange: #FD830D;
+    --light-orange: #FFBA49;
+    --dark-purple: #4C51C6;
+    --light-purple: #607FF2;
+    --purple-icon-light: #99AEFF;
+
+    --purple-degrade: linear-gradient(45deg, #4C51C6, #92A9FF);
+    --orange-degrade: linear-gradient(45deg, #F48F38, #FFBA49);
+
+    --boderRadius: 20px;
+    --shadow: 4px 6px 20px lightgrey;;
+
+    --text-color: #92929D;
+    --text-weight: 400;
+
+    --title-color: #000;
+    --weight-title: 500;
+}
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+a{
+	text-decoration:none;
+}
+ul{
+	list-style:none;
+}
+
+/* ******* CONTAINER ********* */
+.container {
+    background-color: var(--background);
+    /* display: flex;
+    max-width: 1600px;
+    height: 100vh; */
+    width: 90%;
+    /* overflow: hidden; */
+    margin: 0 auto;
+  }
+
+
+/* ******* HOME ********* */
+
+
+/* ******* FEATURES ********* */
+
+
+/* ******* ABOUT ********* */
+.about{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.about .div_sobre_direita{
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 950px) {
+
+    .about{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about.div_sobre_esquerda{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+}
+
+/* ******* PRODUCT ********* */
+
+.produto {
+    background-color: var(--background);
+    display: default;
+    margin: auto;
+    /* overflow: auto; */
+    background-image: url("../imgs/vector_produto.svg");
+    background-position: 28% center;
+    background-repeat: no-repeat;
+    background-size: 30%;
+    width: 100%;
+    height: 110vh;
+}
+
+.container_produto {
+    display: flex;
+}
+
+.produtos1a3 {
+    width: 40%;
+}
+
+.div_celular_produto {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    margin-top: 7vh;
+    width: 20%;
+    height: 90vh;
+}
+
+.produto_titulo {
+    font-weight: var(--weight-title);
+    color: var(--title-color);
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    font-size: 25px;
+}
+
+.celular_produto {
+    transition: all 0.3s;
+    border: solid var(--background) 2px;
+    border-radius: 15px;
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/celular_produto.svg");
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow);
+    background-size: 100%;
+}
+
+.celular_produto:hover {
+    border: solid var(--dark-purple) 2px;
+}
+
+.botao_produto {
+    margin-top: 7vh;
+    text-align: center;
+    width: 100%;
+}
+
+.botao_produto button {
+    transition: background 0.3s;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 3%;
+    width: 55%;
+    background-color: var(--orange-button);
+    border: solid 2px var(--orange-button);
+}
+
+.botao_produto button:hover {
+    box-shadow: var(--shadow);
+    border: solid 2px var(--orange-button);
+    background-color: var(--background);
+}
+
+.botao_produto button:active {
+    background-color: var(--orange-button);
+}
+
+.produtos4a6 {
+    width: 40%;
+}
+
+.div_cards_produto {
+    padding-top: 5%;
+    margin: 15% auto;
+    width: 70%;
+    height: 80%;
+}
+
+.card_produto {
+    border: solid var(--background) 2px;
+    transition: all 0.3s;
+    padding: 5%;
+    margin-bottom: 15%;
+    margin: 4.5%;
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+    background-color: var(--background);
+}
+
+.card_produto:hover {
+    border: solid var(--dark-purple) 2px;
+}
+
+@keyframes teste {
+  0% {background-color: var(--background);}
+  25% {background-color: var(--light-purple);}
+  50% {background-color: var(--dark-purple);}
+  75% {background-color: var(--dark-purple);}
+  100% {background-color: var(--background);}
+}
+
+.card_produto h2 {
+    color: var(--dark-purple);
+    float: left;
+    padding: 3%;
+    margin-left: 5%;
+}
+
+.card_produto h3 {
+    color: var(--title-color);
+    padding: 4%;
+    margin-left: 18%;
+}
+
+.card_produto div {
+    margin: auto 22%;
+    width: 72%;
+}
+
+.card_span {
+    font-weight: 200;
+}
+
+.span_card_cadastre_se {
+    font-weight: 450;
+    color: var(--dark-purple);
+}
+
+@media only screen and (max-width: 950px) {
+    .celular_produto {
+      height: 70%;
+    }
+}
+
+@media only screen and (min-width: 950px) {
+    .celular_produto {
+      height: 80%;
+    }
+}
+
+/* ******* MOBILE PRODUCT ********* */
+@media only screen and (max-width: 880px) {
+    .celular_produto {
+        display: none;
+    }
+    .produtos1a3, .produtos4a6 {
+        float: none;
+        width: 100%;
+    }
+    .container_produto {
+        display: block;
+    }
+    .div_celular_produto {
+        display: block;
+        height: 10vh;
+        width: 100%;
+    }
+    .produtos4a6 {
+        padding-bottom: 5%;
+    }
+    .div_cards_produto {
+        padding-top: 0;
+    }
+    .produto {
+        background-size: 0%;
+    }
+}
+
+/* ******* NUMBERS ********* */
+
+
+/* ******* TESTIMONIALS ********* */
+
+
+/* ******* FOOTER ********* */
+
+
+

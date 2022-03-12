@@ -62,6 +62,7 @@ select * from GrupoArtista;
 CREATE TABLE Artista (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome_artista VARCHAR(45) NOT NULL,
+    nome_artistico VARCHAR(45) NOT NULL,
     telefone_artista CHAR(15) NOT NULL,
     cpf_artista CHAR(14) NOT NULL UNIQUE,
     tipo_artista VARCHAR(45) NOT NULL,
@@ -74,7 +75,7 @@ CREATE TABLE Artista (
 );
 
 #Inserindo dados na tabela Artista
-INSERT INTO Artista values (1, 'Robson Lima', '995943394', '48101411118', 'Musico', 'robson@gmail.com', 'robson123', 0, 0, null);
+INSERT INTO Artista values (1, 'Robson Lima', 'Robs Robs', '995943394', '48101411118', 'Musico', 'robson@gmail.com', 'robson123', 0, 0, null);
 
 #Consultando tabela Artista;
 select * from Artista;

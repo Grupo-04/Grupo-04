@@ -86,10 +86,12 @@ body{
     width: 10em;
     height: 3.5em;
     transition: 0.8s;
+    border: 0;
+    background-color: #F2994A;
 }
 
 .div_button .button:hover{
-    background-color: #F2994A;
+    background-color: #FFBA49;
 }
 
 .details{
@@ -127,31 +129,24 @@ body{
     margin-left: 5%;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1600px),
+screen and (max-height: 768px){
 
     #imagem_rapaziada_esritorio{
         width: 38vw;
-        height: 43vh;
+        height: 32vh;
         margin-top: 3vh;
         border-radius: 1em 1em 1em 1em;
     }
 
 }
 
-
-@media screen and (max-height: 768px) {
-
-    #imagem_rapaziada_esritorio{
-        height: 40vh;
-    }
-
-}
-
-@media screen and (max-width: 1560px) {
+@media screen and (max-width: 1560px),
+screen and (max-height: 768px) {
 
     #imagem_rapaziada_esritorio{
         width: 38vw;
-        height: 43vh;
+        height: 32vh;
         margin-top: 3vh;
         border-radius: 1em 1em 1em 1em;
     }
@@ -162,14 +157,15 @@ body{
 
     #imagem_rapaziada_esritorio{
         width: 38.9vw;
-        /* height: 43vh; */
+        height: 40  vh;
         margin-top: 3vh;
         border-radius: 1em 1em 1em 1em;
     }
 
 }
 
-@media screen and (max-width: 865px) {
+@media screen and (max-width: 1285px),
+screen and (max-height: 467px) {
 
     #imagem_rapaziada_esritorio{
         width: 38.9vw;
@@ -180,7 +176,8 @@ body{
 
 }
 
-@media screen and (max-width: 850px) {
+
+@media screen and (max-width: 950px) {
 
     .div_sobre_esquerda{
         width: 90vw;
@@ -189,11 +186,26 @@ body{
         display: flex;
         margin-right: -10vw;
     }
+
+    .div_sobre_direita{
+        float: left;
+        padding:0;
+        /* margin: 2%; */
+        margin-right: 0;
+        margin-left: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 65vh;
+        width: 56vw;
+        margin-left: 22vw;
+        margin-top: -20vh;
+    }
     
     #imagem_rapaziada_esritorio{
-        width: 80vw;
-        height: 65vh;
-        margin-left: -16vw;
+        width: 78vw;
+        height: 32vh;
+        margin-left: -22vw;
         border-radius: 1em 1em 1em 1em;
     }
     
@@ -207,6 +219,111 @@ body{
         height: 20em;
     }
 
+    .topo_imagem{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        margin-left: -35vw;
+    }
+
+}
+
+@media screen and (max-width: 950px),
+screen and (max-height: 467px) {
+
+    .div_sobre_esquerda{
+        width: 90vw;
+        height: 55vh;
+        text-align: justify;
+        display: flex;
+        margin-right: -10vw;
+    }
+
+    .div_sobre_direita{
+        float: left;
+        padding:0;
+        /* margin: 2%; */
+        margin-right: 0;
+        margin-left: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 65vh;
+        width: 56vw;
+        margin-left: 22vw;
+        margin-top: 10vh;
+    }
+    
+    #imagem_rapaziada_esritorio{
+        width: 78vw;
+        height: 55vh;
+        margin-left: -22vw;
+        border-radius: 1em 1em 1em 1em;
+    }
+    
+    .details{
+        z-index: 1;
+        float: right;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex;
+        position: relative;
+        height: 20em;
+    }
+    
+    .topo_imagem{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        margin-left: -35vw;
+    }
+    
+}
+
+@media screen and (max-width: 872px) {
+
+    #imagem_rapaziada_esritorio{
+        width: 80vw;
+        height: 32vh;
+        margin-top: 3vh;
+        border-radius: 1em 1em 1em 1em;
+    }
+
+    .div_sobre_direita{
+        margin-top: -25vh;
+    }
+
+    .topo_imagem{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        margin-left: 15vw;
+        width: 5vw;
+    }
+    
+    .retangulo_azul{
+        width: 5vw;
+        
+    }
+
+}
+
+@media screen and (max-width: 865px) {
+
+    #imagem_rapaziada_esritorio{
+        width: 80vw;
+        height: 32vh;
+        margin-top: 3vh;
+        border-radius: 1em 1em 1em 1em;
+    }
+
+    .div_sobre_direita{
+        margin-top: -25vh;
+    }
+
 }
 
 @media screen and (max-width: 690px) {
@@ -218,13 +335,21 @@ body{
         display: flex;
         margin-right: 5vw;
     }
+    
+}
+
+@media screen and (max-width: 574px) {
+
+    .div_sobre_direita{
+        margin-top: -20vh;
+    }
 
 }
 
-@media screen and (max-width: 456px) {
+@media screen and (max-width: 450px) {
 
     .div_sobre_direita{
-        margin-top: 5vh;
+        margin-top: -10vh;
     }
 
 }

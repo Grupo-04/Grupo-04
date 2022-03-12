@@ -1,0 +1,230 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 80%;
+}
+
+#imagem_rapaziada_esritorio{
+    width: 41em;
+    height: 19em;
+    margin-top: 3vh;
+    border-radius: 1em 1em 1em 1em;
+}
+
+.imagem_rapaziada_esritorio{
+    position: absolute;
+    z-index: 1;
+}
+
+.div_sobre_esquerda{
+    float: left;
+    padding:0;
+    /* margin: 2%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 55vh;
+    width: 45%;
+}
+
+.div_sobre_direita{
+    float: left;
+    padding:0;
+    /* margin: 2%; */
+    margin-right: 0;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 65vh;
+    width: 55%;
+}
+
+.titulo{
+    width: 100%;
+    float: left;
+}
+
+.titulo_cor{
+    color: #F2994A;
+}
+
+.destaque_titulo{
+    float: left;
+}
+
+.titulo_texto{
+    float: left;
+}
+
+.texto{
+    width: 90%;
+    float: left;
+    display: flex;
+    align-items: flex-start;
+    text-align: justify;
+}
+
+.imagem{
+    float: right;
+    width: 120%;
+    height: 70vh;
+}
+
+.div_button{
+    width: 100%;
+    height: 100%;
+}
+
+.button{
+    border-radius: 1em 1em 1em 1em;
+    width: 10em;
+    height: 3.5em;
+    transition: 0.8s;
+}
+
+.div_button .button:hover{
+    background-color: #F2994A;
+}
+
+.details{
+    z-index: 1;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    height: 20em;
+}
+
+#detail{
+    height: 18em;
+    width: 14em;
+}
+
+.elipses{
+    float: left;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.retangulo{
+    float: left;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.topo_imagem{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    margin-left: 5%;
+}
+
+@media screen and (max-width: 1600px) {
+
+    #imagem_rapaziada_esritorio{
+        width: 38vw;
+        height: 43vh;
+        margin-top: 3vh;
+        border-radius: 1em 1em 1em 1em;
+    }
+
+}
+
+
+@media screen and (max-height: 768px) {
+
+    #imagem_rapaziada_esritorio{
+        height: 40vh;
+    }
+
+}
+
+@media screen and (max-width: 1560px) {
+
+    #imagem_rapaziada_esritorio{
+        width: 38vw;
+        height: 43vh;
+        margin-top: 3vh;
+        border-radius: 1em 1em 1em 1em;
+    }
+
+}
+
+@media screen and (max-width: 1500px) {
+
+    #imagem_rapaziada_esritorio{
+        width: 38.9vw;
+        /* height: 43vh; */
+        margin-top: 3vh;
+        border-radius: 1em 1em 1em 1em;
+    }
+
+}
+
+@media screen and (max-width: 865px) {
+
+    #imagem_rapaziada_esritorio{
+        width: 38.9vw;
+        height: 40vh;
+        margin-top: 3vh;
+        border-radius: 1em 1em 1em 1em;
+    }
+
+}
+
+@media screen and (max-width: 850px) {
+
+    .div_sobre_esquerda{
+        width: 90vw;
+        height: 55vh;
+        text-align: justify;
+        display: flex;
+        margin-right: -10vw;
+    }
+    
+    #imagem_rapaziada_esritorio{
+        width: 80vw;
+        height: 65vh;
+        margin-left: -16vw;
+        border-radius: 1em 1em 1em 1em;
+    }
+    
+    .details{
+        z-index: 1;
+        float: right;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex;
+        position: relative;
+        height: 20em;
+    }
+
+}
+
+@media screen and (max-width: 690px) {
+
+    .div_sobre_esquerda{
+        width: 85vw;
+        height: 55vh;
+        text-align: justify;
+        display: flex;
+        margin-right: 5vw;
+    }
+
+}
+
+@media screen and (max-width: 456px) {
+
+    .div_sobre_direita{
+        margin-top: 5vh;
+    }
+
+}

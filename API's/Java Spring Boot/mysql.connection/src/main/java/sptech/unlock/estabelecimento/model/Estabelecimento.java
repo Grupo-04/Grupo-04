@@ -20,12 +20,14 @@ public class Estabelecimento {
     private String senha_estabelecimento;
     private String horario_atendimento;
     private String tipo_estabelecimento;
+    private Integer quantidade_artistas_suportados;
+    private boolean autenticado;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
     private Endereco endereco;
 
-    public Estabelecimento(Integer id, String cnpj, String nome_estabelecimento, String telefone_estabelecimento, String email_estabelecimento, String senha_estabelecimento, String horario_atendimento, String tipo_estabelecimento, Endereco endereco) {
+    public Estabelecimento(Integer id, String cnpj, String nome_estabelecimento, String telefone_estabelecimento, String email_estabelecimento, String senha_estabelecimento, String horario_atendimento, String tipo_estabelecimento, Integer quantidade_artistas_suportados, Endereco endereco) {
         this.id = id;
         this.cnpj = cnpj;
         this.nome_estabelecimento = nome_estabelecimento;
@@ -34,12 +36,9 @@ public class Estabelecimento {
         this.senha_estabelecimento = senha_estabelecimento;
         this.horario_atendimento = horario_atendimento;
         this.tipo_estabelecimento = tipo_estabelecimento;
+        this.quantidade_artistas_suportados = quantidade_artistas_suportados;
+        this.autenticado = false;
         this.endereco = endereco;
-    }
-
-    public Estabelecimento(String email_estabelecimento, String senha_estabelecimento) {
-        this.email_estabelecimento = email_estabelecimento;
-        this.senha_estabelecimento = senha_estabelecimento;
     }
 
     public Estabelecimento() {
@@ -109,6 +108,22 @@ public class Estabelecimento {
         this.tipo_estabelecimento = tipo_estabelecimento;
     }
 
+    public Integer getQuantidade_artistas_suportados() {
+        return quantidade_artistas_suportados;
+    }
+
+    public void setQuantidade_artistas_suportados(Integer quantidade_artistas_suportados) {
+        this.quantidade_artistas_suportados = quantidade_artistas_suportados;
+    }
+
+    public boolean isAutenticado() {
+        return autenticado;
+    }
+
+    public void setAutenticado(boolean autenticado) {
+        this.autenticado = autenticado;
+    }
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -128,6 +143,8 @@ public class Estabelecimento {
                 ", senha_estabelecimento='" + senha_estabelecimento + '\'' +
                 ", horario_atendimento='" + horario_atendimento + '\'' +
                 ", tipo_estabelecimento='" + tipo_estabelecimento + '\'' +
+                ", quantidade_artistas_suportados=" + quantidade_artistas_suportados +
+                ", autenticado=" + autenticado +
                 ", endereco=" + endereco +
                 '}';
     }

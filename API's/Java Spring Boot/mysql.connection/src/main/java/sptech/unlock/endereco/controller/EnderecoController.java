@@ -7,13 +7,13 @@ import sptech.unlock.endereco.repositorio.RepositorioEndereco;
 import sptech.unlock.endereco.model.Endereco;
 
 @Controller
-@RequestMapping(path = "/endereco")
+@RequestMapping(path = "/enderecos")
 public class EnderecoController {
 
     @Autowired
     private RepositorioEndereco repositorioEndereco;
 
-    @PostMapping(path = "/cadastrar")
+    @PostMapping //(path = "/cadastrar")
     public @ResponseBody String cadastrarEndereco(@RequestBody Endereco endereco) {
         repositorioEndereco.save(endereco);
         return String.format("Endereco %s cadastrado com sucesso!", endereco);

@@ -1,12 +1,14 @@
 package sptech.unlock.artista.model;
 
+import org.springframework.lang.Nullable;
 import sptech.unlock.endereco.model.Endereco;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Artista")
-public class Artista {
+public class Artista implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,25 +16,32 @@ public class Artista {
     private Integer id;
 
     private String nome_artista;
+    private String nome_artistico;
     private String telefone_artista;
     private String cpf_artista;
     private String tipo_artista;
     private String email_artista;
     private String senha_artista;
+    private boolean grupo;
+    private boolean autenticado;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_endereco_artista", referencedColumnName = "id")
-    private Endereco endereco;
+    @ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_grupo", nullable = true)
+    private GrupoArtista grupoArtista;
 
-    public Artista(Integer id, String nome_artista, String telefone_artista, String cpf_artista, String tipo_artista, String email_artista, String senha_artista, Endereco endereco) {
+
+    public Artista(Integer id, String nome_artista, String nome_artistico, String telefone_artista, String cpf_artista, String tipo_artista, String email_artista, String senha_artista, boolean grupo, GrupoArtista grupoArtista) {
         this.id = id;
         this.nome_artista = nome_artista;
+        this.nome_artistico = nome_artistico;
         this.telefone_artista = telefone_artista;
         this.cpf_artista = cpf_artista;
         this.tipo_artista = tipo_artista;
         this.email_artista = email_artista;
         this.senha_artista = senha_artista;
-        this.endereco = endereco;
+        this.grupo = grupo;
+        this.autenticado = false;
+        this.grupoArtista = grupoArtista;
     }
 
     public Artista() {
@@ -52,6 +61,14 @@ public class Artista {
 
     public void setNome_artista(String nome_artista) {
         this.nome_artista = nome_artista;
+    }
+
+    public String getNome_artistico() {
+        return nome_artistico;
+    }
+
+    public void setNome_artistico(String nome_artistico) {
+        this.nome_artistico = nome_artistico;
     }
 
     public String getTelefone_artista() {
@@ -94,12 +111,28 @@ public class Artista {
         this.senha_artista = senha_artista;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public boolean isGrupo() {
+        return grupo;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setGrupo(boolean grupo) {
+        this.grupo = grupo;
+    }
+
+    public boolean isAutenticado() {
+        return autenticado;
+    }
+
+    public void setAutenticado(boolean autenticado) {
+        this.autenticado = autenticado;
+    }
+
+    public GrupoArtista getGrupoArtista() {
+        return grupoArtista;
+    }
+
+    public void setGrupoArtista(GrupoArtista grupoArtista) {
+        this.grupoArtista = grupoArtista;
     }
 
     @Override
@@ -107,12 +140,15 @@ public class Artista {
         return "Artista{" +
                 "id=" + id +
                 ", nome_artista='" + nome_artista + '\'' +
+                ", nome_artistico='" + nome_artistico + '\'' +
                 ", telefone_artista='" + telefone_artista + '\'' +
                 ", cpf_artista='" + cpf_artista + '\'' +
                 ", tipo_artista='" + tipo_artista + '\'' +
                 ", email_artista='" + email_artista + '\'' +
                 ", senha_artista='" + senha_artista + '\'' +
-                ", endereco=" + endereco +
+                ", grupo=" + grupo +
+                ", autenticado=" + autenticado +
+                ", grupoArtista=" + grupoArtista +
                 '}';
     }
 }

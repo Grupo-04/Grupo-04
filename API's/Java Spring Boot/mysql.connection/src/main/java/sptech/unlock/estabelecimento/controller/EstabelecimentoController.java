@@ -7,38 +7,50 @@ import sptech.unlock.estabelecimento.repositorio.RepositorioEstabelecimento;
 import sptech.unlock.estabelecimento.model.Estabelecimento;
 
 @Controller
-@RequestMapping("/estabelecimento")
+@RequestMapping("/estabelecimentos")
 public class EstabelecimentoController {
 
     @Autowired
     private RepositorioEstabelecimento repositorioEstabelecimento;
 
-    @PostMapping("/cadastrar")
+    @PostMapping //("/cadastrar")
     public @ResponseBody String cadastrar(
             @RequestBody Estabelecimento estabelecimento
     ) {
         repositorioEstabelecimento.save(estabelecimento);
-        return String.format("%s Cadastrado com sucesso!", estabelecimento);
+        return String.format("Usuário %s cadastrado com sucesso!", estabelecimento.getNome_estabelecimento());
     }
 
-    @GetMapping("/logar")
-    public @ResponseBody String logar(
+    @GetMapping //("/login")
+    public @ResponseBody
+    String logar(
             @RequestParam String email,
             @RequestParam String senha
     ) {
-        for (int i = 0; i < repositorioEstabelecimento.findAll().size(); i++) {
-            String emailDaVez = repositorioEstabelecimento.findAll().get(i).getEmail_estabelecimento();
-            String senhaDaVez = repositorioEstabelecimento.findAll().get(i).getSenha_estabelecimento();
-            if ( emailDaVez.equals(email) && senhaDaVez.equals(senha) ) {
-                String nomeEstabelecimento = repositorioEstabelecimento.findAll().get(i).getNome_estabelecimento();
-
-                //Print apenas para confirmar que foi encontrado o email e senha corretos!!!
-                System.out.println(String.format("Logando Estabelecimento...\nEmail: %s\nSenha: %s\n", emailDaVez, senhaDaVez));
-
-                return String.format("Bem-vindo %s, login realizado com sucesso!",
-                        nomeEstabelecimento);
+        for (Estabelecimento estabelecimento : repositorioEstabelecimento.findAll()) {
+            if (estabelecimento.getEmail_estabelecimento().equals(email) && estabelecimento.getSenha_estabelecimento().equals(senha)) {
+                estabelecimento.setAutenticado(true);
+                repositorioEstabelecimento.save(estabelecimento);
+                return String.format("Login  de usuário %s realizado com sucesso!", estabelecimento.getNome_estabelecimento());
             }
         }
         return "E-mail e/ou senha inválido!";
     }
+
+    @PutMapping //("/logoff")
+    public @ResponseBody
+    String logoff(
+            @RequestParam String email,
+            @RequestParam String senha
+    ) {
+        for (Estabelecimento estabelecimento : repositorioEstabelecimento.findAll()) {
+            if (estabelecimento.getEmail_estabelecimento().equals(email) && estabelecimento.getSenha_estabelecimento().equals(senha)) {
+                estabelecimento.setAutenticado(false);
+                repositorioEstabelecimento.save(estabelecimento);
+                return String.format("Logoff  de usuário %s realizado com sucesso!", estabelecimento.getNome_estabelecimento());
+            }
+        }
+        return String.format("Usuário de e-mail %s não encontrado!", email);
+    }
+
 }

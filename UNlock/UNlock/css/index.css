@@ -653,12 +653,9 @@ ul{
   }
 
   .header li a:hover{
-    box-shadow: 1px 1px 10px #f2984a52,
-    1px 1px 40px #f2984a57; 
-    border-radius: 20px;
-    animation-delay: 2s;
-    transition: 1.3s;
-    background-color:  #ffbe869c;
+    text-decoration: underline;
+    transition: 0.7s;
+    color: #F2994A;
   }   
 
   .active {
@@ -697,11 +694,13 @@ ul{
 
   .div-esquerda h1{
     padding-bottom: 5%;
-    font-size: 60px;
+    font-weight: var(--weight-title);
+    font-size: 70px;
   }
 
   .div-esquerda h3{
     padding-bottom: 3%;
+    font-weight: var(--text-weight);
   }
 
   .div-esquerda button{
@@ -714,23 +713,23 @@ ul{
     height: 57px;
     left: 111px;
     top: 481px;
-    background: #F2994A;
+    background-color: var(--orange-button) ;
     border-radius: 8px;
     border: none;
     color: white;
   }
   
   .div-esquerda button:hover{
-    box-shadow: 1px 1px 10px #f2984ac9,
-    1px 1px 40px #f2984ac9;
-    background-color: #FFBF86;
-    color:#FFFFFF;
-    animation-delay: 2s;
-    transition: 1.3s;
+   
+      box-shadow: 1px 1px 10px var(--shadow),
+      1px 1px 40px var(--orange-button);
+      background-color: #FFBF86;
+      transition: 0.4s;
+   
   }
 
   .impact-phrase{
-    color: rgba(0, 0, 0, 0.294);
+    color: rgba(29, 53, 71, 0.05);
     font-size: 150px;
     z-index: -1;
     
@@ -865,7 +864,7 @@ ul{
           }
 
           .impact-phrase{
-            color: rgba(128, 128, 128, 0.13);
+            color: rgba(29, 53, 71, 0.05);
             font-size: 100px;
             z-index: -1;
             
@@ -924,7 +923,7 @@ ul{
 
       @media screen and (max-width: 836px){
         .impact-phrase{
-          color: rgba(128, 128, 128, 0.13);
+          color: rgba(29, 53, 71, 0.05);
           font-size: 90px;
           z-index: -1;
           
@@ -942,7 +941,7 @@ ul{
 
       @media screen and (max-width: 817px){
         .impact-phrase{
-          color: rgba(128, 128, 128, 0.13);
+          color: rgba(29, 53, 71, 0.05);
           font-size: 70px;
           z-index: -1;
           
@@ -1027,7 +1026,7 @@ ul{
           color: white;
         }
         .impact-phrase{
-          color: rgba(128, 128, 128, 0.13);
+          color: rgba(29, 53, 71, 0.05);
           font-size: 60px;
           z-index: -1;
           
@@ -1190,7 +1189,7 @@ ul{
           }
           
           .impact-phrase{
-            color: rgba(128, 128, 128, 0.13);
+            color: rgba(29, 53, 71, 0.05);
             font-size: 50px;
             z-index: -1;
             
@@ -1417,7 +1416,7 @@ ul{
         }
 
         .impact-phrase{
-          color: rgba(128, 128, 128, 0.13);
+          color: rgba(29, 53, 71, 0.05);;
           font-size: 30px;
           z-index: -1;
           
@@ -1574,6 +1573,10 @@ ul{
 
       .home{
           padding-bottom: 20px;
+      }
+
+      .container-home{
+        height: 1000px;
       }
   
   /* @media screen and (max-width: xpx){css novo} */

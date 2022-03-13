@@ -286,6 +286,8 @@ ul{
 }
 
 .button{
+  color: var(--background);
+    cursor: pointer;
     border-radius: 1em 1em 1em 1em;
     width: 10em;
     height: 3.5em;
@@ -295,7 +297,10 @@ ul{
 }
 
 .div_button .button:hover{
-    background-color: #FFBA49;
+  box-shadow: 1px 1px 10px var(--shadow),
+  1px 1px 40px var(--orange-button);
+  background-color: #FFBF86;
+  transition: 0.4s;
 }
 
 .details{
@@ -398,7 +403,7 @@ ul{
     border-radius: 15px;
     margin-top: 5%;
     width: 100%;
-    height: 100%;
+    height: 75%;
     background-image: url("../imgs/celular_produto.svg");
     background-repeat: no-repeat;
     box-shadow: var(--shadow);
@@ -416,19 +421,22 @@ ul{
 }
 
 .botao_produto button {
+    outline: 0;
     transition: background 0.3s;
     border-radius: 20px;
     cursor: pointer;
     padding: 3%;
-    width: 55%;
+    width: 75%;
+    color: var(--background);
     background-color: var(--orange-button);
-    border: solid 2px var(--orange-button);
+    border: none;
 }
 
 .botao_produto button:hover {
-    box-shadow: var(--shadow);
-    border: solid 2px var(--orange-button);
-    background-color: var(--background);
+    box-shadow: 1px 1px 10px var(--shadow),
+    1px 1px 40px var(--orange-button);
+    background-color: #FFBF86;
+    transition: 0.4s;
 }
 
 .botao_produto button:active {
@@ -461,13 +469,13 @@ ul{
     border: solid var(--dark-purple) 2px;
 }
 
-@keyframes teste {
+/* @keyframes teste {
   0% {background-color: var(--background);}
   25% {background-color: var(--light-purple);}
   50% {background-color: var(--dark-purple);}
   75% {background-color: var(--dark-purple);}
   100% {background-color: var(--background);}
-}
+} */
 
 .card_produto h2 {
     color: var(--dark-purple);
@@ -496,22 +504,24 @@ ul{
     color: var(--dark-purple);
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1150px) {
     .celular_produto {
-      height: 70%;
+      display: none;
     }
-}
-
-@media only screen and (min-width: 950px) {
-    .celular_produto {
-      height: 80%;
+    .div_celular_produto {
+      display: flex;
+      align-content: center;
+      justify-content: center;
     }
 }
 
 /* ******* MOBILE PRODUCT ********* */
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 1150px) {
     .celular_produto {
         display: none;
+    }
+    .botao_produto button {
+      width: 63.5%;
     }
     .produtos1a3, .produtos4a6 {
         float: none;

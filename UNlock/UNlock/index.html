@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="../Identidade Visual/UNLOCK-Logo2.2.png" type="image/x-icon" />
+    <script src="./js/script.js"></script>
     <title>Unlock</title>
+    
 </head>
 
 <body>
@@ -275,7 +277,41 @@
 
         <!-- NUMBERS STARTS HERE-->
         <div class="numbers">
+            <div class="user-preview landscape">
+                <figure class="user-preview-cover liquid">
+                    <img src="./imgs/Vector.png">
+                </figure>
+        
+                <!-- user status starts-->
+                <div class="user-stats">
+                    <div class="user-stat-frase">        
+                        <p class="user-stat-text">Our numbers tell more about us</p>
+                    </div>
 
+                    <div class="user-stat">
+                        <p class="user-stat-title">+902</p>
+        
+                        <p class="user-stat-text">New customers this yaer</p>
+                    </div>
+        
+                    <div class="user-stat">
+                        <p class="user-stat-title">+90</p>
+        
+                        <p class="user-stat-text">Comments by our customers this yaer</p>
+                    </div>
+        
+                    <div class="user-stat">
+                        <p class="user-stat-title">+4.7k</p>
+        
+                        <p class="user-stat-text">Another amazing things</p>
+                    </div>
+                </div>
+                <!-- user status ends-->
+        
+                <figure class="user-preview-cover2 liquid">
+                    <img src="./imgs/orange wave.png">
+                </figure>
+            </div>
         </div>
         <!-- NUMBERS ENDS HERE-->
 
@@ -288,13 +324,40 @@
                     <img src="./imgs/det-bols.png">
                 </div>
                 <div class="retag">
-                    <div class="img-aspas">
-                        <img src="./imgs/img-aspas.png">
+                    <div class="cards" style="display: flex;">
+                        <div class="img-aspas">
+                            <img src="./imgs/img-aspas.png">
+                        </div>
+                        <div class="retag-text">
+                            "Curti demais a ideia de vocês, usaria sim. Ultimamente está tendo muitas 'panelinha' nos bares e isso dificulta bastante a gente conseguir tocar."
+                        </div>
                     </div>
-                    <div class="retag-text">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”
+                    <div class="cards" style="display: none;">
+                        <div class="img-aspas">
+                            <img src="./imgs/img-aspas.png">
+                        </div>
+                        <div class="retag-text">
+                            "Eu gosto muito de me apresentar, é uma paixão que eu tenho. Mas ultimamente está bem chato, tenho muitas dificuldades de encontrar um local com pessoas que gostem do meu estilo de apresentação"
+                        </div>
+                    </div>
+                    <div class="cards" style="display: none;">
+                        <div class="img-aspas">
+                            <img src="./imgs/img-aspas.png">
+                        </div>
+                        <div class="retag-text">
+                            "As vezes acontecem situações que lugares com gostos limitados e não valorizam ou não dão valor para o artista, seria muito bom algo que aumentasse essa diversidade dentro dos estabelecimentos."
+                        </div>
+                    </div>
+                    <div class="cards" style="display: none;">
+                        <div class="img-aspas">
+                            <img src="./imgs/img-aspas.png">
+                        </div>
+                        <div class="retag-text">
+                            "É bem complicado achar pessoas novas. Normalmente são os de sempre e outro ponto que gera muita confusão é o meio que agenda anotando em 'papeisinhos'."
+                        </div>
                     </div>
                 </div>
+                <div class="retag-two"></div>
                 <div class="frame-two">
                     <img src="./imgs/det-bolss.png">
                 </div>
@@ -302,9 +365,9 @@
                     <img src="./imgs/circulo.png">
                 </div>
             </div>
-            <div class="btn-seta">
-                <img id="img1" src="./imgs/Union.png"> 
-                <img id="img2"src="./imgs/Union2.png">
+            <div class="btnseta">
+                <img id="img1" src="./imgs/Union.png" onclick="diminuirZIndex()"> 
+                <img id="img2"src="./imgs/Union2.png" onclick="aumentarZIndex()">
             </div>
         </div>
         <!-- TESTIMONIALS ENDS HERE-->
@@ -316,38 +379,32 @@
     </div>
     <div class="text">
         <div class="ret-text">
-            <div class="text-titlle">WHO WE ARE</div>
-            <div class="text-text">About</div>
-            <div class="text-text">Team</div>
-            <div class="text-text">Work With Us</div>
+            <div class="text-titlle">QUEM SOMOS</div>
+            <div class="text-text">Sobre</div>
+            <div class="text-text">*Time*</div>
+            <div class="text-text">*Nossos trabalhos*</div>
         </div>
         <div class="ret-text">
-            <div class="text-titlle">WOOCOMMERCE</div>
-            <div class="text-text">Features</div>
-            <div class="text-text">Payments</div>
-            <div class="text-text">Marketing</div>
-            <div class="text-text">Shipping</div>
+            <div class="text-titlle">ÁREA DE ATUAÇÃO</div>
+            <div class="text-text">Mercado</div>
+            <div class="text-text">*Marketing*</div>
         </div>
         <div class="ret-text">
-            <div class="text-titlle">OTHER PRODUCTS</div>
-            <div class="text-text">Storefront</div>
-            <div class="text-text">WooSlider</div>
-            <div class="text-text">Sensei</div>
-            <div class="text-text">Sensei Extensions</div>
+            <div class="text-titlle">OUTROS PRODUTOS</div>
+            <div class="text-text">Soundry</div>
+            <div class="text-text">*Produto XPTO*</div>
         </div>
         <div class="ret-text">
-            <div class="text-titlle">SUPPORT</div>
-            <div class="text-text">Documentation</div>
-            <div class="text-text">Customizations</div>
-            <div class="text-text">Support Policy</div>
+            <div class="text-titlle">SUPORTE</div>
+            <div class="text-text">E-mail de Contato</div>
+            <div class="text-text">Help Desk</div>
         </div>
         <div class="ret-text">
-            <div class="text-titlle">WE RECOMMEND</div>
-            <div class="text-text">WooExperts</div>
-            <div class="text-text">Hosting Solutions</div>
-            <div class="text-text">Pre-sales FAQ</div>
-            <div class="text-text">Success Stories</div>
-            <div class="text-text">Desing Feedback Group</div>
+            <div class="text-titlle">REDES SOCIAIS</div>
+            <div class="text-text">Facebook</div>
+            <div class="text-text">Instagram</div>
+            <div class="text-text">Linkedin</div>
+            <div class="text-text">*Outros*</div>
         <div>
     </div>
 </div>

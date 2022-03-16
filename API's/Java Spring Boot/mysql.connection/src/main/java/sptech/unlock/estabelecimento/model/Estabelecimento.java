@@ -1,5 +1,6 @@
 package sptech.unlock.estabelecimento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sptech.unlock.endereco.model.Endereco;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Estabelecimento {
     private Integer quantidade_artistas_suportados;
     private boolean autenticado;
 
+    @JsonIgnore //Muito importante para evitar erro de lista infinita em método que busca todos usuários
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
     private Endereco endereco;

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import sptech.unlock.estabelecimento.repositorio.RepositorioEstabelecimento;
 import sptech.unlock.estabelecimento.model.Estabelecimento;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/estabelecimentos")
 public class EstabelecimentoController {
@@ -37,7 +39,7 @@ public class EstabelecimentoController {
         return "E-mail e/ou senha inválido!";
     }
 
-    @PutMapping //("/logoff")
+    @DeleteMapping //("/logoff")
     public @ResponseBody
     String logoff(
             @RequestParam String email,
@@ -53,4 +55,9 @@ public class EstabelecimentoController {
         return String.format("Usuário de e-mail %s não encontrado!", email);
     }
 
+    @GetMapping("/listar")
+    public @ResponseBody
+    List<Estabelecimento> listar() {
+        return repositorioEstabelecimento.findAll();
+    }
 }

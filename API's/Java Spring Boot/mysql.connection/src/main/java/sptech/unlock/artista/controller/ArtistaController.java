@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import sptech.unlock.artista.model.Artista;
 import sptech.unlock.artista.repositorio.RepositorioArtista;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/artistas")
 public class ArtistaController {
@@ -36,7 +38,7 @@ public class ArtistaController {
         return "E-mail e/ou senha inválido!";
     }
 
-    @PutMapping //("/logoff")
+    @DeleteMapping //("/logoff")
     public @ResponseBody
     String logoff(
             @RequestParam String email,
@@ -50,5 +52,11 @@ public class ArtistaController {
             }
         }
         return String.format("Usuário de e-mail %s não encontrado!", email);
+    }
+
+    @GetMapping("/listar")
+    public @ResponseBody
+    List<Artista> listar() {
+        return repositorioArtista.findAll();
     }
 }

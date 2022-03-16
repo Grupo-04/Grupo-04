@@ -1,5 +1,6 @@
 package sptech.unlock.artista.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.lang.Nullable;
 import sptech.unlock.endereco.model.Endereco;
 
@@ -25,6 +26,7 @@ public class Artista implements Serializable {
     private boolean grupo;
     private boolean autenticado;
 
+    @JsonIgnore //Muito importante para evitar erro de lista infinita em método que busca todos usuários
     @ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_grupo", nullable = true)
     private GrupoArtista grupoArtista;

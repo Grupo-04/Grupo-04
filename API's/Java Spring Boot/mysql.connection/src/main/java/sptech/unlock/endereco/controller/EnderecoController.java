@@ -7,7 +7,7 @@ import sptech.unlock.endereco.repositorio.RepositorioEndereco;
 import sptech.unlock.endereco.model.Endereco;
 
 @Controller
-@RequestMapping(path = "/enderecos")
+@RequestMapping("/enderecos")
 public class EnderecoController {
 
     @Autowired

@@ -1,5 +1,6 @@
 package sptech.unlock.endereco.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sptech.unlock.estabelecimento.model.Estabelecimento;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Endereco {
     private String cidade;
     private String bairro;
 
+    @JsonIgnore //Muito importante para evitar erro de lista infinita em método que busca todos usuários
     @OneToOne(mappedBy = "endereco")
     private Estabelecimento estabelecimento;
 

@@ -350,7 +350,7 @@ ul{
 @media screen and (max-width: 716px){
 
     .about{
-      margin-top: 215vh;
+      margin-top: 25vh;
     }
 
     .texto{
@@ -510,7 +510,7 @@ ul{
 
 .div_cards_produto {
     padding-top: 5%;
-    margin: 15% auto;
+    margin: 10% auto;
     width: 70%;
     height: 80%;
 }
@@ -596,15 +596,12 @@ ul{
         height: 10vh;
         width: 100%;
     }
-    .produtos4a6 {
-        padding-bottom: 5%;
-    }
     .div_cards_produto {
         padding-top: 0;
     }
     .produto {
         background-size: 0%;
-        height: 250vh;
+        height: 100%;
     }
 }
 
@@ -1583,12 +1580,12 @@ ul{
   /* height: 80vh; */
   width: 100%;
   height: auto;
-  display: flex;
-  padding-top: 15%;
+  padding-top: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 /* Number list */
 .user-preview {
   border-radius: var(--boderRadius);
@@ -1605,6 +1602,12 @@ ul{
   width: 80%;
   margin-bottom: 15px;
   position: relative;
+}
+
+@media only screen and (max-width: 800px) {
+  .numbers{
+    display: none;
+  }
 }
 
 /* bg preview cover starts */

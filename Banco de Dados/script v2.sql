@@ -1,7 +1,7 @@
 #unlock é palavra reservada, por isso declaramos com adicional de _db
 
+drop DATABASE unlock_db;
 CREATE DATABASE unlock_db;
--- drop DATABASE unlock_db;
 use unlock_db;
 
 #Criando tabela Endereco
@@ -50,13 +50,15 @@ CREATE TABLE Estabelecimento (
     horario VARCHAR(200),
     tipo VARCHAR(45) NOT NULL,
     quantidade_artistas_suportados INT NOT NULL,
-    autenticado tinyint not NULL,
-    fk_endereco_estabelecimento INT,
-    FOREIGN KEY (fk_endereco_estabelecimento) REFERENCES Endereco(id)
+    autenticado tinyint not NULL
+--    fk_endereco_estabelecimento INT,
+--    FOREIGN KEY (fk_endereco_estabelecimento) REFERENCES Endereco(id)
 );
 
 #Inserindo dados na tabela Estabelecimento
 INSERT INTO Estabelecimento values (null, '38420733000158', 'Bar do JUCA', '20480070', 'juca@gmail.com', 'juca123', 'SEGUNDA A SEXTA 19:00 - 00:00', 'Bar', 3, 0, 1);
+
+desc Estabelecimento;
 
 #Consultando tabela Estabelecimento
 select * from Estabelecimento;
@@ -78,7 +80,7 @@ CREATE TABLE Agendamento (
     valor_cobrado DOUBLE(5,2) NOT NULL,
     fk_artista INT,
     FOREIGN KEY (fk_artista) REFERENCES GrupoArtista(id),
-    fk_estabelecimento INT, 
+	fk_estabelecimento INT, 
     FOREIGN KEY (fk_estabelecimento) REFERENCES Estabelecimento(id)
 );
 

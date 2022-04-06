@@ -1,27 +1,25 @@
 package sptech.unlock.loginusuario.classeAbstrata;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-
-@Component
-@Table(name = "Estabelecimento")
+@MappedSuperclass
 public abstract class Usuario {
 
-    @Column(name = "nome", nullable = false, unique = true, length = 45)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String nome;
-    @Column(name = "telefone", nullable = false, unique = true, length = 15)
     private String telefone;
-    @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
-    @Column(name = "senha", nullable = false, unique = true, length = 45)
     private String senha;
-    @Column(name = "autenticado", nullable = false, unique = true)
     private Boolean autenticado;
 
-    public Usuario(String nome, String telefone, String email, String senha, Boolean autenticado) {
+    public Usuario() {
+    }
+
+    public Usuario(Integer id, String nome, String telefone, String email, String senha, Boolean autenticado) {
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -29,7 +27,12 @@ public abstract class Usuario {
         this.autenticado = autenticado;
     }
 
-    public Usuario() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -64,11 +67,23 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
-    public Boolean getAutenticacao() {
+    public Boolean getAutenticado() {
         return autenticado;
     }
 
-    public void setAutenticacao(Boolean autenticacao) {
-        this.autenticado = autenticacao;
+    public void setAutenticado(Boolean autenticado) {
+        this.autenticado = autenticado;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", autenticado=" + autenticado +
+                '}';
     }
 }

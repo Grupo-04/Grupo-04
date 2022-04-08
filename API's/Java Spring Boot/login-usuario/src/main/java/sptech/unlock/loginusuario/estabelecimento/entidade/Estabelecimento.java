@@ -1,15 +1,28 @@
 package sptech.unlock.loginusuario.estabelecimento.entidade;
 
+import org.hibernate.validator.constraints.br.CNPJ;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 
 @Entity
 public class Estabelecimento extends Usuario{
 
+//    @CNPJ
+//    @NotBlank
     private String cnpj;
-    private String horario;
+
+//    @NotBlank
+    private LocalDate horario;
+
+//    @NotBlank
     private String tipo;
+
+//    @NotBlank
+//    @Positive
     private Integer quantidade_artistas_suportados;
 
 //    @JsonIgnore //Muito importante para evitar erro de lista infinita em método que busca todos usuários
@@ -28,11 +41,11 @@ public class Estabelecimento extends Usuario{
         this.cnpj = cnpj;
     }
 
-    public String getHorario() {
+    public LocalDate getHorario() {
         return horario;
     }
 
-    public void setHorario(String horario) {
+    public void setHorario(LocalDate horario) {
         this.horario = horario;
     }
 

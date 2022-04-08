@@ -9,22 +9,33 @@ public abstract class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+//    @NotBlank
     private String nome;
+
+//    @NotBlank
+//    @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})" , message = "Informe um telefone válido com ou sem DDD")
     private String telefone;
+
+//    @NotBlank
+//    @Email
     private String email;
+
+//    @NotBlank
     private String senha;
-    private Boolean autenticado;
+
+//    @NotNull
+    private boolean autenticado;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String telefone, String email, String senha, Boolean autenticado) {
+    public Usuario(Integer id, String nome, String telefone, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.senha = senha;
-        this.autenticado = autenticado;
+        this.autenticado = false;
     }
 
     public Integer getId() {
@@ -67,23 +78,11 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
-    public Boolean getAutenticado() {
+    public boolean isAutenticado() {
         return autenticado;
     }
 
-    public void setAutenticado(Boolean autenticado) {
+    public void setAutenticado(boolean autenticado) {
         this.autenticado = autenticado;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", autenticado=" + autenticado +
-                '}';
     }
 }

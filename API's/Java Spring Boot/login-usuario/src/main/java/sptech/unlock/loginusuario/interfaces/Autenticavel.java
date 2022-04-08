@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 public interface Autenticavel {
 
-    @PostMapping("/login")
-    public ResponseEntity login(@PathVariable String email, @PathVariable String senha);
+    public ResponseEntity login(@RequestParam String email, @RequestParam String senha);
 
-    @DeleteMapping("/logoff")
-    public ResponseEntity logoff(@PathVariable String email, @PathVariable String senha);
+    public ResponseEntity logoff(@RequestParam String email, @RequestParam String senha);
 }

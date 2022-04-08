@@ -1,5 +1,7 @@
 package sptech.unlock.loginusuario.grupoArtista.entidade;
 
+import sptech.unlock.loginusuario.classeAbstrata.Usuario;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,25 +9,16 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class GrupoArtista {
+public class GrupoArtista extends Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @NotBlank
+//    @NotBlank
     private String nome_artistico;
     private String cpf;
     private String tipo;
     private Boolean grupo;
     private String estilo;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public GrupoArtista() {
     }
 
     public String getNome_artistico() {
@@ -66,17 +59,5 @@ public class GrupoArtista {
 
     public void setEstilo(String estilo) {
         this.estilo = estilo;
-    }
-
-    @Override
-    public String toString() {
-        return "GrupoArtista{" +
-                "id=" + id +
-                ", nome_artistico='" + nome_artistico + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", grupo=" + grupo +
-                ", estilo='" + estilo + '\'' +
-                '}';
     }
 }

@@ -14,6 +14,7 @@ import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "estabelecimento")
@@ -39,6 +40,12 @@ public class Estabelecimento extends Usuario{
     @JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
     private Endereco endereco;
 
+    @OneToMany(mappedBy = "estabelecimento")
+    private Set<Agendamento> agendamentos;
+
+    public Estabelecimento() {
+    }
+
     public Estabelecimento(Integer id, String nome, String telefone, String email, String senha, String cnpj, LocalDate horario, String tipo, Integer quantidade_artistas_suportados, Endereco endereco) {
         super(id, nome, telefone, email, senha);
         this.cnpj = cnpj;
@@ -46,9 +53,6 @@ public class Estabelecimento extends Usuario{
         this.tipo = tipo;
         this.quantidade_artistas_suportados = quantidade_artistas_suportados;
         this.endereco = endereco;
-    }
-
-    public Estabelecimento() {
     }
 
     public String getCnpj() {
@@ -89,5 +93,13 @@ public class Estabelecimento extends Usuario{
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Set<Agendamento> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(Set<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 }

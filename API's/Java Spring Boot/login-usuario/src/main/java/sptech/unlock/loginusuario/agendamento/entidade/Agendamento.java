@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "agendamento")
 public class Agendamento {
     
     @Id
@@ -20,25 +21,25 @@ public class Agendamento {
     private Double valorCobrado;
 
     @ManyToOne
-    @JoinColumn(name = "fk_grupo_artista", referencedColumnName = "id")
+    @JoinColumn(name = "fk_grupo_artista", nullable = false)
     private GrupoArtista grupoArtistaAlocado;
 
     @ManyToOne
-    @JoinColumn(name = "fk_estabelecimento", referencedColumnName = "id")
-    private Estabelecimento estabelecimentoContratante;
-
-    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDate dataEvento, Double valorCobrado, GrupoArtista grupoArtistaAlocado, Estabelecimento estabelecimentoContratante) {
-        this.id = id;
-        this.codigo_agendamento = codigo_agendamento;
-        this.status_agendamento = status_agendamento;
-        this.dataEvento = dataEvento;
-        this.valorCobrado = valorCobrado;
-        this.grupoArtistaAlocado = grupoArtistaAlocado;
-        this.estabelecimentoContratante = estabelecimentoContratante;
-    }
+    @JoinColumn(name = "fk_estabelecimento", nullable = false)
+    private Estabelecimento estabelecimentos;
 
     public Agendamento() {
     }
+
+//    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDate dataEvento, Double valorCobrado, GrupoArtista grupoArtistaAlocado, Estabelecimento estabelecimentos) {
+//        this.id = id;
+//        this.codigo_agendamento = codigo_agendamento;
+//        this.status_agendamento = status_agendamento;
+//        this.dataEvento = dataEvento;
+//        this.valorCobrado = valorCobrado;
+//        this.grupoArtistaAlocado = grupoArtistaAlocado;
+//        this.estabelecimentos = estabelecimentos;
+//    }
 
     public Integer getId() {
         return id;
@@ -88,11 +89,11 @@ public class Agendamento {
         this.grupoArtistaAlocado = grupoArtistaAlocado;
     }
 
-    public Estabelecimento getEstabelecimentoContratante() {
-        return estabelecimentoContratante;
+    public Estabelecimento getEstabelecimentos() {
+        return estabelecimentos;
     }
 
-    public void setEstabelecimentoContratante(Estabelecimento estabelecimentoContratante) {
-        this.estabelecimentoContratante = estabelecimentoContratante;
+    public void setEstabelecimentos(Estabelecimento estabelecimentos) {
+        this.estabelecimentos = estabelecimentos;
     }
 }

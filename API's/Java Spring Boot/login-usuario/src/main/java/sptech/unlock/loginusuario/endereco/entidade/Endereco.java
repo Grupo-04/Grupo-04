@@ -2,6 +2,7 @@ package sptech.unlock.loginusuario.endereco.entidade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
+import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 
 import javax.persistence.*;
 
@@ -24,6 +25,9 @@ public class Endereco {
 //    @JsonIgnore
     @OneToOne(mappedBy = "endereco")
     private Estabelecimento estabelecimento;
+
+    @OneToOne(mappedBy = "endereco")
+    private GrupoArtista grupoArtista;
 
     public Endereco() {
     }

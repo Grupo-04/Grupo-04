@@ -2,6 +2,7 @@ package sptech.unlock.loginusuario.grupoArtista.entidade;
 
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
+import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "grupoArtista")
 public class GrupoArtista extends Usuario {
 
 //    @NotBlank
@@ -18,10 +20,28 @@ public class GrupoArtista extends Usuario {
     private Boolean grupo;
     private String estilo;
 
-    @OneToMany
-    private List<Agendamento> agendamentos = new ArrayList<>();
+//    @OneToMany
+//    private Agendamento agendamentos;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "GrupoArtistaHasEndereco",
+            joinColumns =
+                    { @JoinColumn(name = "fk_grupo_artista", referencedColumnName = "id") },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "fk_endereco", referencedColumnName = "id") })
+    private Endereco endereco;
 
     public GrupoArtista() {
+    }
+
+    public GrupoArtista(Integer id, String nome, String telefone, String email, String senha, String nome_artistico, String cpf, String tipo, Boolean grupo, String estilo, Endereco endereco) {
+        super(id, nome, telefone, email, senha);
+        this.nome_artistico = nome_artistico;
+        this.cpf = cpf;
+        this.tipo = tipo;
+        this.grupo = grupo;
+        this.estilo = estilo;
+        this.endereco = endereco;
     }
 
     public String getNome_artistico() {
@@ -64,11 +84,11 @@ public class GrupoArtista extends Usuario {
         this.estilo = estilo;
     }
 
-    public List<Agendamento> getAgendamentos() {
-        return agendamentos;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setAgendamentos(List<Agendamento> agendamentos) {
-        this.agendamentos = agendamentos;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

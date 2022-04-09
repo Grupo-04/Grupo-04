@@ -11,8 +11,6 @@ import sptech.unlock.loginusuario.interfaces.Autenticavel;
 import sptech.unlock.loginusuario.interfaces.Registravel;
 
 import javax.validation.Valid;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @RequestMapping(path = "/estabelecimento")
@@ -31,9 +29,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
     @GetMapping("/listar")
     @Override
     public ResponseEntity exibirTodos() {
-        System.out.println(estabelecimentos.findAll().size()+1);
         return ResponseEntity.status(200).body(estabelecimentos.findAll());
-
     }
 
     @GetMapping
@@ -66,18 +62,5 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
             }
         }
         return ResponseEntity.status(200).build();
-    }
-
-
-    @GetMapping("/match")
-    public ResponseEntity getEstabelecimento() {
-
-        Random gerador = new Random();
-        if (estabelecimentos.findAll().isEmpty()) {
-            return ResponseEntity.status(204).build();
-        }
-        int range = estabelecimentos.findAll().size();
-        int nroRandom = ThreadLocalRandom.current().nextInt(1, range);
-        return ResponseEntity.status(200).body(estabelecimentos.findById(nroRandom));
     }
 }

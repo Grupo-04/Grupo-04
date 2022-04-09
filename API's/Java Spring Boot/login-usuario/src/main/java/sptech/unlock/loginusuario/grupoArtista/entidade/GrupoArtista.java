@@ -1,12 +1,12 @@
 package sptech.unlock.loginusuario.grupoArtista.entidade;
 
+import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class GrupoArtista extends Usuario {
@@ -17,6 +17,9 @@ public class GrupoArtista extends Usuario {
     private String tipo;
     private Boolean grupo;
     private String estilo;
+
+    @OneToMany
+    private List<Agendamento> agendamentos = new ArrayList<>();
 
     public GrupoArtista() {
     }
@@ -59,5 +62,13 @@ public class GrupoArtista extends Usuario {
 
     public void setEstilo(String estilo) {
         this.estilo = estilo;
+    }
+
+    public List<Agendamento> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/grupoArtista")
+@RequestMapping(path = "/grupo-artista")
 public class GrupoArtistaController implements Registravel<ResponseEntity, GrupoArtista>, Autenticavel {
 
     @Autowired

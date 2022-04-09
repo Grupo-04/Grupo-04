@@ -1,4 +1,4 @@
-package sptech.unlock.loginusuario.estabelecimento.entidade.repositorio;
+package sptech.unlock.loginusuario.agendamento.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;

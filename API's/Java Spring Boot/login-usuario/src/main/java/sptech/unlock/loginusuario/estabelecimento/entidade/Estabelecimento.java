@@ -40,9 +40,6 @@ public class Estabelecimento extends Usuario{
     @JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "estabelecimento")
-    private Set<Agendamento> agendamentos;
-
     public Estabelecimento() {
     }
 
@@ -95,11 +92,11 @@ public class Estabelecimento extends Usuario{
         this.endereco = endereco;
     }
 
-    public Set<Agendamento> getAgendamentos() {
-        return agendamentos;
-    }
-
-    public void setAgendamentos(Set<Agendamento> agendamentos) {
-        this.agendamentos = agendamentos;
-    }
+//    public List<Agendamento> getAgendamentos() {
+//        return agendamentos;
+//    }
+//
+//    public void setAgendamentos(List<Agendamento> agendamentos) {
+//        this.agendamentos = agendamentos;
+//    }
 }

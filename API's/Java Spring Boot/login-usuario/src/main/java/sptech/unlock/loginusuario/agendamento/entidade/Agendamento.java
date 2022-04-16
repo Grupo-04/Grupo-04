@@ -1,10 +1,12 @@
 package sptech.unlock.loginusuario.agendamento.entidade;
 
+import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
 import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,29 +19,25 @@ public class Agendamento {
 
     private String codigo_agendamento;
     private String status_agendamento;
-    private LocalDate dataEvento;
-    private Double valorCobrado;
+    private LocalDate data_evento;
+    private Double valor_cobrado;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_grupo_artista", nullable = false)
-    private GrupoArtista grupoArtistaAlocado;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_estabelecimento", nullable = false)
-    private Estabelecimento estabelecimentos;
+    //    TODO: Passar para session storage
+    private Integer fk_estabelecimento;
+    private Integer fk_grupo_artista;
 
     public Agendamento() {
     }
 
-//    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDate dataEvento, Double valorCobrado, GrupoArtista grupoArtistaAlocado, Estabelecimento estabelecimentos) {
-//        this.id = id;
-//        this.codigo_agendamento = codigo_agendamento;
-//        this.status_agendamento = status_agendamento;
-//        this.dataEvento = dataEvento;
-//        this.valorCobrado = valorCobrado;
-//        this.grupoArtistaAlocado = grupoArtistaAlocado;
-//        this.estabelecimentos = estabelecimentos;
-//    }
+    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDate data_evento, Double valor_cobrado, Integer fk_estabelecimento, Integer fk_grupo_artista) {
+        this.id = id;
+        this.codigo_agendamento = codigo_agendamento;
+        this.status_agendamento = status_agendamento;
+        this.data_evento = data_evento;
+        this.valor_cobrado = valor_cobrado;
+        this.fk_estabelecimento = fk_estabelecimento;
+        this.fk_grupo_artista = fk_grupo_artista;
+    }
 
     public Integer getId() {
         return id;
@@ -65,35 +63,35 @@ public class Agendamento {
         this.status_agendamento = status_agendamento;
     }
 
-    public LocalDate getDataEvento() {
-        return dataEvento;
+    public LocalDate getData_evento() {
+        return data_evento;
     }
 
-    public void setDataEvento(LocalDate dataEvento) {
-        this.dataEvento = dataEvento;
+    public void setData_evento(LocalDate data_evento) {
+        this.data_evento = data_evento;
     }
 
-    public Double getValorCobrado() {
-        return valorCobrado;
+    public Double getValor_cobrado() {
+        return valor_cobrado;
     }
 
-    public void setValorCobrado(Double valorCobrado) {
-        this.valorCobrado = valorCobrado;
+    public void setValor_cobrado(Double valor_cobrado) {
+        this.valor_cobrado = valor_cobrado;
     }
 
-    public GrupoArtista getGrupoArtistaAlocado() {
-        return grupoArtistaAlocado;
+    public Integer getFk_estabelecimento() {
+        return fk_estabelecimento;
     }
 
-    public void setGrupoArtistaAlocado(GrupoArtista grupoArtistaAlocado) {
-        this.grupoArtistaAlocado = grupoArtistaAlocado;
+    public void setFk_estabelecimento(Integer fk_estabelecimento) {
+        this.fk_estabelecimento = fk_estabelecimento;
     }
 
-    public Estabelecimento getEstabelecimentos() {
-        return estabelecimentos;
+    public Integer getFk_grupo_artista() {
+        return fk_grupo_artista;
     }
 
-    public void setEstabelecimentos(Estabelecimento estabelecimentos) {
-        this.estabelecimentos = estabelecimentos;
+    public void setFk_grupo_artista(Integer fk_grupo_artista) {
+        this.fk_grupo_artista = fk_grupo_artista;
     }
 }

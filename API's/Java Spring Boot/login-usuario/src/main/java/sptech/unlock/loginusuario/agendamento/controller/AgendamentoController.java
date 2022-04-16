@@ -3,8 +3,8 @@ package sptech.unlock.loginusuario.agendamento.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sptech.unlock.loginusuario.agendamento.repositorio.RepositorioAgendamento;
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
-import sptech.unlock.loginusuario.estabelecimento.entidade.repositorio.RepositorioAgendamento;
 
 import java.time.LocalDate;
 
@@ -15,8 +15,14 @@ public class AgendamentoController {
     @Autowired
     private RepositorioAgendamento agendamentos;
 
-    @PostMapping
-    public ResponseEntity adicionarAgendamento(@RequestBody Agendamento agendamento){
+    @PostMapping("/{fk_estabelecimento}/{fk_grupo_artista}")
+    public ResponseEntity adicionarAgendamento(
+            @RequestBody Agendamento agendamento,
+            @PathVariable Integer fk_estabelecimento,
+            @PathVariable Integer fk_grupo_artista
+    ){
+        agendamento.setFk_estabelecimento(fk_estabelecimento);
+        agendamento.setFk_grupo_artista(fk_estabelecimento);
         agendamentos.save(agendamento);
         return ResponseEntity.status(201).body(agendamento);
     }
@@ -36,7 +42,7 @@ public class AgendamentoController {
     public ResponseEntity consultarPorData(@PathVariable LocalDate data){
 
         for(Agendamento agend : agendamentos.findAll()){
-            if(agend.getDataEvento().equals(data)){
+            if(agend.getData_evento().equals(data)){
                 return ResponseEntity.status(200).body(agend);
             }
         }

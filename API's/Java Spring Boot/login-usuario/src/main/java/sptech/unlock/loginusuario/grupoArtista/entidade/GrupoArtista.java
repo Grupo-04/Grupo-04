@@ -1,13 +1,9 @@
 package sptech.unlock.loginusuario.grupoArtista.entidade;
 
-import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "grupoArtista")

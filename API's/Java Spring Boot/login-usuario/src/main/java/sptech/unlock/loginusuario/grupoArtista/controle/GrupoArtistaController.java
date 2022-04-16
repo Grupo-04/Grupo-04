@@ -20,7 +20,6 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
     @Autowired
     private RepositorioGrupoArtista grupoArtistas;
-    private RepositorioEstabelecimento estabelecimentos;
 
     @PostMapping
     @Override
@@ -67,40 +66,40 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         return ResponseEntity.status(200).build();
     }
 
-    @GetMapping("/match")
-    public ResponseEntity getEstabelecimento() {
+//    @GetMapping("/match")
+//    public ResponseEntity getEstabelecimento() {
+//
+//        if (estabelecimentos.findAll().isEmpty()) {
+//            return ResponseEntity.status(204).build();
+//        }
+//
+//        int rangeGeral = estabelecimentos.findAll().size();
+//
+//        List<Estabelecimento> estabelecimentosMatchCidade = new ArrayList<>();
+//
+//        for(int i = 1; i < rangeGeral; i++){
+//            if(
+//                    estabelecimentos.findAll().get(i).getEndereco().getCidade()
+//                            .equals(grupoArtistas.findAll().get(i).getEndereco().getCidade())
+//            ){
+//                estabelecimentosMatchCidade.add(estabelecimentos.findAll().get(i));
+//            }
+//        }
 
-        if (estabelecimentos.findAll().isEmpty()) {
-            return ResponseEntity.status(204).build();
-        }
+//        List<Estabelecimento> estabelecimentosMatchNota = new ArrayList<>();
+//        for (int i = 0; i < estabelecimentosMatchCidade.size(); i++){
+//            if (
+//                    estabelecimentosMatchCidade.get(i).getAvgNota
+//                            .equals(grupoArtistas.findAll().get(i).getAvgNota)
+//            ){
+//                estabelecimentosMatchNota.add(estabelecimentosMatchCidade.get(i));
+//            }
+//        }
 
-        int rangeGeral = estabelecimentos.findAll().size();
-
-        List<Estabelecimento> estabelecimentosMatchCidade = new ArrayList<>();
-
-        for(int i = 1; i < rangeGeral; i++){
-            if(
-                    estabelecimentos.findAll().get(i).getEndereco().getCidade()
-                            .equals(grupoArtistas.findAll().get(i).getEndereco().getCidade())
-            ){
-                estabelecimentosMatchCidade.add(estabelecimentos.findAll().get(i));
-            }
-        }
-
-        List<Estabelecimento> estabelecimentosMatchNota = new ArrayList<>();
-        for (int i = 0; i < estabelecimentosMatchCidade.size(); i++){
-            if (
-                    estabelecimentosMatchCidade.get(i).getAvgNota
-                            .equals(grupoArtistas.findAll().get(i).getAvgNota)
-            ){
-                estabelecimentosMatchNota.add(estabelecimentosMatchCidade.get(i));
-            }
-        }
-
-        int rangeMatch = estabelecimentosMatchNota.size()-1;
-        int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
-
-        return ResponseEntity.status(200).body(estabelecimentosMatchNota.get(nroRandom));
-    }
+//        int rangeMatch = estabelecimentosMatchNota.size()-1;
+//        int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
+//
+//        return ResponseEntity.status(200).body(estabelecimentosMatchNota.get(nroRandom));
+//    }
 
 }

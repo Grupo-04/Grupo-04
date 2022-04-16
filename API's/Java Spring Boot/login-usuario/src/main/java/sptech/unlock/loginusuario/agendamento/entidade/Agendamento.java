@@ -1,10 +1,12 @@
 package sptech.unlock.loginusuario.agendamento.entidade;
 
+import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
 import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,7 @@ public class Agendamento {
     private LocalDate data_evento;
     private Double valor_cobrado;
 
+    //    TODO: Passar para session storage
     private Integer fk_estabelecimento;
     private Integer fk_grupo_artista;
 

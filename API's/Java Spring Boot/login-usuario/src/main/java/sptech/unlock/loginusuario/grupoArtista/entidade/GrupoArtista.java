@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name = "grupoArtista")
@@ -90,5 +91,10 @@ public class GrupoArtista extends Usuario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Double getAvgNota(){
+        Double nota = ThreadLocalRandom.current().nextDouble(1, 5);
+        return nota;
     }
 }

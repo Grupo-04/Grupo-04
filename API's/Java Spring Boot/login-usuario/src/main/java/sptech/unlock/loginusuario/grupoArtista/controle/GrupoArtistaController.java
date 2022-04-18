@@ -22,6 +22,8 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     private RepositorioGrupoArtista grupoArtistas;
     private RepositorioEstabelecimento estabelecimentos;
 
+    private GrupoArtista artista;
+
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody GrupoArtista grupoArtista) {
@@ -42,9 +44,10 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        for (GrupoArtista grup : grupoArtistas.findAll()){
-            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
+        for (GrupoArtista grup : grupoArtistas.findAll()) {
+            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)) {
                 grup.setAutenticado(true);
+                artista = grup;
                 return ResponseEntity.status(202).build();
             }
         }
@@ -58,8 +61,8 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        for (GrupoArtista grup : grupoArtistas.findAll()){
-            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
+        for (GrupoArtista grup : grupoArtistas.findAll()) {
+            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)) {
                 grup.setAutenticado(false);
                 return ResponseEntity.status(200).build();
             }
@@ -67,8 +70,8 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         return ResponseEntity.status(200).build();
     }
 
-    @GetMapping("/match")
-    public ResponseEntity getEstabelecimento() {
+    @GetMapping("/match/{diaSelec}")
+    public ResponseEntity getEstabelecimento(@PathVariable Integer diaSelec) {
 
         if (estabelecimentos.findAll().isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -78,29 +81,38 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
         List<Estabelecimento> estabelecimentosMatchCidade = new ArrayList<>();
 
-        for(int i = 1; i < rangeGeral; i++){
-            if(
+        for (int i = 1; i < rangeGeral; i++) {
+            if (
                     estabelecimentos.findAll().get(i).getEndereco().getCidade()
-                            .equals(grupoArtistas.findAll().get(i).getEndereco().getCidade())
-            ){
+                            .equals(artista.getEndereco().getCidade())
+            ) {
                 estabelecimentosMatchCidade.add(estabelecimentos.findAll().get(i));
             }
         }
 
-        List<Estabelecimento> estabelecimentosMatchNota = new ArrayList<>();
-        for (int i = 0; i < estabelecimentosMatchCidade.size(); i++){
+        List<Estabelecimento> estabelecimentosMatchCidadeNota = new ArrayList<>();
+
+        for (int i = 0; i < estabelecimentosMatchCidade.size(); i++) {
             if (
-                    estabelecimentosMatchCidade.get(i).getAvgNota
-                            .equals(grupoArtistas.findAll().get(i).getAvgNota)
+                 estabelecimentosMatchCidade.get(i).getAvgNota() == artista.getAvgNota()
             ){
-                estabelecimentosMatchNota.add(estabelecimentosMatchCidade.get(i));
+                estabelecimentosMatchCidadeNota.add(estabelecimentosMatchCidade.get(i));
             }
+                // .equals(grupoArtistas.findAll().get(i).getAvgNota())
         }
 
-        int rangeMatch = estabelecimentosMatchNota.size()-1;
-        int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
 
-        return ResponseEntity.status(200).body(estabelecimentosMatchNota.get(nroRandom));
+        List<Estabelecimento> estabelecimentosMatchCidadeNotaDispo = new ArrayList<>();
+        //  int diaSelec = 6;
+        for (int i = 0; i < estabelecimentosMatchCidadeNota.size(); i++) {
+            if (estabelecimentosMatchCidadeNota.get(i).getDisponibilidade(diaSelec)) {
+                  estabelecimentosMatchCidadeNotaDispo.add(estabelecimentosMatchCidadeNota.get(i));
+                  }
+        }
+            int rangeMatch = estabelecimentosMatchCidadeNotaDispo.size() - 1;
+            int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
+
+        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo.get(nroRandom));
     }
 
 }

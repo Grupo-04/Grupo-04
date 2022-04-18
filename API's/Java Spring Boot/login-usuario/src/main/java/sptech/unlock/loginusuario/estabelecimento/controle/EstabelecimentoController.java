@@ -63,4 +63,5 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         }
         return ResponseEntity.status(200).build();
     }
+
 }

@@ -1,6 +1,7 @@
 package sptech.unlock.loginusuario.estabelecimento.entidade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import net.bytebuddy.asm.Advice;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.beans.factory.annotation.Autowired;
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name = "estabelecimento")
@@ -99,4 +101,105 @@ public class Estabelecimento extends Usuario{
 //    public void setAgendamentos(List<Agendamento> agendamentos) {
 //        this.agendamentos = agendamentos;
 //    }
+
+    public Boolean getDisponibilidade(Integer i) {
+        Boolean resu = true;
+
+        if (i == 1) {
+            resu = true;
+        }
+        if (i == 2) {
+            resu = false;
+        }
+        if (i == 3) {
+            resu = true;
+        }
+        if (i == 4) {
+            resu = true;
+        }
+        if (i == 5) {
+            resu = false;
+        }
+        if (i == 6) {
+            resu = true;
+        }
+        if (i == 7) {
+            resu = true;
+        }
+        if (i == 8) {
+            resu = false;
+        }
+        if (i == 9) {
+            resu = true;
+        }
+        if (i == 10) {
+            resu = false;
+        }
+        if (i == 11) {
+            resu = true;
+        }
+        if (i == 12) {
+            resu = false;
+        }
+        if (i == 13) {
+            resu = true;
+        }
+        if (i == 14) {
+            resu = false;
+        }
+        if (i == 15) {
+            resu = true;
+        }
+        if (i == 16) {
+            resu = false;
+        }
+        if (i == 17) {
+            resu = true;
+        }
+        if (i == 18) {
+            resu = true;
+        }
+        if (i == 19) {
+            resu = false;
+        }
+        if (i == 20) {
+            resu = true;
+        }
+        if (i == 21) {
+            resu = false;
+        }
+        if (i == 22) {
+            resu = true;
+        }
+        if (i == 23) {
+            resu = false;
+        }
+        if (i == 24) {
+            resu = true;
+        }
+        if (i == 25) {
+            resu = false;
+        }
+        if (i == 26) {
+            resu = true;
+        }
+        if (i == 27) {
+            resu = false;
+        }
+        if (i == 28) {
+            resu = true;
+        }
+        if (i == 29) {
+            resu = false;
+        }
+        if (i == 30) {
+            resu = false;
+        }
+        return resu;
+    }
+
+    public Double getAvgNota(){
+       Double nota = ThreadLocalRandom.current().nextDouble(1, 5);
+       return nota;
+    }
 }

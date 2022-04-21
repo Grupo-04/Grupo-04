@@ -22,6 +22,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody Estabelecimento estabelecimento) {
+        estabelecimento.setAutenticado(false);
         estabelecimentos.save(estabelecimento);
         return ResponseEntity.status(201).body(estabelecimento);
     }
@@ -42,6 +43,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         for (Estabelecimento estab : estabelecimentos.findAll()){
             if (estab.getEmail().equals(email) && estab.getSenha().equals(senha)){
                 estab.setAutenticado(true);
+                estabelecimentos.save(estab);
                 return ResponseEntity.status(202).build();
             }
         }
@@ -58,6 +60,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         for (Estabelecimento estab : estabelecimentos.findAll()){
             if (estab.getEmail().equals(email) && estab.getSenha().equals(senha)){
                 estab.setAutenticado(false);
+                estabelecimentos.save(estab);
                 return ResponseEntity.status(200).build();
             }
         }

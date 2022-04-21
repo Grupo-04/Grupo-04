@@ -19,6 +19,7 @@ public class Agendamento {
 
     private String codigo_agendamento;
     private String status_agendamento;
+
     private LocalDate data_evento;
     private Double valor_cobrado;
 

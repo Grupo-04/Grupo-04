@@ -24,6 +24,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody GrupoArtista grupoArtista) {
+        grupoArtista.setAutenticado(false);
         grupoArtistas.save(grupoArtista);
         return ResponseEntity.status(201).body(grupoArtista);
     }
@@ -44,6 +45,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         for (GrupoArtista grup : grupoArtistas.findAll()){
             if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
                 grup.setAutenticado(true);
+                grupoArtistas.save(grup);
                 return ResponseEntity.status(202).build();
             }
         }
@@ -60,6 +62,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         for (GrupoArtista grup : grupoArtistas.findAll()){
             if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
                 grup.setAutenticado(false);
+                grupoArtistas.save(grup);
                 return ResponseEntity.status(200).build();
             }
         }

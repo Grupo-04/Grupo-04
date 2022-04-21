@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface RepositorioGrupoArtista extends CrudRepository<GrupoArtista, Integer> {
     List<GrupoArtista> findAll();
+
+
 }

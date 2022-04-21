@@ -22,6 +22,11 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     @Autowired
     private RepositorioGrupoArtista grupoArtistas;
 
+    private RepositorioEstabelecimento estabelecimentos;
+
+    private GrupoArtista artista;
+
+
     @Autowired
     private EmailSenderService senderService;
 
@@ -81,40 +86,55 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         return ResponseEntity.status(200).build();
     }
 
-//    @GetMapping("/match")
-//    public ResponseEntity getEstabelecimento() {
-//
-//        if (estabelecimentos.findAll().isEmpty()) {
-//            return ResponseEntity.status(204).build();
-//        }
-//
-//        int rangeGeral = estabelecimentos.findAll().size();
-//
-//        List<Estabelecimento> estabelecimentosMatchCidade = new ArrayList<>();
-//
-//        for(int i = 1; i < rangeGeral; i++){
-//            if(
-//                    estabelecimentos.findAll().get(i).getEndereco().getCidade()
-//                            .equals(grupoArtistas.findAll().get(i).getEndereco().getCidade())
-//            ){
-//                estabelecimentosMatchCidade.add(estabelecimentos.findAll().get(i));
-//            }
-//        }
+    @GetMapping("/match/{diaSelec}/{id}")
+    public ResponseEntity getEstabelecimento(@PathVariable Integer diaSelec, @PathVariable Integer id) {
 
-//        List<Estabelecimento> estabelecimentosMatchNota = new ArrayList<>();
-//        for (int i = 0; i < estabelecimentosMatchCidade.size(); i++){
-//            if (
-//                    estabelecimentosMatchCidade.get(i).getAvgNota
-//                            .equals(grupoArtistas.findAll().get(i).getAvgNota)
-//            ){
-//                estabelecimentosMatchNota.add(estabelecimentosMatchCidade.get(i));
-//            }
-//        }
+       for (int i = 0; i < grupoArtistas.findAll().size(); i++){
+           if(grupoArtistas.findAll().get(i).getId() == id){
+               artista = grupoArtistas.findAll().get(i);
+           }
+       }
 
-//        int rangeMatch = estabelecimentosMatchNota.size()-1;
-//        int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
-//
-//        return ResponseEntity.status(200).body(estabelecimentosMatchNota.get(nroRandom));
-//    }
+        if (estabelecimentos.findAll().isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
+        int rangeGeral = estabelecimentos.findAll().size();
+
+        List<Estabelecimento> estabelecimentosMatchCidade = new ArrayList<>();
+
+        for (int i = 1; i < rangeGeral; i++) {
+            if (
+                    estabelecimentos.findAll().get(i).getEndereco().getCidade()
+                            .equals(artista.getEndereco().getCidade())
+            ) {
+                estabelecimentosMatchCidade.add(estabelecimentos.findAll().get(i));
+            }
+        }
+
+        List<Estabelecimento> estabelecimentosMatchCidadeNota = new ArrayList<>();
+
+        for (int i = 0; i < estabelecimentosMatchCidade.size(); i++) {
+            if (
+                    estabelecimentosMatchCidade.get(i).getAvgNota() == artista.getAvgNota()
+            ){
+                estabelecimentosMatchCidadeNota.add(estabelecimentosMatchCidade.get(i));
+            }
+            // .equals(grupoArtistas.findAll().get(i).getAvgNota())
+        }
+
+
+        List<Estabelecimento> estabelecimentosMatchCidadeNotaDispo = new ArrayList<>();
+        //  int diaSelec = 6;
+        for (int i = 0; i < estabelecimentosMatchCidadeNota.size(); i++) {
+            if (estabelecimentosMatchCidadeNota.get(i).getDisponibilidade(diaSelec)) {
+                estabelecimentosMatchCidadeNotaDispo.add(estabelecimentosMatchCidadeNota.get(i));
+            }
+        }
+        int rangeMatch = estabelecimentosMatchCidadeNotaDispo.size() - 1;
+        int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
+
+        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo.get(nroRandom));
+    }
 
 }

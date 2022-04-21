@@ -3,6 +3,7 @@ package sptech.unlock.loginusuario.grupoArtista.controle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sptech.unlock.loginusuario.email.service.EmailSenderService;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
 import sptech.unlock.loginusuario.estabelecimento.repositorio.RepositorioEstabelecimento;
 import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
@@ -21,12 +22,23 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     @Autowired
     private RepositorioGrupoArtista grupoArtistas;
 
+    @Autowired
+    private EmailSenderService senderService;
+
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody GrupoArtista grupoArtista) {
-        grupoArtista.setAutenticado(false);
-        grupoArtistas.save(grupoArtista);
-        return ResponseEntity.status(201).body(grupoArtista);
+
+            grupoArtista.setAutenticado(false);
+            grupoArtistas.save(grupoArtista);
+
+            senderService.sendEmail(
+                    grupoArtista.getEmail(),
+                    "Cadastro realizado com sucesso!",
+                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
+            );
+
+            return ResponseEntity.status(201).body(grupoArtista);
     }
 
     @GetMapping("/listar")

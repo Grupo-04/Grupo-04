@@ -22,6 +22,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     @Autowired
     private RepositorioGrupoArtista grupoArtistas;
 
+    @Autowired
     private RepositorioEstabelecimento estabelecimentos;
 
     private GrupoArtista artista;
@@ -37,11 +38,11 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             grupoArtista.setAutenticado(false);
             grupoArtistas.save(grupoArtista);
 
-            senderService.sendEmail(
-                    grupoArtista.getEmail(),
-                    "Cadastro realizado com sucesso!",
-                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
-            );
+//            senderService.sendEmail(
+//                    grupoArtista.getEmail(),
+//                    "Cadastro realizado com sucesso!",
+//                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
+//            );
 
             return ResponseEntity.status(201).body(grupoArtista);
     }
@@ -103,12 +104,9 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
         List<Estabelecimento> estabelecimentosMatchCidade = new ArrayList<>();
 
-        for (int i = 1; i < rangeGeral; i++) {
-            if (
-                    estabelecimentos.findAll().get(i).getEndereco().getCidade()
-                            .equals(artista.getEndereco().getCidade())
-            ) {
-                estabelecimentosMatchCidade.add(estabelecimentos.findAll().get(i));
+        for (Estabelecimento estab : estabelecimentos.findAll()){
+            if (estab.getEndereco().getCidade().equalsIgnoreCase(artista.getEndereco().getCidade())){
+                estabelecimentosMatchCidade.add(estab);
             }
         }
 
@@ -120,21 +118,21 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             ){
                 estabelecimentosMatchCidadeNota.add(estabelecimentosMatchCidade.get(i));
             }
-            // .equals(grupoArtistas.findAll().get(i).getAvgNota())
+
         }
 
-
         List<Estabelecimento> estabelecimentosMatchCidadeNotaDispo = new ArrayList<>();
-        //  int diaSelec = 6;
+
         for (int i = 0; i < estabelecimentosMatchCidadeNota.size(); i++) {
             if (estabelecimentosMatchCidadeNota.get(i).getDisponibilidade(diaSelec)) {
                 estabelecimentosMatchCidadeNotaDispo.add(estabelecimentosMatchCidadeNota.get(i));
             }
         }
-        int rangeMatch = estabelecimentosMatchCidadeNotaDispo.size() - 1;
-        int nroRandom = ThreadLocalRandom.current().nextInt(1, rangeMatch);
+        int rangeMatch = estabelecimentosMatchCidadeNotaDispo.size();
+//        int nroRandom = ThreadLocalRandom.current().nextInt(0, rangeMatch+1);
 
-        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo.get(nroRandom));
+        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNota);
+//        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo.get(nroRandom));
     }
 
 }

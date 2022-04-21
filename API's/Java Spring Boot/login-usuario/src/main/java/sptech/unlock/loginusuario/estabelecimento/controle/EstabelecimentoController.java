@@ -31,11 +31,11 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
             estabelecimento.setAutenticado(false);
             estabelecimentos.save(estabelecimento);
 
-            senderService.sendEmail(
-                    estabelecimento.getEmail(),
-                    "Cadastro realizado com sucesso!",
-                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
-            );
+//            senderService.sendEmail(
+//                    estabelecimento.getEmail(),
+//                    "Cadastro realizado com sucesso!",
+//                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
+//            );
 
             return ResponseEntity.status(201).body(estabelecimento);
     }

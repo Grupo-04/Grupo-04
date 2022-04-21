@@ -183,8 +183,8 @@ public class Estabelecimento extends Usuario{
         return resu;
     }
 
-    public Double getAvgNota(){
-        Double nota = ThreadLocalRandom.current().nextDouble(1, 5);
+    public Integer getAvgNota(){
+        Integer nota = ThreadLocalRandom.current().nextInt(1, 10);
         return nota;
     }
 }

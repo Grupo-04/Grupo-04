@@ -29,17 +29,6 @@ public class AgendamentoController {
         return ResponseEntity.status(201).body(agendamento);
     }
 
-//    @GetMapping
-//    public ResponseEntity confirmarCodigo(@RequestParam String codigo){
-//
-//        return ResponseEntity.status(201).build();
-//    }
-
-//    @DeleteMapping
-//    public ResponseEntity cancelar(@RequestParam String codigo){
-//        return ResponseEntity.status(201).build();
-//    }
-
     @GetMapping
     public ResponseEntity getAgendamentos(){
         if(agendamentos.findAll().isEmpty()){
@@ -94,7 +83,7 @@ public class AgendamentoController {
     }
 
     @DeleteMapping("/apagar-agendamento/{codigoAgendamento}")
-    public ResponseEntity apagarAgendamento(
+    public ResponseEntity cancelarAgendamento(
             @PathVariable String codigoAgendamento
     ){
 
@@ -106,5 +95,18 @@ public class AgendamentoController {
         }
         return ResponseEntity.status(400).build();
     }
+
+    
+
+//    @GetMapping
+//    public ResponseEntity confirmarCodigo(@RequestParam String codigo){
+//
+//        return ResponseEntity.status(201).build();
+//    }
+
+//    @DeleteMapping
+//    public ResponseEntity cancelar(@RequestParam String codigo){
+//        return ResponseEntity.status(201).build();
+//    }
 
 }

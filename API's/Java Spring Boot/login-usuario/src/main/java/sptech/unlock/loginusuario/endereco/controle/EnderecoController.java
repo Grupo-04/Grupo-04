@@ -51,14 +51,10 @@ public class EnderecoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteEndereco(
-            @PathVariable int id
-    ){
-        for (Endereco end : enderecos.findAll()){
-            if(end.getId().equals(id)){
-                enderecos.delete(end);
-                return ResponseEntity.status(200).build();
-            }
+    public ResponseEntity deleteEndereco(@PathVariable Integer id){
+        if(enderecos.existsById(id)){
+            enderecos.deleteById(id);
+            return ResponseEntity.status(200).build();
         }
         return ResponseEntity.status(204).build();
     }

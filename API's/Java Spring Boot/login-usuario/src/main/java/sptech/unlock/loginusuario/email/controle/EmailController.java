@@ -44,6 +44,5 @@ public class EmailController {
         }
 
         return ResponseEntity.status(404).body(erro);
-
     }
 }

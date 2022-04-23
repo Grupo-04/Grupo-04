@@ -8,6 +8,7 @@ import sptech.unlock.loginusuario.agendamento.repositorio.RepositorioAgendamento
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
 import sptech.unlock.loginusuario.listaobj.ListaObj;
 
+import javax.swing.filechooser.FileSystemView;
 import javax.validation.Valid;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,7 +27,8 @@ public class AgendamentoController {
         nomeArq += ".csv";
 
         try {
-            arq = new FileWriter(nomeArq);
+            String pathDocuments = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
+            arq = new FileWriter(pathDocuments + "\\" + nomeArq);
             saida = new Formatter(arq);
         }
         catch (IOException erro) {
@@ -147,7 +149,6 @@ public class AgendamentoController {
     public ResponseEntity baixarCsv(@PathVariable Integer id){
 
         ListaObj<Agendamento> agendamentoListaObj = new ListaObj<>(agendamentos.findAll().size());
-
 
         for (Agendamento agend : agendamentos.findAll()){
             if (agend.getFk_estabelecimento() == id || agend.getFk_grupo_artista() == id){

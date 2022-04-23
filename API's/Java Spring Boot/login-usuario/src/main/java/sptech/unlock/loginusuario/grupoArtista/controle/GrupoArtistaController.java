@@ -38,11 +38,11 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             grupoArtista.setAutenticado(false);
             grupoArtistas.save(grupoArtista);
 
-//            senderService.sendEmail(
-//                    grupoArtista.getEmail(),
-//                    "Cadastro realizado com sucesso!",
-//                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
-//            );
+            senderService.sendEmail(
+                    grupoArtista.getEmail(),
+                    "Cadastro realizado com sucesso!",
+                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
+            );
 
             return ResponseEntity.status(201).body(grupoArtista);
     }
@@ -131,8 +131,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         int rangeMatch = estabelecimentosMatchCidadeNotaDispo.size();
 //        int nroRandom = ThreadLocalRandom.current().nextInt(0, rangeMatch+1);
 
-        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNota);
-//        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo.get(nroRandom));
+        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo);
     }
 
 }

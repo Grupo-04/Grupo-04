@@ -1,14 +1,11 @@
 package sptech.unlock.loginusuario.estabelecimento.entidade;
 
-import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 import sptech.unlock.loginusuario.disponibilidade.controle.DisponibilidadeEstabelecimento;
 import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Entity

@@ -1,14 +1,11 @@
-package sptech.unlock.loginusuario.disponibilidade.controle;
-
-import sptech.unlock.loginusuario.endereco.entidade.Endereco;
-import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
+package sptech.unlock.loginusuario.disponibilidade.entidade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "disponibilidadeEstabelecimento")
-public class DisponibilidadeEstabelecimento {
+@Table(name = "disponibilidadeGrupoArtista")
+public class DisponibilidadeGrupoArtista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,22 +13,21 @@ public class DisponibilidadeEstabelecimento {
 
     private Integer mes;
     private Integer dia_semana;
-    private LocalDate hora_inicio; // somente horas
-    private LocalDate hora_fim; // somente horas
+    private LocalDate hora_inicio;
+    private LocalDate hora_fim;
 
-//    TODO: Passar para session storage
-    private Integer fk_estabelecimento;
+    private Integer fk_grupo_artista;
 
-    public DisponibilidadeEstabelecimento() {
+    public DisponibilidadeGrupoArtista() {
     }
 
-    public DisponibilidadeEstabelecimento(Integer id, Integer mes, Integer dia_semana, LocalDate hora_inicio, LocalDate hora_fim, Integer fk_estabelecimento) {
+    public DisponibilidadeGrupoArtista(Integer id, Integer mes, Integer dia_semana, LocalDate hora_inicio, LocalDate hora_fim, Integer fk_grupo_artista) {
         this.id = id;
         this.mes = mes;
         this.dia_semana = dia_semana;
         this.hora_inicio = hora_inicio;
         this.hora_fim = hora_fim;
-        this.fk_estabelecimento = fk_estabelecimento;
+        this.fk_grupo_artista = fk_grupo_artista;
     }
 
     public Integer getId() {
@@ -74,11 +70,11 @@ public class DisponibilidadeEstabelecimento {
         this.hora_fim = hora_fim;
     }
 
-    public Integer getFk_estabelecimento() {
-        return fk_estabelecimento;
+    public Integer getFk_grupo_artista() {
+        return fk_grupo_artista;
     }
 
-    public void setFk_estabelecimento(Integer fk_estabelecimento) {
-        this.fk_estabelecimento = fk_estabelecimento;
+    public void setFk_grupo_artista(Integer fk_grupo_artista) {
+        this.fk_grupo_artista = fk_grupo_artista;
     }
 }

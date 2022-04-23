@@ -1,7 +1,7 @@
 package sptech.unlock.loginusuario.estabelecimento.entidade;
 
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
-import sptech.unlock.loginusuario.disponibilidade.controle.DisponibilidadeEstabelecimento;
+import sptech.unlock.loginusuario.disponibilidade.entidade.DisponibilidadeEstabelecimento;
 import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;

@@ -1,7 +1,7 @@
 package sptech.unlock.loginusuario.disponibilidade.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import sptech.unlock.loginusuario.disponibilidade.controle.DisponibilidadeGrupoArtista;
+import sptech.unlock.loginusuario.disponibilidade.entidade.DisponibilidadeGrupoArtista;
 
 import java.util.List;
 

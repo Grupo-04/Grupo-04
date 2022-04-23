@@ -6,13 +6,60 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sptech.unlock.loginusuario.agendamento.repositorio.RepositorioAgendamento;
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
+import sptech.unlock.loginusuario.listaobj.ListaObj;
 
 import javax.validation.Valid;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Formatter;
+import java.util.FormatterClosedException;
 
 @RestController
 @RequestMapping(path = "/agendamento")
 public class AgendamentoController {
+
+    public void gravaArquivoCsv(ListaObj<Agendamento> lista, String nomeArq) {
+        FileWriter arq = null;
+        Formatter saida = null;
+        Boolean deuRuim = false;
+        nomeArq += ".csv";
+
+        try {
+            arq = new FileWriter(nomeArq);
+            saida = new Formatter(arq);
+        }
+        catch (IOException erro) {
+            System.out.println("Erro ao abrir o arquivo!");
+            System.exit(1);
+        }
+
+        try {
+            for (int i = 0; i < lista.getTamanho(); i++) {
+                Agendamento agend = lista.getElemento(i);
+                saida.format("%d;%s;%s;%s;%.2f;%d;%d\n",agend.getId(), agend.getCodigo_agendamento(),
+                        agend.getStatus_agendamento(), agend.getData_evento(), agend.getValor_cobrado(),
+                        agend.getFk_estabelecimento(), agend.getFk_grupo_artista());
+            }
+        }
+        catch (FormatterClosedException erro) {
+            System.out.println("Erro ao gravar arquivo");
+            deuRuim = true;
+        }
+        finally {
+            saida.close();
+            try {
+                arq.close();
+            }
+            catch (IOException erro) {
+                System.out.println("Erro ao fechar o arquivo");
+                deuRuim = true;
+            }
+            if (deuRuim) {
+                System.exit(1);
+            }
+        }
+    }
 
     @Autowired
     private RepositorioAgendamento agendamentos;
@@ -96,7 +143,24 @@ public class AgendamentoController {
         return ResponseEntity.status(400).build();
     }
 
-    
+    @PostMapping("/baixar-csv/{id}")
+    public ResponseEntity baixarCsv(@PathVariable Integer id){
+
+        ListaObj<Agendamento> agendamentoListaObj = new ListaObj<>(agendamentos.findAll().size());
+
+        if (agendamentoListaObj.getTamanho() == 0){
+            return ResponseEntity.status(400).build();
+        }
+
+        for (Agendamento agend : agendamentos.findAll()){
+            if (agend.getFk_estabelecimento() == id || agend.getFk_grupo_artista() == id){
+                agendamentoListaObj.adiciona(agend);
+            }
+        }
+
+        gravaArquivoCsv(agendamentoListaObj, "Agendamentos");
+        return ResponseEntity.status(201).build();
+    }
 
 //    @GetMapping
 //    public ResponseEntity confirmarCodigo(@RequestParam String codigo){

@@ -1,9 +1,9 @@
-package sptech.unlock.loginusuario.disponibilidade.entidade;
+package sptech.unlock.loginusuario.disponibilidade.controle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sptech.unlock.loginusuario.disponibilidade.controle.DisponibilidadeEstabelecimento;
+import sptech.unlock.loginusuario.disponibilidade.entidade.DisponibilidadeEstabelecimento;
 import sptech.unlock.loginusuario.disponibilidade.repositorio.RepositorioDisponibilidadeEstabelecimento;
 
 @RestController
@@ -19,5 +19,4 @@ public class DisponiblidadeEstabelecimentoController {
         repository.save(disponibilidade);
         return ResponseEntity.status(201).body(disponibilidade);
     }
-
 }

@@ -148,14 +148,15 @@ public class AgendamentoController {
 
         ListaObj<Agendamento> agendamentoListaObj = new ListaObj<>(agendamentos.findAll().size());
 
-        if (agendamentoListaObj.getTamanho() == 0){
-            return ResponseEntity.status(400).build();
-        }
 
         for (Agendamento agend : agendamentos.findAll()){
             if (agend.getFk_estabelecimento() == id || agend.getFk_grupo_artista() == id){
                 agendamentoListaObj.adiciona(agend);
             }
+        }
+
+        if (agendamentoListaObj.getNumeroElemento() == 0){
+            return ResponseEntity.status(400).build();
         }
 
         gravaArquivoCsv(agendamentoListaObj, "Agendamentos");

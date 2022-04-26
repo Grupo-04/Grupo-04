@@ -89,6 +89,7 @@ public class GrupoArtista extends Usuario {
         this.endereco = endereco;
     }
 
+
     public Integer getAvgNota(){
         Integer nota = ThreadLocalRandom.current().nextInt(1, 10);
         return nota;

@@ -28,7 +28,6 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
     private GrupoArtista artista;
 
-
     @Autowired
     private EmailSenderService senderService;
 
@@ -85,10 +84,12 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        for (GrupoArtista grup : grupoArtistas.findAll()){
-            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
+        for (GrupoArtista grup : grupoArtistas.findAll()) {
+            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)) {
                 grup.setAutenticado(true);
+
                 grupoArtistas.save(grup);
+
                 return ResponseEntity.status(202).build();
             }
         }
@@ -102,8 +103,8 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        for (GrupoArtista grup : grupoArtistas.findAll()){
-            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
+        for (GrupoArtista grup : grupoArtistas.findAll()) {
+            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)) {
                 grup.setAutenticado(false);
                 grupoArtistas.save(grup);
                 return ResponseEntity.status(200).build();
@@ -111,6 +112,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         }
         return ResponseEntity.status(200).build();
     }
+
 
     @GetMapping("/match/{diaSelec}/{id}")
     public ResponseEntity getEstabelecimento(@PathVariable Integer diaSelec, @PathVariable Integer id) {
@@ -120,6 +122,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
                artista = grupoArtistas.findAll().get(i);
            }
        }
+
 
         if (estabelecimentos.findAll().isEmpty()) {
             return ResponseEntity.status(204).build();
@@ -132,6 +135,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         for (Estabelecimento estab : estabelecimentos.findAll()){
             if (estab.getEndereco().getCidade().equalsIgnoreCase(artista.getEndereco().getCidade())){
                 estabelecimentosMatchCidade.add(estab);
+
             }
         }
 
@@ -139,6 +143,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
         for (int i = 0; i < estabelecimentosMatchCidade.size(); i++) {
             if (
+
                     estabelecimentosMatchCidade.get(i).getAvgNota() == artista.getAvgNota()
             ){
                 estabelecimentosMatchCidadeNota.add(estabelecimentosMatchCidade.get(i));
@@ -157,6 +162,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 //        int nroRandom = ThreadLocalRandom.current().nextInt(0, rangeMatch+1);
 
         return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo);
+
     }
 
 }

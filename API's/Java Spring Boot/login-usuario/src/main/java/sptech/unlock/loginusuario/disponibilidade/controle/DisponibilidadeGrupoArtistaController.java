@@ -1,9 +1,9 @@
-package sptech.unlock.loginusuario.disponibilidade.entidade;
+package sptech.unlock.loginusuario.disponibilidade.controle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sptech.unlock.loginusuario.disponibilidade.controle.DisponibilidadeGrupoArtista;
+import sptech.unlock.loginusuario.disponibilidade.entidade.DisponibilidadeGrupoArtista;
 import sptech.unlock.loginusuario.disponibilidade.repositorio.RepositorioDisponibilidadeGrupoArtista;
 
 @RestController

@@ -5,10 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+import sptech.unlock.loginusuario.email.service.EmailSenderService;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
 import sptech.unlock.loginusuario.estabelecimento.repositorio.RepositorioEstabelecimento;
 import sptech.unlock.loginusuario.interfaces.Autenticavel;
 import sptech.unlock.loginusuario.interfaces.Registravel;
+import sptech.unlock.loginusuario.observer.OctalObserver;
+import sptech.unlock.loginusuario.observer.StringObserver;
+import sptech.unlock.loginusuario.observer.Subject;
 
 import javax.validation.Valid;
 
@@ -19,11 +23,32 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
     @Autowired
     private RepositorioEstabelecimento estabelecimentos;
 
+    @Autowired
+    private EmailSenderService senderService;
+
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody Estabelecimento estabelecimento) {
-        estabelecimentos.save(estabelecimento);
-        return ResponseEntity.status(201).body(estabelecimento);
+
+
+            estabelecimento.setAutenticado(false);
+            estabelecimentos.save(estabelecimento);
+
+//            senderService.sendEmail(
+//                    estabelecimento.getEmail(),
+//                    "Cadastro realizado com sucesso!",
+//                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
+//            );
+
+            Subject subject = new Subject();
+
+            new StringObserver(subject);
+            new OctalObserver(subject);
+
+            System.out.println("STATE CHANGE: 45");
+            subject.setState(45);
+
+            return ResponseEntity.status(201).body(estabelecimento);
     }
 
     @GetMapping("/listar")
@@ -42,6 +67,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         for (Estabelecimento estab : estabelecimentos.findAll()){
             if (estab.getEmail().equals(email) && estab.getSenha().equals(senha)){
                 estab.setAutenticado(true);
+                estabelecimentos.save(estab);
                 return ResponseEntity.status(202).build();
             }
         }
@@ -58,6 +84,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         for (Estabelecimento estab : estabelecimentos.findAll()){
             if (estab.getEmail().equals(email) && estab.getSenha().equals(senha)){
                 estab.setAutenticado(false);
+                estabelecimentos.save(estab);
                 return ResponseEntity.status(200).build();
             }
         }

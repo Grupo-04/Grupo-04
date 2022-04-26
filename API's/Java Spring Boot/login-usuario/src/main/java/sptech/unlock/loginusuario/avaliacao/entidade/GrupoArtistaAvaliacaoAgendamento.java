@@ -1,6 +1,5 @@
 package sptech.unlock.loginusuario.avaliacao.entidade;
 
-import org.springframework.http.ResponseEntity;
 import sptech.unlock.loginusuario.classeAbstrata.Avaliacao;
 
 import javax.persistence.Entity;

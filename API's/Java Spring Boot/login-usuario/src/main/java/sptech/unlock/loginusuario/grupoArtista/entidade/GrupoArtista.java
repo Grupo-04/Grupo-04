@@ -4,6 +4,7 @@ import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name = "grupoArtista")
@@ -86,5 +87,10 @@ public class GrupoArtista extends Usuario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Integer getAvgNota(){
+        Integer nota = ThreadLocalRandom.current().nextInt(1, 10);
+        return nota;
     }
 }

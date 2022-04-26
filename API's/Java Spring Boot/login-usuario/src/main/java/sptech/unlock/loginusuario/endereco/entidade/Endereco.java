@@ -22,10 +22,11 @@ public class Endereco {
     private String cidade;
     private String bairro;
 
-//    @JsonIgnore
+    @JsonIgnore
     @OneToOne(mappedBy = "endereco")
     private Estabelecimento estabelecimento;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "endereco")
     private GrupoArtista grupoArtista;
 

@@ -1,13 +1,9 @@
 package sptech.unlock.loginusuario.grupoArtista.entidade;
 
-import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
@@ -93,8 +89,9 @@ public class GrupoArtista extends Usuario {
         this.endereco = endereco;
     }
 
-    public Double getAvgNota(){
-        Double nota = ThreadLocalRandom.current().nextDouble(1, 5);
+
+    public Integer getAvgNota(){
+        Integer nota = ThreadLocalRandom.current().nextInt(1, 10);
         return nota;
     }
 }

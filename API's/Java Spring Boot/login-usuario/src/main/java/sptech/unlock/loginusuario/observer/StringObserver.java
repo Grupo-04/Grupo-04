@@ -5,9 +5,6 @@ import sptech.unlock.loginusuario.email.service.EmailSenderService;
 
 public class StringObserver extends Observer {
 
-    @Autowired
-    private EmailSenderService senderService;
-
     public StringObserver(Subject subject){
         this.subject = subject;
         this.subject.attach(this);

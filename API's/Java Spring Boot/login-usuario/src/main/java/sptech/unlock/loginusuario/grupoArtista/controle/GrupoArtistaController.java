@@ -10,6 +10,7 @@ import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 import sptech.unlock.loginusuario.grupoArtista.repositorio.RepositorioGrupoArtista;
 import sptech.unlock.loginusuario.interfaces.Autenticavel;
 import sptech.unlock.loginusuario.interfaces.Registravel;
+import sptech.unlock.loginusuario.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,20 +32,44 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     @Autowired
     private EmailSenderService senderService;
 
+    public void notifyAllObservers(List<Estabelecimento> estab, String nomeArtista){
+        for (Estabelecimento e : estab) {
+            update(e.getEmail(), nomeArtista);
+        }
+    }
+
+    public void update(String email, String nomeArtista) {
+        senderService.sendEmail(
+                email,
+                String.format("Novo Artista %s em sua cidade!", nomeArtista),
+                "Você escolheu ser notificado cada vez que um novo artista em sua cidade é cadastrado," +
+                        "para desabilitar esta opção acesse o site em www.example.com"
+        );
+    }
+
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody GrupoArtista grupoArtista) {
 
-            grupoArtista.setAutenticado(false);
-            grupoArtistas.save(grupoArtista);
+        List<Estabelecimento> estabelecimentosObservados = new ArrayList();
 
-            senderService.sendEmail(
-                    grupoArtista.getEmail(),
-                    "Cadastro realizado com sucesso!",
-                    "Acesse nosso site através do link www.example.com para completar o cadastro!"
-            );
+        for (Estabelecimento e: estabelecimentos.findAll()) {
+            if (e.isInteresse_match_cidade()) {
+                if (e.getEndereco().getCidade().equals(grupoArtista.getEndereco().getCidade())) {
+                    estabelecimentosObservados.add(e);
+                }
+            }
+        }
 
-            return ResponseEntity.status(201).body(grupoArtista);
+        if (estabelecimentosObservados.size() > 0) {
+            notifyAllObservers(estabelecimentosObservados, grupoArtista.getNome_artistico());
+        }
+
+        grupoArtista.setAutenticado(false);
+        grupoArtistas.save(grupoArtista);
+
+
+        return ResponseEntity.status(201).body(grupoArtista);
     }
 
     @GetMapping("/listar")

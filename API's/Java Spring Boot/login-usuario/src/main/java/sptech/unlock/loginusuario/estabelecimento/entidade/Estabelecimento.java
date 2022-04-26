@@ -1,7 +1,9 @@
 package sptech.unlock.loginusuario.estabelecimento.entidade;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import sptech.unlock.loginusuario.classeAbstrata.Usuario;
 import sptech.unlock.loginusuario.disponibilidade.entidade.DisponibilidadeEstabelecimento;
+import sptech.unlock.loginusuario.email.service.EmailSenderService;
 import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 
 import javax.persistence.*;
@@ -22,6 +24,8 @@ public class Estabelecimento extends Usuario{
 //    @NotBlank
     private String tipo;
 
+    private boolean interesse_match_cidade;
+
 //    @NotBlank
 //    @Positive
     private Integer quantidade_artistas_suportados;
@@ -32,16 +36,24 @@ public class Estabelecimento extends Usuario{
     @JoinColumn(name = "fk_endereco_estabelecimento", referencedColumnName = "id")
     private Endereco endereco;
 
-    public Estabelecimento() {
-    }
+    public Estabelecimento() {}
 
-    public Estabelecimento(Integer id, String nome, String telefone, String email, String senha, String cnpj, LocalDate horario, String tipo, Integer quantidade_artistas_suportados, Endereco endereco, DisponibilidadeEstabelecimento disponibilidadeEstabelecimento) {
+    public Estabelecimento(Integer id, String nome, String telefone, String email, String senha, String cnpj, LocalDate horario, String tipo, boolean interesse_match_cidade, Integer quantidade_artistas_suportados, Endereco endereco) {
         super(id, nome, telefone, email, senha);
         this.cnpj = cnpj;
         this.horario = horario;
         this.tipo = tipo;
+        this.interesse_match_cidade = interesse_match_cidade;
         this.quantidade_artistas_suportados = quantidade_artistas_suportados;
         this.endereco = endereco;
+    }
+
+    public boolean isInteresse_match_cidade() {
+        return interesse_match_cidade;
+    }
+
+    public void setInteresse_match_cidade(boolean interesse_match_cidade) {
+        this.interesse_match_cidade = interesse_match_cidade;
     }
 
     public String getCnpj() {

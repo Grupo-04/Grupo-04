@@ -156,7 +156,6 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         int rangeMatch = estabelecimentosMatchCidadeNotaDispo.size();
 //        int nroRandom = ThreadLocalRandom.current().nextInt(0, rangeMatch+1);
 
-        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNotaDispo);
+        return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNota);
     }
-
 }

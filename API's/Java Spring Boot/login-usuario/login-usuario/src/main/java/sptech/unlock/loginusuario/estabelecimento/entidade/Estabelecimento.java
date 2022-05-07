@@ -19,9 +19,6 @@ public class Estabelecimento extends Usuario{
     private String cnpj;
 
 //    @NotBlank
-    private LocalDate horario;
-
-//    @NotBlank
     private String tipo;
 
     private boolean interesse_match_cidade;
@@ -38,10 +35,9 @@ public class Estabelecimento extends Usuario{
 
     public Estabelecimento() {}
 
-    public Estabelecimento(Integer id, String nome, String telefone, String email, String senha, String cnpj, LocalDate horario, String tipo, boolean interesse_match_cidade, Integer quantidade_artistas_suportados, Endereco endereco) {
+    public Estabelecimento(Integer id, String nome, String telefone, String email, String senha, String cnpj, String tipo, boolean interesse_match_cidade, Integer quantidade_artistas_suportados, Endereco endereco) {
         super(id, nome, telefone, email, senha);
         this.cnpj = cnpj;
-        this.horario = horario;
         this.tipo = tipo;
         this.interesse_match_cidade = interesse_match_cidade;
         this.quantidade_artistas_suportados = quantidade_artistas_suportados;
@@ -62,14 +58,6 @@ public class Estabelecimento extends Usuario{
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
-    }
-
-    public LocalDate getHorario() {
-        return horario;
-    }
-
-    public void setHorario(LocalDate horario) {
-        this.horario = horario;
     }
 
     public String getTipo() {

@@ -109,7 +109,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
                 return ResponseEntity.status(200).build();
             }
         }
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(204).build();
     }
 
     @GetMapping("/match/{diaSelec}/{id}")

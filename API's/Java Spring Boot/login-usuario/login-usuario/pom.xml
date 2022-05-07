@@ -80,6 +80,14 @@
 		</dependency>
 		<!--		E-mail dependency		-->
 
+		<!--		SWAGGER dependency		-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		<!--		SWAGGER dependency		-->
+
     </dependencies>
 
 	<build>

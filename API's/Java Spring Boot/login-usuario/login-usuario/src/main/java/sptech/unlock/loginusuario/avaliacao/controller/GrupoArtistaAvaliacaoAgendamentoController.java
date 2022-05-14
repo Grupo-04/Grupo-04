@@ -7,6 +7,10 @@ import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAge
 import sptech.unlock.loginusuario.avaliacao.entidade.GrupoArtistaAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.avaliacao.repositorio.RepositorioGrupoArtistaAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.interfaces.Avaliavel;
+import sptech.unlock.loginusuario.pilhaobj.PilhaObj;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/grupo-artista-avaliacao")
@@ -55,6 +59,34 @@ public class GrupoArtistaAvaliacaoAgendamentoController implements Avaliavel<Res
             }
         }
         return ResponseEntity.status(204).build();
+    }
+
+    public PilhaObj<GrupoArtistaAvaliacaoAgendamento> empilharAvaliacao(List<GrupoArtistaAvaliacaoAgendamento> listaGrupoArtistaAvaliacaoAgendamento) {
+        PilhaObj<GrupoArtistaAvaliacaoAgendamento> pilhaGrupoArtistaAvaliacaoAgendamento = new PilhaObj<>(listaGrupoArtistaAvaliacaoAgendamento.size());
+
+        for (int i = 0; i < listaGrupoArtistaAvaliacaoAgendamento.size(); i++) {
+            pilhaGrupoArtistaAvaliacaoAgendamento.push(listaGrupoArtistaAvaliacaoAgendamento.get(i));
+        }
+
+        return pilhaGrupoArtistaAvaliacaoAgendamento;
+    }
+
+    @GetMapping("/empilhar")
+    public ResponseEntity getPilhaGrupoArtistaAvaliacaoAtendimento() {
+        if (empilharAvaliacao(repository.findAll()).isEmpty()) {
+            return ResponseEntity.status(404).build();
+        } else {
+            return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()));
+        }
+    }
+
+    @GetMapping("/ultimo-empilhado")
+    public ResponseEntity getUltimoEmpilhado(){
+        if (empilharAvaliacao(repository.findAll()).isEmpty()) {
+            return ResponseEntity.status(404).build();
+        } else {
+            return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()).peek());
+        }
     }
 
 }

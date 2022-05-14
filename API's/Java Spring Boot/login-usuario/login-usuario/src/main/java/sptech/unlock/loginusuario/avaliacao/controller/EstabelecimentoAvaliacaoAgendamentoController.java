@@ -5,8 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAgendamento;
+import sptech.unlock.loginusuario.avaliacao.entidade.GrupoArtistaAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.avaliacao.repositorio.RepositorioEstabelecimentoAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.interfaces.Avaliavel;
+import sptech.unlock.loginusuario.pilhaobj.PilhaObj;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/estabelecimento-avaliacao")
@@ -55,6 +59,34 @@ public class EstabelecimentoAvaliacaoAgendamentoController implements Avaliavel<
             }
         }
         return ResponseEntity.status(204).build();
+    }
+
+    public PilhaObj<EstabelecimentoAvaliacaoAgendamento> empilharAvaliacao(List<EstabelecimentoAvaliacaoAgendamento> listaEstabelecimentoAvaliacaoAgendamento) {
+        PilhaObj<EstabelecimentoAvaliacaoAgendamento> pilhaEstabelecimentoAvaliacaoAgendamento = new PilhaObj<>(listaEstabelecimentoAvaliacaoAgendamento.size());
+
+        for (int i = 0; i < listaEstabelecimentoAvaliacaoAgendamento.size(); i++) {
+            pilhaEstabelecimentoAvaliacaoAgendamento.push(listaEstabelecimentoAvaliacaoAgendamento.get(i));
+        }
+
+        return pilhaEstabelecimentoAvaliacaoAgendamento;
+    }
+
+    @GetMapping("/empilhar")
+    public ResponseEntity getPilhaEstabelecimentoAvaliacaoAgendamento() {
+        if (empilharAvaliacao(repository.findAll()).isEmpty()) {
+            return ResponseEntity.status(404).build();
+        } else {
+            return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()));
+        }
+    }
+
+    @GetMapping("/ultimo-empilhado")
+    public ResponseEntity getUltimoEmpilhado(){
+        if (empilharAvaliacao(repository.findAll()).isEmpty()) {
+            return ResponseEntity.status(404).build();
+        } else {
+            return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()).peek());
+        }
     }
 
 }

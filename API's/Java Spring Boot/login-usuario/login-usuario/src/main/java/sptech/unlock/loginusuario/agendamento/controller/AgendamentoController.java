@@ -110,10 +110,10 @@ public class AgendamentoController {
         if(enfileirarAgendamento(agendamentos.findAll()).isEmpty()){
             return ResponseEntity.status(404).build();
         } else {
-            System.out.println(enfileirarAgendamento(agendamentos.findAll()).poll());
-            int ultimo = agendamentos.findAll().size()-1;
-            agendamentos.delete(agendamentos.findAll().get(ultimo));
-            return ResponseEntity.status(200).body(enfileirarAgendamento(agendamentos.findAll()));
+//            enfileirarAgendamento(agendamentos.findAll()).poll();
+//            int ultimo = agendamentos.findAll().size()-1;
+//            agendamentos.delete(agendamentos.findAll().get(ultimo));
+            return ResponseEntity.status(200).body(enfileirarAgendamento(agendamentos.findAll()).peek());
         }
     }
 

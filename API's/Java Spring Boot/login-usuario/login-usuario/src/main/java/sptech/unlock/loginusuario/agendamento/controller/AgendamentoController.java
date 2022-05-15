@@ -7,15 +7,19 @@ import org.springframework.web.bind.annotation.*;
 import sptech.unlock.loginusuario.agendamento.repositorio.RepositorioAgendamento;
 import sptech.unlock.loginusuario.agendamento.entidade.Agendamento;
 import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAgendamento;
+import sptech.unlock.loginusuario.doclayout.Layout;
 import sptech.unlock.loginusuario.filaobj.FilaObj;
 import sptech.unlock.loginusuario.listaobj.ListaObj;
 import sptech.unlock.loginusuario.pilhaobj.PilhaObj;
 
 import javax.swing.filechooser.FileSystemView;
 import javax.validation.Valid;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.FormatterClosedException;
 import java.util.List;
@@ -23,10 +27,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/agendamento")
 public class AgendamentoController {
-
-
-
-
 
     public void gravaArquivoCsv(ListaObj<Agendamento> lista, String nomeArq) {
         FileWriter arq = null;
@@ -238,6 +238,23 @@ public class AgendamentoController {
 
         gravaArquivoCsv(agendamentoListaObj, "AgendamentosPorPreco");
         return ResponseEntity.status(201).build();
+    }
+
+    @GetMapping("/exportar-dados-agendamento")
+    public ResponseEntity getTxtDadosAgendamento(){
+        Layout exportar = new Layout();
+        if (agendamentos.findAll().isEmpty()) {
+            return ResponseEntity.status(404).build();
+        } else {
+            exportar.gravaArquivoTxt(agendamentos.findAll(), "Agendamento.txt");
+            return ResponseEntity.status(200).build();
+        }
+    }
+
+    @PostMapping("/importar-dados-agendamento")
+    public ResponseEntity postTxtDadosAgendamento(){
+        Layout importar = new Layout();
+        return ResponseEntity.status(201).body(importar.leArquivoTxt("Agendamento.txt"));
     }
 
 //[{

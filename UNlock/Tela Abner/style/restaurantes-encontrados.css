@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.div-retorno {
+    padding-left: 60px;
+}
+
+.icone-retorno {
+    width: 57px;
+    height: 57px;
+    float: left;
+    padding: 10px;
+}
+
+.div-retorno h4 {
+    padding-top: 10px;
+    font-size: 25px;
+}
+
+.container{
+    padding-top: 60px;
+    padding-left: 171px;
+    font-size: 30px;
+}
+
+.sublinha{
+    border-bottom: solid 4px #FD830D;
+}
+
+.container h5{
+    float: left;
+}
+
+.estrela-avaliacao{
+    padding-bottom: 3px;
+    padding-left: 10px;
+}
+
+.avaliacao-estrelas{
+    float: left;
+}
+
+.avaliacoes-totais{
+    font-size: 20px;
+    position: absolute;
+    padding-top: 6px;
+    padding-left: 20px;
+    opacity: 50%;
+}
+
+.nacionalidade-restaurante{
+    font-size: 20px;
+    opacity: 50%;
+}
+
+.foto-rest-grande{
+    float: left;
+    padding-right: 20px;
+}
+
+.foto-rest-pequena{
+    margin-left: 50px;
+}
+
+.img-rest-1{
+    width: 729px;
+    height: 468px;
+}
+
+.img-rest-2{
+    width: 486px;
+    height: 232px;
+}
+
+.img-rest-3{
+    width: 486px;
+    height: 227px;
+}
+
+.informacoes-restaurante{
+    font-size: 20px;
+}
+
+.informacoes-restaurante img{
+    width: 30px;
+    height: 30px;
+}
+
+.informacoes-esquerda{
+    float: left;
+    padding-right: 160px;
+}
+
+.informacoes-direita{
+    padding-left: 40px;
+}
+
+.graph{
+    height: 300px;
+    width: 700px;
+    float: left;
+    padding-right: 50px;
+}
+
+.container-graph{
+    height: 480px;
+    border-bottom: solid rgb(24, 155, 1) 5px;
+    background-color: rgb(255, 231, 231);
+    box-shadow: rgb(0, 0, 0) 5px 4px 10px;
+    align-items: center;
+    display: block;
+}
+
+.container-graph h1{
+    color: #097200;
+    text-align: center;
+    font-size: 60px;
+    padding-top: 10px;
+}
+
+.grafico-de-fluxo{
+    float: left;
+    padding-right: 60px;
+}
+
+.imagens-comentarios-basicos{
+    float: left;
+    padding-right: 15px;
+}
+
+.data-comentario-basico{
+    opacity: 50%;
+}
+
+.texto-avaliacoes-basicas{
+    font-size: 20px;
+}
+
+.avaliacoes-basicas{
+    padding-top: 50px;
+}
+

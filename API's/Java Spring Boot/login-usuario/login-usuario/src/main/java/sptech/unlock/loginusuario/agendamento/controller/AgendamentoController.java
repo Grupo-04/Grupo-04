@@ -26,7 +26,7 @@ public class AgendamentoController {
 
 
 
-    private FilaObj<Agendamento> filaObj;
+
 
     public void gravaArquivoCsv(ListaObj<Agendamento> lista, String nomeArq) {
         FileWriter arq = null;
@@ -110,7 +110,7 @@ public class AgendamentoController {
         if(enfileirarAgendamento(agendamentos.findAll()).isEmpty()){
             return ResponseEntity.status(404).build();
         } else {
-            System.out.println(filaObj.poll());
+            System.out.println(enfileirarAgendamento(agendamentos.findAll()).poll());
             int ultimo = agendamentos.findAll().size()-1;
             agendamentos.delete(agendamentos.findAll().get(ultimo));
             return ResponseEntity.status(200).body(enfileirarAgendamento(agendamentos.findAll()));

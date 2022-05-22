@@ -48,7 +48,8 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         }
         return ResponseEntity.status(204).build();
     }
-    
+
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/listar")
     @Override
     public ResponseEntity exibirTodos() {

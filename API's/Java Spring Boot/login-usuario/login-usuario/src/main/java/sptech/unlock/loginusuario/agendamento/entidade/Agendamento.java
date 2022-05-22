@@ -1,11 +1,13 @@
 package sptech.unlock.loginusuario.agendamento.entidade;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import sptech.unlock.loginusuario.avaliacao.entidade.EstabelecimentoAvaliacaoAgendamento;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
 import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,8 @@ public class Agendamento {
     private String codigo_agendamento;
     private String status_agendamento;
 
-    private LocalDate data_evento;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime data_evento;
     private Double valor_cobrado;
 
     //    TODO: Passar para session storage
@@ -30,7 +33,7 @@ public class Agendamento {
     public Agendamento() {
     }
 
-    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDate data_evento, Double valor_cobrado, Integer fk_estabelecimento, Integer fk_grupo_artista) {
+    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDateTime data_evento, Double valor_cobrado, Integer fk_estabelecimento, Integer fk_grupo_artista) {
         this.id = id;
         this.codigo_agendamento = codigo_agendamento;
         this.status_agendamento = status_agendamento;
@@ -38,6 +41,14 @@ public class Agendamento {
         this.valor_cobrado = valor_cobrado;
         this.fk_estabelecimento = fk_estabelecimento;
         this.fk_grupo_artista = fk_grupo_artista;
+    }
+
+    public Agendamento(Integer id, String codigo_agendamento, String status_agendamento, LocalDateTime data_evento, Double valor_cobrado) {
+        this.id = id;
+        this.codigo_agendamento = codigo_agendamento;
+        this.status_agendamento = status_agendamento;
+        this.data_evento = data_evento;
+        this.valor_cobrado = valor_cobrado;
     }
 
     public Integer getId() {
@@ -64,11 +75,11 @@ public class Agendamento {
         this.status_agendamento = status_agendamento;
     }
 
-    public LocalDate getData_evento() {
+    public LocalDateTime getData_evento() {
         return data_evento;
     }
 
-    public void setData_evento(LocalDate data_evento) {
+    public void setData_evento(LocalDateTime data_evento) {
         this.data_evento = data_evento;
     }
 

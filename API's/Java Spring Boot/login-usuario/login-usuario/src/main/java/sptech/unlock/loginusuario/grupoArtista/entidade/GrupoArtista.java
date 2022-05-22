@@ -41,6 +41,15 @@ public class GrupoArtista extends Usuario {
         this.endereco = endereco;
     }
 
+    public GrupoArtista(Integer id, String nome, String telefone, String email, String senha, String nome_artistico, String cpf, String tipo, Boolean grupo, String estilo) {
+        super(id, nome, telefone, email, senha);
+        this.nome_artistico = nome_artistico;
+        this.cpf = cpf;
+        this.tipo = tipo;
+        this.grupo = grupo;
+        this.estilo = estilo;
+    }
+
     public String getNome_artistico() {
         return nome_artistico;
     }

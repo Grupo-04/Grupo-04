@@ -70,14 +70,14 @@ const renderCalendar = () => {
   }
 };
 
-document.querySelector(".prev").addEventListener("click", () => {
-  date.setMonth(date.getMonth() - 1);
-  renderCalendar();
-});
+// document.querySelector(".prev").addEventListener("click", () => {
+//   date.setMonth(date.getMonth() - 1);
+//   renderCalendar();
+// });
 
-document.querySelector(".next").addEventListener("click", () => {
-  date.setMonth(date.getMonth() + 1);
-  renderCalendar();
-});
-  // @learnwithshero
-renderCalendar();
+// document.querySelector(".next").addEventListener("click", () => {
+//   date.setMonth(date.getMonth() + 1);
+//   renderCalendar();
+// });
+//   // @learnwithshero
+// renderCalendar();

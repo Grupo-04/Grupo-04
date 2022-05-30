@@ -1,4 +1,6 @@
-
+import img1 from '../imgs/imagem-mulher-1.png';
+import img2 from '../imgs/imagem-homem-1.png';
+import img3 from '../imgs/imagem-mulher-2.png';
 import React from 'react';
 
 
@@ -8,9 +10,6 @@ function GraficoEAvaliacoes() {
     return (
         <>
             
-
-            
-
                 <div class="avaliacoes-basicas">
                 
                     <div class="texto-avaliacoes-basicas">

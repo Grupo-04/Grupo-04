@@ -8,6 +8,8 @@ import img2 from "../imgs/imagem-homem-1.png";
 import img3 from "../imgs/imagem-mulher-2.png";
 import Calendar from "../components/Calendar";
 import Agendamento from "../components/Agendamento";
+import Avaliacao from "../components/Avaliacao";
+import Footer from "../components/Footer";
 
 
 function Restaurante() {
@@ -66,12 +68,10 @@ function Restaurante() {
                 </div>
           
        </div>
-       <div class="informacoes-agendamento">
-        <Calendar/>
+       <Calendar/>
         <Agendamento/>
-</div>
-
-        
+        <Avaliacao/>
+        <Footer/>
         </>
      );
 }

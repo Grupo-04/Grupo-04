@@ -10,7 +10,7 @@ function Agendamento () {
                             <form action="">
                                 <div class="data-hora-show">
                                     <div class="dia-show">
-                                        <span>Período do Show</span>
+                                        <span>Data do Show</span>
                                         <br/>
                                         <input type="date"/>
                                     </div>
@@ -46,7 +46,7 @@ function Agendamento () {
                                 <br/>
 
                                 <div class="estilo-artista">
-                                    <span>Tipo de estilo artista</span>
+                                    <span>Estilo artista</span>
                                     <br/>
                                     <input type="text"/>
                                 </div>

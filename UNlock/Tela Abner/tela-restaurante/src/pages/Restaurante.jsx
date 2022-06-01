@@ -15,8 +15,9 @@ import Footer from "../components/Footer";
 function Restaurante() {
      return(
         <>
+       
         <Voltar/>
-
+        <div class="container">
         <h1><span class="sublinha">Led's</span> Burguer</h1>
         <br/>
         <h5>4,5</h5>
@@ -71,6 +72,7 @@ function Restaurante() {
        <Calendar/>
         <Agendamento/>
         <Avaliacao/>
+        </div>
         <Footer/>
         </>
      );

@@ -28,7 +28,7 @@ public class EmailSenderService {
     {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("enan.oliveira@bandtec.com.br");
+        message.setFrom("talktounlock@gmail.com");
         message.setTo(destinatario);
         message.setSubject(titulo);
         message.setText(texto);

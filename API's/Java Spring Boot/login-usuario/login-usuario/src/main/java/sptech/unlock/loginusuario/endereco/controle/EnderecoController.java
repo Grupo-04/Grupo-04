@@ -18,9 +18,8 @@ public class EnderecoController {
     public ResponseEntity getEndereco(){
         if(enderecos.findAll().isEmpty()){
             return ResponseEntity.status(204).body(enderecos.findAll());
-        }else{
-            return ResponseEntity.status(200).body(enderecos.findAll());
         }
+        return ResponseEntity.status(200).body(enderecos.findAll());
     }
 
     @PostMapping
@@ -36,20 +35,22 @@ public class EnderecoController {
             @PathVariable Integer id,
             @RequestBody Endereco end
     ){
-        for (Endereco endereco : enderecos.findAll()){
-            if(endereco.getId().equals(id)){
-                endereco.setCep(end.getCep());
-                endereco.setLogradouro(end.getLogradouro());
-                endereco.setNumero(end.getNumero());
-                endereco.setUf(end.getUf());
-                endereco.setCidade(end.getCidade());
-                endereco.setBairro(end.getBairro());
-                Endereco enderecoSalvo = enderecos.save(endereco);
-
-                return ResponseEntity.status(200).body(enderecoSalvo);
-            }
+        if (!enderecos.existsById(id)){
+            return ResponseEntity.status(404).build();
         }
-        return ResponseEntity.status(204).build();
+
+        Endereco endereco = enderecos.findById(id).get();
+
+        endereco.setBairro(end.getBairro());
+        endereco.setCidade(end.getCidade());
+        endereco.setCep(end.getCep());
+        endereco.setNumero(end.getNumero());
+        endereco.setLogradouro(end.getLogradouro());
+        endereco.setUf(end.getUf());
+
+        Endereco enderecoSalvo = enderecos.save(endereco);
+
+        return ResponseEntity.status(200).body(enderecoSalvo);
     }
 
     @DeleteMapping("/{id}")
@@ -58,6 +59,6 @@ public class EnderecoController {
             enderecos.deleteById(id);
             return ResponseEntity.status(200).build();
         }
-        return ResponseEntity.status(204).build();
+        return ResponseEntity.status(404).build();
     }
 }

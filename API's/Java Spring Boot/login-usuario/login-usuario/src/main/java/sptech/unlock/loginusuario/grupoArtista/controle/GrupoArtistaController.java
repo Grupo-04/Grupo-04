@@ -89,7 +89,10 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        if (email==null || senha==null){
+        if (Objects.isNull(email)){
+            return ResponseEntity.status(404).build();
+        }
+        if (Objects.isNull(senha)){
             return ResponseEntity.status(404).build();
         }
 
@@ -119,9 +122,13 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        if (email==null || senha==null){
+        if (Objects.isNull(email)){
             return ResponseEntity.status(404).build();
         }
+        if (Objects.isNull(senha)){
+            return ResponseEntity.status(404).build();
+        }
+
         GrupoArtista grupoArtista = grupoArtistas.findByEmailAndSenha(email,senha);
         if(Objects.isNull(grupoArtista)){
 

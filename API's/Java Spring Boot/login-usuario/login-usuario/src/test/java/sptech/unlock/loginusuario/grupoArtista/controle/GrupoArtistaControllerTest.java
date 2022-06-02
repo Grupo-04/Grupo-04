@@ -64,6 +64,17 @@ class GrupoArtistaControllerTest {
     }
 
     @Test
+    @DisplayName("Exibir todos lista vazia")
+    void exibirTodosListaVazia() {
+
+        when(repository.findAll()).thenReturn(new ArrayList<>());
+
+        ResponseEntity<List<GrupoArtista>> resposta = controller.exibirTodos();
+
+        assertEquals(204, resposta.getStatusCodeValue());
+    }
+
+    @Test
     @DisplayName("Exibir todos vazio")
     void exibirTodosVazio() {
 
@@ -82,17 +93,10 @@ class GrupoArtistaControllerTest {
 
         GrupoArtista grupoArtista = mock(GrupoArtista.class);
 
-        grupoArtista.setEmail("teste@gmail.com");
-        grupoArtista.setSenha("12345");
-
-        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
-
-        repository.save(grupoArtista);
-
-        when(repository.findByEmailAndSenha(grupoArtista.getEmail(), grupoArtista.getSenha()))
+        when(repository.findByEmailAndSenha("teste@gmail.com", "12345"))
                 .thenReturn(grupoArtista);
 
-        ResponseEntity resposta = controller.login(grupoArtista.getEmail(),grupoArtista.getSenha());
+        ResponseEntity resposta = controller.login("teste@gmail.com", "12345");
 
         assertEquals(200, resposta.getStatusCodeValue());
 
@@ -105,17 +109,10 @@ class GrupoArtistaControllerTest {
 
         GrupoArtista grupoArtista = mock(GrupoArtista.class);
 
-        grupoArtista.setEmail(null);
-        grupoArtista.setSenha("12345");
-
-        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
-
-        repository.save(grupoArtista);
-
-        when(repository.findByEmailAndSenha(grupoArtista.getEmail(), grupoArtista.getSenha()))
+        when(repository.findByEmailAndSenha(null, "12345"))
                 .thenReturn(grupoArtista);
 
-        ResponseEntity<GrupoArtista> resposta = controller.login(grupoArtista.getEmail(),grupoArtista.getSenha());
+        ResponseEntity resposta = controller.login(null, "12345");
 
         assertEquals(404, resposta.getStatusCodeValue());
     }
@@ -126,17 +123,10 @@ class GrupoArtistaControllerTest {
 
         GrupoArtista grupoArtista = mock(GrupoArtista.class);
 
-        grupoArtista.setEmail("teste@gmail.com");
-        grupoArtista.setSenha(null);
-
-        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
-
-        repository.save(grupoArtista);
-
-        when(repository.findByEmailAndSenha(grupoArtista.getEmail(), grupoArtista.getSenha()))
+        when(repository.findByEmailAndSenha("teste@gmail.com", null))
                 .thenReturn(grupoArtista);
 
-        ResponseEntity<GrupoArtista> resposta = controller.login(grupoArtista.getEmail(),grupoArtista.getSenha());
+        ResponseEntity resposta = controller.login("teste@gmail.com", null);
 
         assertEquals(404, resposta.getStatusCodeValue());
     }
@@ -147,17 +137,10 @@ class GrupoArtistaControllerTest {
 
         GrupoArtista grupoArtista = mock(GrupoArtista.class);
 
-        grupoArtista.setEmail(null);
-        grupoArtista.setSenha(null);
-
-        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
-
-        repository.save(grupoArtista);
-
-        when(repository.findByEmailAndSenha(grupoArtista.getEmail(), grupoArtista.getSenha()))
+        when(repository.findByEmailAndSenha(null, null))
                 .thenReturn(grupoArtista);
 
-        ResponseEntity<GrupoArtista> resposta = controller.login(grupoArtista.getEmail(),grupoArtista.getSenha());
+        ResponseEntity resposta = controller.login(null, null);
 
         assertEquals(404, resposta.getStatusCodeValue());
     }
@@ -167,17 +150,10 @@ class GrupoArtistaControllerTest {
     void logoff() {
         GrupoArtista grupoArtista = mock(GrupoArtista.class);
 
-        grupoArtista.setEmail("teste@gmail.com");
-        grupoArtista.setSenha("12345");
-
-        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
-
-        repository.save(grupoArtista);
-
-        when(repository.findByEmailAndSenha(grupoArtista.getEmail(), grupoArtista.getSenha()))
+        when(repository.findByEmailAndSenha("teste@gmail.com", "12345"))
                 .thenReturn(grupoArtista);
 
-        ResponseEntity resposta = controller.logoff(grupoArtista.getEmail(),grupoArtista.getSenha());
+        ResponseEntity resposta = controller.logoff("teste@gmail.com", "12345");
 
         assertEquals(200, resposta.getStatusCodeValue());
 

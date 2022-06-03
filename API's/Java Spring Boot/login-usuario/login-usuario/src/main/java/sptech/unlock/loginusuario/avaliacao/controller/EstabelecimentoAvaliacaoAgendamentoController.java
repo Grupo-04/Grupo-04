@@ -11,6 +11,7 @@ import sptech.unlock.loginusuario.interfaces.Avaliavel;
 import sptech.unlock.loginusuario.pilhaobj.PilhaObj;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/estabelecimento-avaliacao")
@@ -21,7 +22,7 @@ public class EstabelecimentoAvaliacaoAgendamentoController implements Avaliavel<
 
     @GetMapping
     public ResponseEntity getAvaliacaoEstabelecimento(){
-        if (repository.findAll().size() < 1){
+        if (repository.findAll().isEmpty()){
             return ResponseEntity.status(204).build();
         }
         return ResponseEntity.status(200).body(repository.findAll());
@@ -40,6 +41,13 @@ public class EstabelecimentoAvaliacaoAgendamentoController implements Avaliavel<
             @PathVariable Integer id,
             @RequestBody EstabelecimentoAvaliacaoAgendamento avaliacao
     ){
+        if (Objects.isNull(id)){
+            return ResponseEntity.status(400).build();
+        }
+        if (Objects.isNull(avaliacao)){
+            return ResponseEntity.status(400).build();
+        }
+
         if(repository.existsById(id)){
             avaliacao.setId(id);
             repository.save(avaliacao);
@@ -49,7 +57,7 @@ public class EstabelecimentoAvaliacaoAgendamentoController implements Avaliavel<
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity atualizar(
+    public ResponseEntity apagarAvaliacao(
             @PathVariable Integer id
     ){
         for (EstabelecimentoAvaliacaoAgendamento estab : repository.findAll()){
@@ -75,18 +83,16 @@ public class EstabelecimentoAvaliacaoAgendamentoController implements Avaliavel<
     public ResponseEntity getPilhaEstabelecimentoAvaliacaoAgendamento() {
         if (empilharAvaliacao(repository.findAll()).isEmpty()) {
             return ResponseEntity.status(404).build();
-        } else {
-            return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()));
         }
+        return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()));
     }
 
     @GetMapping("/ultimo-empilhado")
     public ResponseEntity getUltimoEmpilhado(){
         if (empilharAvaliacao(repository.findAll()).isEmpty()) {
             return ResponseEntity.status(404).build();
-        } else {
-            return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()).peek());
         }
+        return ResponseEntity.status(200).body(empilharAvaliacao(repository.findAll()).peek());
     }
 
 }

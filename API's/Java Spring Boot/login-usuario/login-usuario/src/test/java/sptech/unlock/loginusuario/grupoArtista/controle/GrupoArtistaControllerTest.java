@@ -100,7 +100,7 @@ class GrupoArtistaControllerTest {
 
         assertEquals(200, resposta.getStatusCodeValue());
 
-        assertEquals(404, controller.login("abcd","54321").getStatusCodeValue());
+        assertEquals(400, controller.login("abcd","54321").getStatusCodeValue());
     }
 
     @Test
@@ -114,7 +114,7 @@ class GrupoArtistaControllerTest {
 
         ResponseEntity resposta = controller.login(null, "12345");
 
-        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals(400, resposta.getStatusCodeValue());
     }
 
     @Test
@@ -128,7 +128,7 @@ class GrupoArtistaControllerTest {
 
         ResponseEntity resposta = controller.login("teste@gmail.com", null);
 
-        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals(400, resposta.getStatusCodeValue());
     }
 
     @Test
@@ -142,7 +142,7 @@ class GrupoArtistaControllerTest {
 
         ResponseEntity resposta = controller.login(null, null);
 
-        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals(400, resposta.getStatusCodeValue());
     }
 
     @Test
@@ -157,7 +157,7 @@ class GrupoArtistaControllerTest {
 
         assertEquals(200, resposta.getStatusCodeValue());
 
-        assertEquals(404, controller.logoff("abcd","54321").getStatusCodeValue());
+        assertEquals(400, controller.logoff("abcd","54321").getStatusCodeValue());
     }
 
     @Test
@@ -177,7 +177,7 @@ class GrupoArtistaControllerTest {
 
         ResponseEntity<GrupoArtista> resposta = controller.logoff(grupoArtista.getEmail(),grupoArtista.getSenha());
 
-        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals(400, resposta.getStatusCodeValue());
     }
 
     @Test
@@ -197,7 +197,7 @@ class GrupoArtistaControllerTest {
 
         ResponseEntity<GrupoArtista> resposta = controller.logoff(grupoArtista.getEmail(),grupoArtista.getSenha());
 
-        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals(400, resposta.getStatusCodeValue());
     }
 
     @Test
@@ -217,6 +217,6 @@ class GrupoArtistaControllerTest {
 
         ResponseEntity<GrupoArtista> resposta = controller.logoff(grupoArtista.getEmail(),grupoArtista.getSenha());
 
-        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals(400, resposta.getStatusCodeValue());
     }
 }

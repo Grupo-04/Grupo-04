@@ -90,16 +90,16 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     ) {
 
         if (Objects.isNull(email)){
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(400).build();
         }
         if (Objects.isNull(senha)){
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(400).build();
         }
 
         GrupoArtista grupoArtista = grupoArtistas.findByEmailAndSenha(email,senha);
         if(Objects.isNull(grupoArtista)){
 
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(400).build();
         }
         grupoArtista.setAutenticado(true);
         grupoArtistas.save(grupoArtista);
@@ -123,16 +123,16 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     ) {
 
         if (Objects.isNull(email)){
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(400).build();
         }
         if (Objects.isNull(senha)){
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(400).build();
         }
 
         GrupoArtista grupoArtista = grupoArtistas.findByEmailAndSenha(email,senha);
         if(Objects.isNull(grupoArtista)){
 
-            return ResponseEntity.status(404).build();
+            return ResponseEntity.status(400).build();
         }
         grupoArtista.setAutenticado(false);
         grupoArtistas.save(grupoArtista);

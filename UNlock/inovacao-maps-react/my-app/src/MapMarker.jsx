@@ -1,5 +1,5 @@
 // npm i -S @react-google-maps/api ATUAL
-// npm install --save react-google-maps DEPRECATED
+
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Marker } from "@react-google-maps/api"

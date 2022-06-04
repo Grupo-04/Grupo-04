@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import CadastroArtista from './pages/CadastroArtista'
 import CadastroEstabelecimento from './pages/CadastroEstabelecimento'
@@ -10,15 +10,10 @@ import TelaInicial from './pages/TelaInicial'
 
 function Rotas() {
   return (
-    <Router>
-        <Routes>
-
-            <Link to="/" className="seta-voltar-login">Cadastre-se</Link>
-
-            <Route path="/" exact component={Login} />
-            <Route path="/cadastro/" component={TelaInicial} />
-        </Routes>
-    </Router>
+      <Routes>
+          <Route path="/" exact component={Login} />
+          <Route path="/cadastro/" component={TelaInicial} />
+      </Routes>
   );
 }
 

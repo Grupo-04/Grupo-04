@@ -152,10 +152,18 @@
     font-size: 20px;
 }
 
+.avaliacoes-basicas{
+    margin-left: 50%;
+}
+
+.imagens-comentarios-basicos{
+   margin-left: 20%;
+}
+
 
 .informacoes-2{
     border-top: 2px solid rgba(128, 128, 128, 0.324);
-    width: 100%;
+    width: 90%;
     height: 100%;
     border-bottom: 2px solid rgba(128, 128, 128, 0.324);
 }
@@ -183,9 +191,13 @@
     float: left;
 }
 
+.calendario-esquerda{
+    margin-top: 10%;
+}
+
 .div-agendamento{
     float: right;
-    padding-right: 100px;
+    padding-right: 10%;
 }
 
 .agendamento{
@@ -218,6 +230,7 @@
     font-size: 10px;
     padding-right: 20px;
     margin-top: 10px;
+    margin-left: 10%;
 }
 
 .pagamento-u{
@@ -393,14 +406,14 @@
     font-size: 15px;
     align-items: center;
     justify-content: center;
-    margin-left: 25%;
+    margin-left: 28%;
 }
 
 .nro-integrantes select{
     width: 100px;
     align-items: center;
     justify-content: center;
-    margin-left: 43%;
+    margin-left: 30%;
     border: none;
 }
 
@@ -413,14 +426,14 @@
     font-size: 15px;
     align-items: center;
     justify-content: center;
-    margin-left: 10 %;
+    margin-left: 10%;
 }
 
 .tenho-instrumento select{
     font-size: 15px;
     align-items: center;
     justify-content: center;
-    margin-left: 40%;
+    margin-left: 30%;
     border: none;
     width: 100px;
 }
@@ -439,8 +452,12 @@
 .avaliacao-geral{
     padding-top: 750px;
     position: relative;
+}
 
-
+.avaliacao-h5{
+    padding-top: 50%;
+    float: left;
+    position: absolute;
 }
 
 .autor-comentario img{
@@ -467,9 +484,8 @@
 }
 
 .avaliacao-individual{
-    width: 420px;
+    width: 450px;
     float: left;
-    
 }
 
 .img-coment1{
@@ -529,17 +545,17 @@ height: 200px;
 }
 
 .imgp1{
-    width: 129px;
+    width: 90%;
     height: 100px;
 }
 
 .imgp2{
-    width: 142px;
+    width: 90%;
     height: 110px;
 }
 
 .imgp3{
-    width: 129px;
+    width: 90%;
     height: 60px;
 }
 

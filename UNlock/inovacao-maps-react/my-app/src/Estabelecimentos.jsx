@@ -81,7 +81,8 @@ function Estabelecimentos() {
 
                 <div className="container_mapa">
 
-                    <MapMarker listaLatLong={lista_lat_lng}/>
+                    {/* <MapMarker listaLatLong={lista_lat_long}/> */}
+                    <MapMarker />
 
                 </div>
 

@@ -6,6 +6,9 @@ import LinhasCirculo from '../imgs/decoration.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
+import { useEffect, useState } from "react";
+import api from "../api";
+
 import '../css/style_formulario.css'
 import '../css/style_pagina.css'
 

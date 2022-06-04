@@ -7,7 +7,7 @@ import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import React, { useEffect, useState } from "react";
-import api from "../services/api"
+import api from "../api"
 
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"

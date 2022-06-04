@@ -6,10 +6,15 @@ import LinhasCirculo from '../imgs/decoration laranja.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
+import api from '../api'
+
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"
 
 function CadastroArtista(){
+
+
+
     return (
         <>
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />

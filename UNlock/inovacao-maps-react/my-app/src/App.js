@@ -11,15 +11,14 @@ import ReactDOM from 'react-dom/client';
 import Render from './Map';
 import Header from './Header';
 import Estabelecimentos from './Estabelecimentos';
-import './css/pos_login.css'
+// import './css/pos_login.css'
 
 import './App.css';
 
 function App() {
   return (
     <>
-      <CadastroArtista/>
-    
+      <Login/>
     </>
     // <div className="App">
     //   <header className="App-header">

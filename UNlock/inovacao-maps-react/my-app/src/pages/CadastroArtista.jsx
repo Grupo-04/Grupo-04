@@ -6,7 +6,7 @@ import LinhasCirculo from '../imgs/decoration laranja.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
-import api from '../api'
+import api from '../api/api'
 
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"

@@ -1,6 +1,6 @@
-import estabelecimentoImg from './imgs/estabelecimento.png'
-import heartVazio from './imgs/Heart.png'
-import blueHeart from './imgs/Heart_preenchido_blue.png'
+import estabelecimentoImg from '../imgs/estabelecimento.png'
+import heartVazio from '../imgs/Heart.png'
+import blueHeart from '../imgs/Heart_preenchido_blue.png'
 
 
 function TableEstabelecimento(props) {

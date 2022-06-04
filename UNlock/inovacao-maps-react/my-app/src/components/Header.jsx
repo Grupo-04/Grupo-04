@@ -1,9 +1,9 @@
-import logo from './imgs/SOUNDRY 2.png'
-import home from './imgs/home.png'
-import userQtdBoneco from './imgs/user-3-line (1).png'
-import lupa from './imgs/lupa.png'
-import notificationIcon from './imgs/notification_normal.png'
-import userImg from './imgs/user.png'
+import logo from '../imgs/SOUNDRY 2.png'
+import home from '../imgs/home.png'
+import userQtdBoneco from '../imgs/user-3-line (1).png'
+import lupa from '../imgs/lupa.png'
+import notificationIcon from '../imgs/notification_normal.png'
+import userImg from '../imgs/user.png'
 
 function Header() {
     return (

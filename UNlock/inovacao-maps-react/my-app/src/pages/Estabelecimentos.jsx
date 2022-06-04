@@ -1,8 +1,11 @@
-import MapMarker from './MapMarker';
-import api from './api';
-import api_geo_map from './api_geo_map';
+import MapMarker from '../components/MapMarker';
+import api from '../api/api';
+import api_geo_map from '../api/api_geo_map';
 import { useEffect, useState } from "react";
-import TableEstabelecimento from './TableEstabelecimento';
+import TableEstabelecimento from '../components/TableEstabelecimento';
+import Header from '../components/Header';
+
+import '../css/pos_login.css'
 
 // function Teste(enderecos) {
 
@@ -51,6 +54,7 @@ function Estabelecimentos() {
 
     return (
         <>
+            <Header/>
             <div className="container_avaliacao_disponibilidade">
                 <div className="inside_container_avaliacao_disponibilidade">
 
@@ -82,7 +86,7 @@ function Estabelecimentos() {
                 <div className="container_mapa">
 
                     {/* <MapMarker listaLatLong={lista_lat_long}/> */}
-                    <MapMarker />
+                    {/* <MapMarker /> */}
 
                 </div>
 

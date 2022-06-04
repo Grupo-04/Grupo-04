@@ -8,17 +8,14 @@ import Rotas from './routes';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Render from './Map';
-import Header from './Header';
-import Estabelecimentos from './Estabelecimentos';
-// import './css/pos_login.css'
-
-import './App.css';
+import Header from './components/Header';
+import Estabelecimentos from './pages/Estabelecimentos';
 
 function App() {
   return (
     <>
-      <Login/>
+      {/* <Login/> */}
+      <Estabelecimentos/>
     </>
     // <div className="App">
     //   <header className="App-header">
@@ -37,8 +34,6 @@ function App() {
     //   </header>
     // </div>
 
-    // <Header />
-    //   <Estabelecimentos/>
 
   );
 }

@@ -45,6 +45,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         );
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @PostMapping
     @Override
     public ResponseEntity cadastrar(@RequestBody GrupoArtista grupoArtista) {
@@ -62,7 +63,6 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         grupoArtista.setAutenticado(false);
         grupoArtistas.save(grupoArtista);
 
-
         return ResponseEntity.status(201).body(grupoArtista);
 
     }
@@ -77,6 +77,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         return ResponseEntity.status(200).body(grupoArtistas.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping
     @Override
     public ResponseEntity login(

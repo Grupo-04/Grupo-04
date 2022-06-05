@@ -16,6 +16,7 @@ public class GrupoArtista extends Usuario {
     private String tipo;
     private Boolean grupo;
     private String estilo;
+    private Integer qtdIntegrantes;
 
 //    @OneToMany
 //    private Agendamento agendamentos;
@@ -41,13 +42,14 @@ public class GrupoArtista extends Usuario {
         this.endereco = endereco;
     }
 
-    public GrupoArtista(Integer id, String nome, String telefone, String email, String senha, String nome_artistico, String cpf, String tipo, Boolean grupo, String estilo) {
+    public GrupoArtista(Integer id, String nome, String telefone, String email, String senha, String nome_artistico, String cpf, String tipo, Boolean grupo, String estilo, Integer qtdIntegrantes) {
         super(id, nome, telefone, email, senha);
         this.nome_artistico = nome_artistico;
         this.cpf = cpf;
         this.tipo = tipo;
         this.grupo = grupo;
         this.estilo = estilo;
+        this.qtdIntegrantes = qtdIntegrantes;
     }
 
     public String getNome_artistico() {
@@ -88,6 +90,14 @@ public class GrupoArtista extends Usuario {
 
     public void setEstilo(String estilo) {
         this.estilo = estilo;
+    }
+
+    public Integer getQtdIntegrantes() {
+        return qtdIntegrantes;
+    }
+
+    public void setQtdIntegrantes(Integer qtdIntegrantes) {
+        this.qtdIntegrantes = qtdIntegrantes;
     }
 
     public Endereco getEndereco() {

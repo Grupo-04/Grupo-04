@@ -2,19 +2,16 @@ package sptech.unlock.loginusuario.estabelecimento.controle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import sptech.unlock.loginusuario.email.service.EmailSenderService;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
 import sptech.unlock.loginusuario.estabelecimento.repositorio.RepositorioEstabelecimento;
 import sptech.unlock.loginusuario.interfaces.Autenticavel;
 import sptech.unlock.loginusuario.interfaces.Registravel;
-import sptech.unlock.loginusuario.observer.OctalObserver;
-import sptech.unlock.loginusuario.observer.StringObserver;
-import sptech.unlock.loginusuario.observer.Subject;
 
-import javax.validation.Valid;
+import java.util.List;
+
+import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping(path = "/estabelecimento")
@@ -34,7 +31,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
             estabelecimento.setInteresse_match_cidade(false);
             estabelecimentos.save(estabelecimento);
 
-            return ResponseEntity.status(201).body(estabelecimento);
+            return status(201).body(estabelecimento);
     }
 
     @PostMapping("/interesse-cidade/{id}")
@@ -43,19 +40,38 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
             if (estab.getId() == id){
                 estab.setInteresse_match_cidade(true);
                 estabelecimentos.save(estab);
-                return ResponseEntity.status(200).build();
+                return status(200).build();
             }
         }
-        return ResponseEntity.status(204).build();
+        return status(204).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletarEstabelecimento(@PathVariable Integer id ) {
+
+        if (estabelecimentos.existsById(id)) {
+            estabelecimentos.deleteById(id);
+            return status(200).build();
+        }
+        return status(404).build();
+    }
+
+    @GetMapping("/listar/interessados-match-cidade")
+    public ResponseEntity listarInteressadosEmMatchCidade() {
+        List<Estabelecimento> lista = estabelecimentos.consultaInteressadosMatchCidade(true);
+
+        if (lista.isEmpty()) {
+            return status(204).build();
+        }
+        return status(200).body(lista);
     }
 
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/listar")
     @Override
-    public ResponseEntity exibirTodos() {
-        return ResponseEntity.status(200).body(estabelecimentos.findAll());
-    }
+    public ResponseEntity exibirTodos() { return status(200).body(estabelecimentos.findAll()); }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping
     @Override
     public ResponseEntity login(
@@ -67,12 +83,13 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
             if (estab.getEmail().equals(email) && estab.getSenha().equals(senha)){
                 estab.setAutenticado(true);
                 estabelecimentos.save(estab);
-                return ResponseEntity.status(202).build();
+                return status(202).build();
             }
         }
-        return ResponseEntity.status(204).build();
+        return status(204).build();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @DeleteMapping
     @Override
     public ResponseEntity logoff(
@@ -84,9 +101,9 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
             if (estab.getEmail().equals(email) && estab.getSenha().equals(senha)){
                 estab.setAutenticado(false);
                 estabelecimentos.save(estab);
-                return ResponseEntity.status(200).build();
+                return status(200).build();
             }
         }
-        return ResponseEntity.status(204).build();
+        return status(204).build();
     }
 }

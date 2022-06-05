@@ -1,0 +1,15 @@
+.div-fundo-borda{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+
+    border: 2px solid #262626;
+    border-radius: 24em;
+    border-image: linear-gradient(225deg, #ff0, #f0f);
+    border-image-slice: 1;
+
+    width: 35vw;
+    height: 55vh;
+}

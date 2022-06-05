@@ -1,5 +1,0 @@
-npm i
-npm i axios
-npm i react-router-dom
-npm i -S @react-google-maps/api
-npm i "react-hook-form"

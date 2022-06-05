@@ -8,10 +8,10 @@ function RedirecionamentoCadastro(){
 
             <h3>Como você gostaria de se cadastrar?</h3>
 
-            <div class="button">
+            <div className="button">
                 <button type="submit">Artista</button>
             </div>
-            <div class="button">
+            <div className="button">
                 <button type="submit">Estabelecimento</button>
             </div>
         </div>

@@ -6,9 +6,7 @@ import LinhasCirculo from '../imgs/decoration.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import api from "../api";
+import api from "../api/api";
 
 import '../css/style_formulario.css'
 import '../css/style_pagina.css'
@@ -21,8 +19,8 @@ function Login(){
     useEffect(() => {
       api.get("/estabelecimento", {
         params: { 
-            email: ,
-            senha: 
+            email: user,
+            senha: pwd
         }
       }).then((resposta) => {
         console.log(resposta)
@@ -47,7 +45,7 @@ function Login(){
                             <img src={LinhaLaranja} alt="" />
                         </div>
 
-                        <form method="get" onSubmit={login}>
+                        <form method="get">
                             <div className="div_input_formulario">
                                 <label for="email" className="texto">E-mail</label>
                                 <input id="email" name='email' className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>

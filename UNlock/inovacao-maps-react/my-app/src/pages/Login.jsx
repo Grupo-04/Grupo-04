@@ -6,6 +6,7 @@ import LinhasCirculo from '../imgs/decoration.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
+import { useState } from 'react';
 import api from "../api/api";
 
 import '../css/style_formulario.css'
@@ -13,19 +14,34 @@ import '../css/style_pagina.css'
 
 function Login(){
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
 
-    useEffect(() => {
-      api.get("/estabelecimento", {
-        params: { 
-            email: user,
-            senha: pwd
-        }
-      }).then((resposta) => {
-        console.log(resposta)
-      })
-    },[])
+    console.log({ email, senha })
+
+    const handleEmail = (e) =>{
+        setEmail(e.target.value)
+    }
+
+    const handleSenha = (e) =>{
+        setSenha(e.target.value)
+    }
+
+    const handleApi = () =>{
+        console.log({ email,senha })
+        api.get('/estabelecimento', {
+            params:{
+                email: email,
+                senha: senha
+            }
+        })
+        .then(result=>{
+            console.log(result)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+    }
 
     // 'enan.oliveira@bandtec.com.br', 'senha123'
 
@@ -48,14 +64,14 @@ function Login(){
                         <form method="get">
                             <div className="div_input_formulario">
                                 <label for="email" className="texto">E-mail</label>
-                                <input id="email" name='email' className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>
+                                <input id="email" value={email} onChange={handleEmail} name='email' className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>
                             </div>
                             <div className="div_input_formulario">
                                 <label for="senha" className="texto">Senha</label>
-                                <input id="senha" name='senha' className="input_formulario" type="password" placeholder="Escreva sua senha"/>
+                                <input id="senha" value={senha} onChange={handleSenha} name='senha' className="input_formulario" type="password" placeholder="Escreva sua senha"/>
                             </div>
                             <div className="button">
-                                <button type="submit">Entrar</button>
+                                <button onClick={handleApi}>Entrar</button>
                             </div>
                             <p className="cadastrar">Não é parte do time ainda? Cadastre-se</p>
                         </form>

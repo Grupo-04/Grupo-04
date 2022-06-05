@@ -16,9 +16,7 @@ import Restaurante from './pages/Restaurante';
 function App() {
   return (
     <>
-      {/* <Login/> */}
-      {/* <Estabelecimentos/> */}
-      {/* <Restaurante/> */}
+      <Login/>
     </>
   );
 }

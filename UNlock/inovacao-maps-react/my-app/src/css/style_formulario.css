@@ -94,6 +94,7 @@
     border-radius: 0.4rem;
     background-color: orange;
     color: white;
+    cursor: pointer;
 }
 
 .cadastrar{

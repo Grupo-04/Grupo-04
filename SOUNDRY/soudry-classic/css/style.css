@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.header_soudry {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.header_soudry a {
+    text-decoration: none;
+    color: black;
+}
+
+.header_soudry img {
+    width: 230px;
+    height: 40px;
+}
+
+li, ul {
+    list-style: none;
+    display: flex;
+    margin-left: 20px;
+}
+
+#details {
+    float: right; 
+    margin-top: 150px; 
+    margin-right: 12px;
+    position: relative; 
+    z-index: -1;
+}
+
+#details_0 {
+    float: left;
+    z-index: -1;
+    position: relative;
+    margin-top: 348px;
+}
+
+#details_1 {
+    float: right;
+    margin-top: -230px;
+    margin-right: -66px;
+    position: relative;
+    z-index: -1;
+}
+
+#details_2 {
+    float: left;
+    position: relative;
+    margin-top: -300px;
+    margin-left: -90px;
+    z-index: -1;
+}
+
+#details_3 {
+    float: left;
+    position: relative;
+    margin-top: -507px;
+    margin-left: -67px;
+    z-index: -1;
+}
+
+#details_4 {
+    float: right;
+    position: relative;
+    margin-top: -500px;
+    margin-right: -65px;
+    z-index: -1;
+}
+
+#details_5 {
+    float: right;
+    position: relative;
+    margin-top: -430px;
+    margin-right: -120px;
+    transform: rotate(90deg);
+    z-index: -1;
+}
+
+#details_6 {
+    float: left;
+    position: relative;
+    margin-top: -115px;
+    margin-bottom: 25px;
+    margin-left: -85px;
+    z-index: -1;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.imagem_background {
+    width: 100%;
+    height: 550px;
+    background-image: url("../imgs/pexels-vishnu-r-nair-1105666\ 1.png");
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.imagem_background span {
+    font-size: 100px;
+    color: white;
+    font-weight: 900 ;
+}
+
+.blocks {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card {
+    width: 250px;
+    height: 350px;
+    margin: 10px 0px 100px 0px;
+    border-radius: 10px;
+    border: double 3.0px transparent;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #8987FF, #FD830D);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+}
+
+.card .destaque {
+    font-weight: bold;
+    border-bottom: solid 2px orange;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.card .informativo {
+    margin: 10px 0px 0px 10px;
+    text-align: center;
+}
+
+.artists {
+    width: 100%;
+    height: auto;
+}
+
+#text_artists {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#title {
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.box_artists {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.box {
+    width: 335px;
+    height: 205px;
+    margin: 100px 0px 100px 0px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
+    box-shadow: 0px 0px 0px 1px #B1B1B1;
+}
+
+.box span {
+    font-size: 13px;
+    margin-right: 8px;
+}
+
+.box img {
+    width: 80px;
+    height: 72px;
+}
+
+.box h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.avaliacoes {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.avaliacoes p {
+    font-size: 26px;
+    margin-top: 50px;
+}
+
+.person {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.person .left {
+    width: 39%;
+    background-image: url(../imgs/pexels-andrea-piacquadio-3772524\ 1.png);
+    background-size: cover;
+    border-radius: 20px 0px 0px 20px;
+    box-shadow: -1px 0px 7px 0px grey;
+}
+
+.person .right {
+    width: 59%;
+    max-width: 59%;
+    background-color: white;
+    padding: 20px 0px 0px 20px;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 0px 0px 7px 0px grey;
+}
+
+#comentario {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.person .left, .right {
+    margin: 50px 0px 50px 0px;
+    padding: 20px 0px 0px 20px;
+    height: 400px;
+}
+
+.questions_faq {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    width: 100%;
+    height: 100px;
+    background-color: #18182F;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    margin-top: 60px;
+}
+
+footer img {
+    width: 220px;
+    height: 45px;
+}
+
+footer .social_media {
+    width: 250px;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer .box_footer{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding-right: 40px;
+}
+
+.borders {
+    border-right: solid 2px white;
+}
+
+.box_footer img {
+    margin-left: 25px;
+    width: 50px;
+    height: 50px;
+}

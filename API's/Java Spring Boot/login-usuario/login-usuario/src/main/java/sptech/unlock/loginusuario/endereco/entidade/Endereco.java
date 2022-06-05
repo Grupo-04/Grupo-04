@@ -45,6 +45,16 @@ public class Endereco {
         this.grupoArtista = grupoArtista;
     }
 
+    public Endereco(Integer id, String cep, String logradouro, String numero, String uf, String cidade, String bairro) {
+        this.id = id;
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.uf = uf;
+        this.cidade = cidade;
+        this.bairro = bairro;
+    }
+
     public Integer getId() {
         return id;
     }

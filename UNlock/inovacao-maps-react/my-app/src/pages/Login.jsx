@@ -6,13 +6,31 @@ import LinhasCirculo from '../imgs/decoration.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
-// import { useEffect, useState } from "react";
-// import api from "../api";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import api from "../api";
 
 import '../css/style_formulario.css'
 import '../css/style_pagina.css'
 
 function Login(){
+
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState('');
+
+    useEffect(() => {
+      api.get("/estabelecimento", {
+        params: { 
+            email: ,
+            senha: 
+        }
+      }).then((resposta) => {
+        console.log(resposta)
+      })
+    },[])
+
+    // 'enan.oliveira@bandtec.com.br', 'senha123'
+
     return (
         <>
             <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
@@ -29,14 +47,14 @@ function Login(){
                             <img src={LinhaLaranja} alt="" />
                         </div>
 
-                        <form method="get">
+                        <form method="get" onSubmit={login}>
                             <div className="div_input_formulario">
                                 <label for="email" className="texto">E-mail</label>
-                                <input id="email" className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>
+                                <input id="email" name='email' className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>
                             </div>
                             <div className="div_input_formulario">
                                 <label for="senha" className="texto">Senha</label>
-                                <input id="senha" className="input_formulario" type="password" placeholder="Escreva sua senha"/>
+                                <input id="senha" name='senha' className="input_formulario" type="password" placeholder="Escreva sua senha"/>
                             </div>
                             <div className="button">
                                 <button type="submit">Entrar</button>

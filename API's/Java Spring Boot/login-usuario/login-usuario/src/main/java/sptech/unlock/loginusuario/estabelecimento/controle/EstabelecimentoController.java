@@ -71,6 +71,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
     @Override
     public ResponseEntity exibirTodos() { return status(200).body(estabelecimentos.findAll()); }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping
     @Override
     public ResponseEntity login(
@@ -88,6 +89,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         return status(204).build();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @DeleteMapping
     @Override
     public ResponseEntity logoff(

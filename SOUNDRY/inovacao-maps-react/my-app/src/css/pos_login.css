@@ -29,7 +29,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins';
 }
 
 .body-estabelecimentos a {
@@ -142,15 +142,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 4.5vh;
 }
 
-.box2 {
+.body-estabelecimentos .box2 {
     display: grid;
 }
 
-.box * {
+.body-estabelecimentos .box * {
     padding: 5px;
 }
 
-.box {
+.body-estabelecimentos .box {
     display: flex;
     justify-content: center;
     justify-content: center;

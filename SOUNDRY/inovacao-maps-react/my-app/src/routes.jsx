@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import HomeSoundry from "./pages/HomeSoundry";
 import CadastroArtista from "./pages/CadastroArtista";
 import CadastroEstabelecimento from "./pages/CadastroEstabelecimento";
 import EnderecoArtista from "./pages/EnderecoArtista";
@@ -11,8 +12,8 @@ function Rotas() {
   return (
       <BrowserRouter>
           <Routes>
-              {/* <Route exact path="/normal_redirect" render={() => {window.location.href="index.html"}} /> */}
 
+              <Route path="/" element={<HomeSoundry/>}/>
               <Route path="/cadastro-artista" element={<CadastroArtista/>}/>
               <Route path="/cadastro-estabelecimento" element={<CadastroEstabelecimento/>}/>
               <Route path="/cadastro-endereco-artista" element={<EnderecoArtista/>}/>
@@ -20,7 +21,6 @@ function Rotas() {
               <Route path="/restaurante" element={<Restaurante/>}/>
               <Route path="/login" element={<Login/>}/>
 
-              {/* <Route path="/cadastro-endereco-estabelecimento" element={<EnderecoEstabelecimento/>}/> */}
               {/* <Route path="*" element={}/> 404 */}
           </Routes>
       </BrowserRouter>

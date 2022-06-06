@@ -47,21 +47,32 @@ function EnderecoArtista(){
     }
 
     const handleApi = () =>{
-        api.post('/grupo-artista', {
-            params:{
+        let data = {
+            nome: window.sessionStorage.getItem("nome"),
+            telefone: window.sessionStorage.getItem("telefone"),
+            cpf: window.sessionStorage.getItem("cpf"),
+            estilo: window.sessionStorage.getItem("estilo"),
+            grupo: window.sessionStorage.getItem("grupo"),
+            qtdIntegrantes: window.sessionStorage.getItem("qtdIntegrantes"),
+            tipo: window.sessionStorage.getItem("tipo"),
+            nome_artistico: window.sessionStorage.getItem("nome_artistico"),
+            email: window.sessionStorage.getItem("email"),
+            senha: window.sessionStorage.getItem("senha"),
+            endereco: {
                 cep: cep,
                 logradouro: logradouro,
                 numero: numero,
                 uf: uf,
                 bairro: bairro,
-                cidade: cidade,
+                cidade: cidade
             }
-        })
+        }
+        api.post('/grupo-artista', data)
         .then(result=>{
-            console.log(result)
+            console.log("RESULT: ", result)
         })
         .catch(error =>{
-            console.log(error);
+            console.log("ERROR: ", error);
         })
     }
 
@@ -83,10 +94,10 @@ function EnderecoArtista(){
                             <h3>Artista ▶ <b className="endereco-sublinhado">Endereço</b></h3>
                         </div>
             
-                        <form method="get">
+                        <div >
                             <div className="div_input_formulario">
                                 <label for="cep" className="texto">CEP</label>
-                                <input id="cep" className="input_formulario" type="text" placeholder="Digite o seu CEP"/>
+                                <input id="cep" value={cep} onChange={handleCep} className="input_formulario" type="text" placeholder="Digite o seu CEP"/>
                             </div>
                             <div className="div_input_formulario">
                                 <label for="logradouro" className="texto">Logradouro</label>
@@ -118,7 +129,7 @@ function EnderecoArtista(){
                                 <p className="cadastrar">Já tem cadastro?</p>
                                 <p className="cadastrar">Clique aqui e começe já</p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <p className="copywrite">© 2022 Soundry. Todos os direitos reservados</p>
                 </div>

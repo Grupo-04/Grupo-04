@@ -6,4 +6,5 @@ import sptech.unlock.loginusuario.endereco.entidade.Endereco;
 import java.util.List;
 
 public interface RepositorioEndereco extends JpaRepository<Endereco, Integer> {
+
 }

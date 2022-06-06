@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+*{
+    font-family: 'Poppins';
+    font-style: normal;
+    line-height: 140%;
+    color: #515151;
+    letter-spacing: 0.0125em;
+}
+
+.logo{
+    margin-top: 5vh;
+    margin-left: 5vw;
+    /* background-color: blue; */
+}
+
+.div-esquerda {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 155vh;
+    /* background-color: purple; */
+}
+
+.div-esquerda .formulario-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+
+.div-esquerda .formulario-login .titulo-login{
+    display: flex;
+    text-align: left;
+    width: 23vw;
+    flex-direction: column;
+    /* background-color: violet; */
+}
+
+.div-esquerda .formulario-login .titulo-login img{
+    width: 4vw;
+    height: 0.7vh;
+    margin-top: -2.5vh;
+}
+
+.div_input_formulario{
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.div_input_formulario_uf{
+    margin-top: 3vh;
+}
+
+.div_input_formulario_uf .input_uf{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.div_input_formulario_uf .input_uf .input_formulario{
+    border-radius: 6px;
+    width: 19vw;
+    height: 7vh;
+}
+
+.div_input_formulario_uf .input_uf #uf{
+    text-align: center;
+    font-size: 18px;
+    border-radius: 6px;
+    width: 3vw;
+    height: 7vh;
+}
+
+.div_input_formulario .input_formulario{
+    border-radius: 6px;
+    width: 23vw;
+    height: 7vh;
+    border-width: 1px;
+    border-color: #515151;
+}
+
+.button button{
+    all: unset;
+    margin-top: 3vh;
+    width: 23.5vw;
+    height: 7vh;
+    text-align: center;
+    border-radius: 0.4rem;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+.cadastrar{
+    font-size: 14px;
+    margin-bottom: -2vh;
+}
+
+.footer-botao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-direita{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+    height: 155vh;
+}
+
+.imagem-fundo{
+    position: absolute;
+    z-index: 1;
+    height: 155vh;
+    width: 49vw;
+}
+
+.linhas-circulo{
+    position: absolute;
+    z-index: 2;
+    top: 42%;
+    left: 50%;
+    height: 114vh;
+    width: 35vw;
+}
+
+.imagem-sombra{
+    position: absolute;
+    height: 126vh;
+    width: 40.5vw;
+    z-index: 3;
+}
+
+.imagem-direita-homem-computador{
+    position: absolute;
+    top: 75%;
+    left: 70%;
+    height: 65vh;
+    width: 27vw;
+    z-index: 4;
+}
+
+.imagem-direita-planeta{
+    position: absolute;
+    top: 75%;
+    left: 70%;
+    height: 55vh;
+    width: 27vw;
+    z-index: 4;
+}
+
+.imagem-direita-celular{
+    position: absolute;
+    top: 75%;
+    left: 70%;
+    height: 55vh;
+    width: 27vw;
+    z-index: 4;
+}
+
+.imagem-direita-comprimento{
+    position: absolute;
+    top: 75%;
+    left: 70%;
+    height: 55vh;
+    width: 27vw;
+    z-index: 4;
+}
+
+.div-direita .titulo-pagina{
+    top: 20%;
+    font-size: 38px;
+    position: absolute;
+    height: 55vh;
+    width: 27vw;
+    z-index: 4;
+}
+
+.div-direita .titulo-pagina p{
+    font-weight: 700;
+    color: white;
+}
+
+.endereco-sublinhado{
+    text-decoration: underline rgb(40, 250, 40);
+    color: rgb(40, 250, 40);
+}
+
+.seta-voltar{
+    position: relative;
+    margin-left: 6vw;
+    float: left;
+    width: 3vw;
+    height: 5vh;
+}
+
+.seta-voltar-login{
+    position: relative;
+    margin-top: -40vh;
+    margin-bottom: -40vh;
+    margin-left: 6vw;
+    float: left;
+    width: 3vw;
+    height: 5vh;
+}
+
+/* .div-sombra{
+    height: 108vh;
+    width: 40.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: white;
+    border-radius: 2%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: rgba(255, 255, 255, 0.37);
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(5px);
+    z-index: 3;
+} */
+

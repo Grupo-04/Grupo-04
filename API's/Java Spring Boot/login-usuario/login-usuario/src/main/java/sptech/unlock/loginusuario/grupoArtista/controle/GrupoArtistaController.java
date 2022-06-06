@@ -10,12 +10,11 @@ import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 import sptech.unlock.loginusuario.grupoArtista.repositorio.RepositorioGrupoArtista;
 import sptech.unlock.loginusuario.interfaces.Autenticavel;
 import sptech.unlock.loginusuario.interfaces.Registravel;
-import sptech.unlock.loginusuario.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
-
 @RestController
 @RequestMapping(path = "/grupo-artista")
 public class GrupoArtistaController implements Registravel<ResponseEntity, GrupoArtista>, Autenticavel {
@@ -27,7 +26,6 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     private RepositorioEstabelecimento estabelecimentos;
 
     private GrupoArtista artista;
-
 
     @Autowired
     private EmailSenderService senderService;
@@ -51,15 +49,11 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     @Override
     public ResponseEntity cadastrar(@RequestBody GrupoArtista grupoArtista) {
 
-        List<Estabelecimento> estabelecimentosObservados = new ArrayList();
-
-        for (Estabelecimento e: estabelecimentos.findAll()) {
-            if (e.isInteresse_match_cidade()) {
-                if (e.getEndereco().getCidade().equals(grupoArtista.getEndereco().getCidade())) {
-                    estabelecimentosObservados.add(e);
-                }
-            }
-        }
+        List<Estabelecimento> estabelecimentosObservados =
+                estabelecimentos.consultaInteresseMatchCidadeAndEnderecoCidade(
+                        true,
+                        grupoArtista.getEndereco().getCidade()
+                );
 
         if (estabelecimentosObservados.size() > 0) {
             notifyAllObservers(estabelecimentosObservados, grupoArtista.getNome_artistico());
@@ -70,11 +64,16 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
 
         return ResponseEntity.status(201).body(grupoArtista);
+
     }
 
     @GetMapping("/listar")
     @Override
     public ResponseEntity exibirTodos() {
+        if(grupoArtistas.findAll().isEmpty()){
+            return ResponseEntity.status(204).body(grupoArtistas.findAll());
+
+        }
         return ResponseEntity.status(200).body(grupoArtistas.findAll());
     }
 
@@ -85,14 +84,30 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        for (GrupoArtista grup : grupoArtistas.findAll()){
-            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
-                grup.setAutenticado(true);
-                grupoArtistas.save(grup);
-                return ResponseEntity.status(202).build();
-            }
+        if (Objects.isNull(email)){
+            return ResponseEntity.status(400).build();
         }
-        return ResponseEntity.status(204).build();
+        if (Objects.isNull(senha)){
+            return ResponseEntity.status(400).build();
+        }
+
+        GrupoArtista grupoArtista = grupoArtistas.findByEmailAndSenha(email,senha);
+        if(Objects.isNull(grupoArtista)){
+
+            return ResponseEntity.status(400).build();
+        }
+        grupoArtista.setAutenticado(true);
+        grupoArtistas.save(grupoArtista);
+        return ResponseEntity.status(200).build();
+
+//        for (GrupoArtista grup : grupoArtistas.findAll()){
+//            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
+//                grup.setAutenticado(true);
+//                grupoArtistas.save(grup);
+//                return ResponseEntity.status(200).build();
+//            }
+//        }
+//        return ResponseEntity.status(404).build();
     }
 
     @DeleteMapping
@@ -102,14 +117,30 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
             @RequestParam String senha
     ) {
 
-        for (GrupoArtista grup : grupoArtistas.findAll()){
-            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
-                grup.setAutenticado(false);
-                grupoArtistas.save(grup);
-                return ResponseEntity.status(200).build();
-            }
+        if (Objects.isNull(email)){
+            return ResponseEntity.status(400).build();
         }
-        return ResponseEntity.status(204).build();
+        if (Objects.isNull(senha)){
+            return ResponseEntity.status(400).build();
+        }
+
+        GrupoArtista grupoArtista = grupoArtistas.findByEmailAndSenha(email,senha);
+        if(Objects.isNull(grupoArtista)){
+
+            return ResponseEntity.status(400).build();
+        }
+        grupoArtista.setAutenticado(false);
+        grupoArtistas.save(grupoArtista);
+        return ResponseEntity.status(200).build();
+
+//        for (GrupoArtista grup : grupoArtistas.findAll()){
+//            if (grup.getEmail().equals(email) && grup.getSenha().equals(senha)){
+//                grup.setAutenticado(false);
+//                grupoArtistas.save(grup);
+//                return ResponseEntity.status(200).build();
+//            }
+//        }
+//        return ResponseEntity.status(404).build();
     }
 
     @GetMapping("/match/{diaSelec}/{id}")

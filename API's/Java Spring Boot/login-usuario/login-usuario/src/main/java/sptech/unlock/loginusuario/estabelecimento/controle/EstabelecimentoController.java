@@ -2,8 +2,6 @@ package sptech.unlock.loginusuario.estabelecimento.controle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import sptech.unlock.loginusuario.email.service.EmailSenderService;
 import sptech.unlock.loginusuario.estabelecimento.entidade.Estabelecimento;
@@ -15,7 +13,9 @@ import sptech.unlock.loginusuario.observer.StringObserver;
 import sptech.unlock.loginusuario.observer.Subject;
 import java.util.Objects;
 
-import javax.validation.Valid;
+import java.util.List;
+
+import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping(path = "/estabelecimento")
@@ -52,6 +52,26 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         return ResponseEntity.status(200).build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletarEstabelecimento(@PathVariable Integer id ) {
+
+        if (estabelecimentos.existsById(id)) {
+            estabelecimentos.deleteById(id);
+            return status(200).build();
+        }
+        return status(404).build();
+    }
+
+    @GetMapping("/listar/interessados-match-cidade")
+    public ResponseEntity listarInteressadosEmMatchCidade() {
+        List<Estabelecimento> lista = estabelecimentos.consultaInteressadosMatchCidade(true);
+
+        if (lista.isEmpty()) {
+            return status(204).build();
+        }
+        return status(200).body(lista);
+    }
+
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/listar")
     @Override
@@ -62,6 +82,7 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         return ResponseEntity.status(200).body(estabelecimentos.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping
     @Override
     public ResponseEntity login(
@@ -77,8 +98,10 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         estabelecimentos.save(estab);
 
         return ResponseEntity.status(200).build();
+
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @DeleteMapping
     @Override
     public ResponseEntity logoff(
@@ -94,5 +117,6 @@ public class EstabelecimentoController implements Registravel<ResponseEntity, Es
         estabelecimentos.save(estab);
 
         return ResponseEntity.status(200).build();
+
     }
 }

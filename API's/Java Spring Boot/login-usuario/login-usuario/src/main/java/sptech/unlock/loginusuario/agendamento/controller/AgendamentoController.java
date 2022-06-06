@@ -343,6 +343,7 @@ public class AgendamentoController {
         String tipo;
         Boolean grupo;
         String estilo;
+        Integer integrantes;
 
         Double valor_cobrado;
         int contaRegDadoLido = 0;
@@ -406,11 +407,12 @@ public class AgendamentoController {
                     senha = registro.substring(169, 214).trim();
                     tipo = registro.substring(214, 259).trim();
                     grupo = Boolean.valueOf(registro.substring(259, 260).trim());
-                    estilo = registro.substring(260, 305);
+                    estilo = registro.substring(260, 305).trim();
+                    integrantes = Integer.valueOf(registro.substring(305, 307));
 
                     contaRegDadoLido++;
 
-                    GrupoArtista grupoArtista = new GrupoArtista(idArtista, nome, telefone, email, senha, nomeArtistico, cpf, tipo, grupo, estilo);
+                    GrupoArtista grupoArtista = new GrupoArtista(idArtista, nome, telefone, email, senha, nomeArtistico, cpf, tipo, grupo, estilo, integrantes);
 
                     //Para importar para o banco de dados pode-se fazer:
                     //grupoArtistaEntrada.save(grupoArtista);

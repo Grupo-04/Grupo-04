@@ -11,6 +11,7 @@ import sptech.unlock.loginusuario.pilhaobj.PilhaObj;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/grupo-artista-avaliacao")
@@ -40,6 +41,13 @@ public class GrupoArtistaAvaliacaoAgendamentoController implements Avaliavel<Res
             @PathVariable Integer id,
             @RequestBody GrupoArtistaAvaliacaoAgendamento avaliacao
     ){
+        if (Objects.isNull(id)){
+            return ResponseEntity.status(400).build();
+        }
+        if (Objects.isNull(avaliacao)){
+            return ResponseEntity.status(400).build();
+        }
+
         if(repository.existsById(id)){
             avaliacao.setId(id);
             repository.save(avaliacao);

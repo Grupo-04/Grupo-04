@@ -8,10 +8,10 @@ import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import React, { useEffect, useState } from "react";
 import api from "../api/api"
+import { useNavigate } from 'react-router-dom';
 
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"
-import { createPortal } from 'react-dom'
 
 function EnderecoArtista(){
 
@@ -46,6 +46,11 @@ function EnderecoArtista(){
         setCidade(e.target.value)
     }
 
+    const navigate = useNavigate();
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
     const handleApi = () =>{
         let data = {
             nome: window.sessionStorage.getItem("nome"),
@@ -70,6 +75,7 @@ function EnderecoArtista(){
         api.post('/grupo-artista', data)
         .then(result=>{
             console.log("RESULT: ", result)
+            routeChange('/login')
         })
         .catch(error =>{
             console.log("ERROR: ", error);

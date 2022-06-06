@@ -8,11 +8,9 @@ import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import api from "../api/api";
 
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"
-import EnderecoArtista from './EnderecoArtista'
 
 function CadastroArtista() {
 
@@ -26,40 +24,7 @@ function CadastroArtista() {
     const [nome_artistico, setNomeArtistico] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-
-    // const [cep, setCep] = useState('');
-    // const [logradouro, setLogradouro] = useState('');
-    // const [numero, setNumero] = useState('');
-    // const [uf, setUf] = useState('');
-    // const [bairro, setBairro] = useState('');
-    // const [cidade, setCidade] = useState('');
-
-    const navigate = useNavigate();
-
-    // const handleCep = (e) =>{
-    //     setCep(e.target.value)
-    // }
-
-    // const handleLogradouro = (e) =>{
-    //     setLogradouro(e.target.value)
-    // }
-
-    // const handleNumero = (e) =>{
-    //     setNumero(e.target.value)
-    // }
-
-    // const handleUf = (e) =>{
-    //     setUf(e.target.value)
-    // }
-
-    // const handleBairro = (e) =>{
-    //     setBairro(e.target.value)
-    // }
-
-    // const handleCidade = (e) =>{
-    //     setCidade(e.target.value)
-    // }
-
+    
     const handleNome = (e) => {
         setNome(e.target.value)
     }
@@ -71,27 +36,27 @@ function CadastroArtista() {
     const handleCpf = (e) => {
         setCpf(e.target.value)
     }
-
+    
     const handleEstilo = (e) => {
         setEstilo(e.target.value)
     }
-
+    
     const handleBanda = (e) => {
         setBanda(e.target.value)
     }
-
+    
     const handleIntegrantes = (e) => {
         setIntegrantes(e.target.value)
     }
-
+    
     const handleTipo = (e) => {
         setTipo(e.target.value)
     }
-
+    
     const handleNomeArtistico = (e) => {
         setNomeArtistico(e.target.value)
     }
-
+    
     const handleEmail = (e) => {
         setEmail(e.target.value)
     }
@@ -99,13 +64,12 @@ function CadastroArtista() {
     const handleSenha = (e) => {
         setSenha(e.target.value)
     }
-
-    console.log(nome)
-
+    
+    const navigate = useNavigate();
     const routeChange = () =>{ 
         let path = `/cadastro-endereco-artista`; 
         navigate(path);
-      }
+    }
 
     const handleApi = () => {
         window.sessionStorage.setItem("nome", nome);

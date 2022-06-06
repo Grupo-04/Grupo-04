@@ -213,6 +213,10 @@
     height: 5vh;
 }
 
+.endereco-pagina{
+    display: none;
+}
+
 /* .div-sombra{
     height: 108vh;
     width: 40.5vw;

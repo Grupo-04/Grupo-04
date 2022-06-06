@@ -8,6 +8,7 @@ import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import { useState } from 'react';
 import api from "../api/api";
+import { useNavigate } from 'react-router-dom';
 
 import '../css/style_formulario.css'
 import '../css/style_pagina.css'
@@ -17,8 +18,6 @@ function Login(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    console.log({ email, senha })
-
     const handleEmail = (e) =>{
         setEmail(e.target.value)
     }
@@ -27,23 +26,28 @@ function Login(){
         setSenha(e.target.value)
     }
 
+    const navigate = useNavigate();
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
     const handleApi = () =>{
-        console.log({ email,senha })
-        api.get('/estabelecimento', {
+        api.get('/grupo-artista', {
             params:{
                 email: email,
                 senha: senha
             }
         })
         .then(result=>{
-            console.log(result)
+            let status = result.status
+            if (status == 200) {
+                routeChange('/estabelecimentos')
+            }
         })
         .catch(error =>{
-            console.log(error)
+            alert("Email/senha inválidos!")
         })
     }
-
-    // 'enan.oliveira@bandtec.com.br', 'senha123'
 
     return (
         <>
@@ -61,7 +65,7 @@ function Login(){
                             <img src={LinhaLaranja} alt="" />
                         </div>
 
-                        <form method="get">
+                        <div>
                             <div className="div_input_formulario">
                                 <label for="email" className="texto">E-mail</label>
                                 <input id="email" value={email} onChange={handleEmail} name='email' className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>
@@ -74,7 +78,7 @@ function Login(){
                                 <button onClick={handleApi}>Entrar</button>
                             </div>
                             <p className="cadastrar">Não é parte do time ainda? Cadastre-se</p>
-                        </form>
+                        </div>
                     </div>
                     <p className="copywrite">© 2022 Soundry. Todos os direitos reservados</p>
                 </div>

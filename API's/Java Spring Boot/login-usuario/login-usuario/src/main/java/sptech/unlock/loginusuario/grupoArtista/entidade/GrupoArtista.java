@@ -32,13 +32,14 @@ public class GrupoArtista extends Usuario {
     public GrupoArtista() {
     }
 
-    public GrupoArtista(Integer id, String nome, String telefone, String email, String senha, String nome_artistico, String cpf, String tipo, Boolean grupo, String estilo, Endereco endereco) {
+    public GrupoArtista(Integer id, String nome, String telefone, String email, String senha, String nome_artistico, String cpf, String tipo, Boolean grupo, String estilo, Integer qtdIntegrantes, Endereco endereco) {
         super(id, nome, telefone, email, senha);
         this.nome_artistico = nome_artistico;
         this.cpf = cpf;
         this.tipo = tipo;
-        this.grupo = grupo;
+        this.grupo = grupo; 
         this.estilo = estilo;
+        this.qtdIntegrantes = qtdIntegrantes;
         this.endereco = endereco;
     }
 

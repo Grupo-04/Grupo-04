@@ -8,19 +8,81 @@ import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import React, { useEffect, useState } from "react";
 import api from "../api/api"
+import { useNavigate } from 'react-router-dom';
 
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"
 
 function EnderecoArtista(){
-    const [ceps, setCEPs] = useState([]);
 
-    useEffect(() => {
-        api.get("/01001000/json").then((resposta) => {
-            setCEPs(resposta.data)
+    const [cep, setCep] = useState('');
+    const [logradouro, setLogradouro] = useState('');
+    const [numero, setNumero] = useState('');
+    const [uf, setUf] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [cidade, setCidade] = useState('');
+
+    const handleCep = (e) =>{
+        setCep(e.target.value)
+    }
+
+    const handleLogradouro = (e) =>{
+        setLogradouro(e.target.value)
+    }
+
+    const handleNumero = (e) =>{
+        setNumero(e.target.value)
+    }
+
+    const handleUf = (e) =>{
+        setUf(e.target.value)
+    }
+
+    const handleBairro = (e) =>{
+        setBairro(e.target.value)
+    }
+
+    const handleCidade = (e) =>{
+        setCidade(e.target.value)
+    }
+
+    const navigate = useNavigate();
+    const routeChange = (path) =>{  
+        navigate(path);
+    }
+
+    const handleApi = () =>{
+        let data = {
+            nome: window.sessionStorage.getItem("nome"),
+            telefone: window.sessionStorage.getItem("telefone"),
+            cpf: window.sessionStorage.getItem("cpf"),
+            estilo: window.sessionStorage.getItem("estilo"),
+            grupo: window.sessionStorage.getItem("grupo"),
+            qtdIntegrantes: window.sessionStorage.getItem("qtdIntegrantes"),
+            tipo: window.sessionStorage.getItem("tipo"),
+            nome_artistico: window.sessionStorage.getItem("nome_artistico"),
+            email: window.sessionStorage.getItem("email"),
+            senha: window.sessionStorage.getItem("senha"),
+            endereco: {
+                cep: cep,
+                logradouro: logradouro,
+                numero: numero,
+                uf: uf,
+                bairro: bairro,
+                cidade: cidade
+            }
+        }
+        api.post('/grupo-artista', data)
+        .then(result=>{
+            console.log("RESULT: ", result)
+            routeChange('/login')
         })
-      }, []);
-    
+        .catch(error =>{
+            console.log("ERROR: ", error);
+        })
+    }
+
+
     return (
         <>
             <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
@@ -34,51 +96,46 @@ function EnderecoArtista(){
                     <div className="formulario-login">
                         <div className='titulo-login'>
                             <h2>Cadastre-se</h2>
-                            {/* {
-                                ceps.map((res) => 
-                                    <h1> {res} </h1>
-                                )
-                            } */}
                             <img src={LinhaLaranja} alt="" />
                             <h3>Artista ▶ <b className="endereco-sublinhado">Endereço</b></h3>
                         </div>
             
-                        <form method="get">
+                        <div >
                             <div className="div_input_formulario">
                                 <label for="cep" className="texto">CEP</label>
-                                <input id="cep" className="input_formulario" type="text" placeholder="Digite o seu CEP"/>
+                                <input id="cep" value={cep} onChange={handleCep} className="input_formulario" type="text" placeholder="Digite o seu CEP"/>
                             </div>
                             <div className="div_input_formulario">
                                 <label for="logradouro" className="texto">Logradouro</label>
-                                <input id="logradouro" className="input_formulario" type="text" placeholder="Escreva seu logradouro"/>
+                                <input id="logradouro" value={logradouro} onChange={handleLogradouro} className="input_formulario" type="text" placeholder="Escreva seu logradouro"/>
                             </div>
                             <div className="div_input_formulario">
                                 <label for="numero" className="texto">Número</label>
-                                <input id="numero" className="input_formulario" type="text" placeholder="Digite o número da sua residência"/>
+                                <input id="numero" value={numero} onChange={handleNumero} className="input_formulario" type="text" placeholder="Digite o número da sua residência"/>
                             </div>
                             <div className="div_input_formulario_uf">
                                 <label for="uf" className="texto">UF</label>
                                 <div className="input_uf">
-                                    <input id="uf" className="input_formulario" type="text" placeholder="XX"/>
-                                    <input className="input_formulario" type="text" placeholder="Escreva sua cidade"/>
+                                    <input id="uf" className="input_formulario" value={uf} onChange={handleUf} type="text" placeholder="XX"/>
+                                    <input className="input_formulario" value={cidade} onChange={handleCidade} type="text" placeholder="Escreva sua cidade"/>
                                 </div>
                             </div>
                             <div className="div_input_formulario">
                                 <label for="bairro" className="texto">Bairro</label>
-                                <input id="bairro" className="input_formulario" type="text" placeholder="Escreva seu bairro"/>
+                                <input id="bairro" value={bairro} onChange={handleBairro} className="input_formulario" type="text" placeholder="Escreva seu bairro"/>
                             </div>
-                            <div className="div_input_formulario">
+                            {/* <div className="div_input_formulario">
                                 <label for="cidade" className="texto">Cidade</label>
                                 <input id="cidade" className="input_formulario" type="text" placeholder="Escreva seu e-mail"/>
-                            </div>
+                            </div> */}
                             <div className="button">
-                                <button type="submit">Finalizar cadastro</button>
+                                <button type="submit" onClick={handleApi}>Finalizar cadastro</button>
                             </div>
                             <div className="footer-botao">
                                 <p className="cadastrar">Já tem cadastro?</p>
                                 <p className="cadastrar">Clique aqui e começe já</p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <p className="copywrite">© 2022 Soundry. Todos os direitos reservados</p>
                 </div>

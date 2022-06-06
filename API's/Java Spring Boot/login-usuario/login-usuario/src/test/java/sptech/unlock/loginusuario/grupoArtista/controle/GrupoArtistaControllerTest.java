@@ -37,10 +37,7 @@ class GrupoArtistaControllerTest {
     @Test
     @DisplayName("Cadastro grupo de artistas")
     void cadastrar() {
-        GrupoArtista grupoArtista = new GrupoArtista(1,"Leo", "(11) 98765-0987",
-                "leo@gmail.com", "12345","Rodolfo jazz", "09876556789",
-                "Solo", false, "Jazz", new Endereco(1,"09090-120",
-                "Rua das Couves", "123", "SP", "São Paulo", "Liberdade"));
+        GrupoArtista grupoArtista = mock(GrupoArtista.class);
 
         when(repository.save(grupoArtista)).thenReturn(grupoArtista);
 

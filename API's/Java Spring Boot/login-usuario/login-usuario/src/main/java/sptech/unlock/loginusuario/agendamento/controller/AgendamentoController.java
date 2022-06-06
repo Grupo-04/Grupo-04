@@ -1,6 +1,7 @@
 package sptech.unlock.loginusuario.agendamento.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import sptech.unlock.loginusuario.pilhaobj.PilhaObj;
 import javax.swing.filechooser.FileSystemView;
 import javax.validation.Valid;
 import java.io.*;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -109,9 +111,9 @@ public class AgendamentoController {
     public  ResponseEntity getFilaAgendamento(){
         if(enfileirarAgendamento(agendamentos.findAll()).isEmpty()){
             return ResponseEntity.status(404).build();
-        } else {
-            return ResponseEntity.status(200).body(enfileirarAgendamento(agendamentos.findAll()));
         }
+
+        return ResponseEntity.status(200).body(enfileirarAgendamento(agendamentos.findAll()));
     }
 
     @GetMapping("/primeiro-agendamento")
@@ -140,7 +142,7 @@ public class AgendamentoController {
     ){
 
         for(Agendamento agend : agendamentos.findAll()){
-            if(agend.getData_evento().equals(data)){
+            if(agend.getData_evento().equals(data)) {
                 return ResponseEntity.status(200).body(agend);
             }
         }
@@ -164,7 +166,7 @@ public class AgendamentoController {
     }
 
     @PatchMapping("/atualizar-valor-cobrado/{codigo_agendamento}/{preco}")
-    public ResponseEntity ataulizarValorCobrado(
+    public ResponseEntity atualizarValorCobrado(
             @PathVariable Double preco,
             @PathVariable String codigo_agendamento
     ){

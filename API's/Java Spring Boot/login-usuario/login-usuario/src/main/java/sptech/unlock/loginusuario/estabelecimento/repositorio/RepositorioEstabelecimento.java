@@ -9,6 +9,8 @@ import java.util.List;
 
 @Component
 public interface RepositorioEstabelecimento extends JpaRepository<Estabelecimento, Integer> {
+    Estabelecimento findById(int id);
+    Estabelecimento findByEmailAndSenha(String email, String senha);
 
     @Query("select a from Estabelecimento a where a.interesse_match_cidade=?1 and a.endereco.cidade=?2")
     List<Estabelecimento> consultaInteresseMatchCidadeAndEnderecoCidade(boolean interessado, String cidade);

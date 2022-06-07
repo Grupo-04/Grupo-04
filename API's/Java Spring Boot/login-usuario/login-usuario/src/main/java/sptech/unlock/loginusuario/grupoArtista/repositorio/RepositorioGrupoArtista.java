@@ -14,4 +14,8 @@ public interface RepositorioGrupoArtista extends JpaRepository<GrupoArtista, Int
 
     GrupoArtista findByEmailAndSenha(String email, String senha);
 
+    boolean existsByEmail(String email);
+
+    GrupoArtista findByEmail(String email);
+
 }

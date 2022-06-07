@@ -1,5 +1,6 @@
 package sptech.unlock.loginusuario.grupoArtista.controle;
 
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +11,13 @@ import sptech.unlock.loginusuario.grupoArtista.entidade.GrupoArtista;
 import sptech.unlock.loginusuario.grupoArtista.repositorio.RepositorioGrupoArtista;
 import sptech.unlock.loginusuario.interfaces.Autenticavel;
 import sptech.unlock.loginusuario.interfaces.Registravel;
+import sptech.unlock.loginusuario.recuperarSenha.Codigo;
+import sptech.unlock.loginusuario.recuperarSenha.RepositorioCodigo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 @RestController
 @RequestMapping(path = "/grupo-artista")
@@ -29,6 +33,9 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 
     @Autowired
     private EmailSenderService senderService;
+
+    @Autowired
+    private RepositorioCodigo codigos;
 
     public void notifyAllObservers(List<Estabelecimento> estab, String nomeArtista){
         for (Estabelecimento e : estab) {
@@ -189,5 +196,57 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
 //        int nroRandom = ThreadLocalRandom.current().nextInt(0, rangeMatch+1);
 
         return ResponseEntity.status(200).body(estabelecimentosMatchCidadeNota);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000/")
+    @GetMapping("/enviar-codigo-artista")
+    public ResponseEntity enviarCodigoRecuperarSenhaPorEmail(
+            @RequestParam String email
+    ){
+        boolean existeArtista = grupoArtistas.existsByEmail(email);
+//
+        if (!existeArtista) {
+            return ResponseEntity.status(404).build();
+        }
+//        RandomString codigo = new RandomString(8, ThreadLocalRandom.current());
+
+        GrupoArtista artista = grupoArtistas.findByEmail(email);
+        Integer idArtista = artista.getId();
+
+        String codigo = UUID.randomUUID().toString();
+
+        if (codigos.existsByIdArtista(idArtista)) {
+            codigos.delete(codigos.findByIdArtista(idArtista));
+        }
+        codigos.save(new Codigo(codigo, idArtista));
+
+        senderService.sendEmail(
+                email,
+                "Código de recuperação de senha:",
+                codigo.toString()
+        );
+        return ResponseEntity.status(200).build();
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000/")
+    @PutMapping("/alterar-senha")
+    public ResponseEntity alterarSenha(
+            @RequestParam String emailRecebido,
+            @RequestParam String codigoRecebido,
+            @RequestParam String novaSenha
+    ) {
+        GrupoArtista artista = grupoArtistas.findByEmail(emailRecebido);
+        Integer idArtista = artista.getId();
+        Integer num = 1;
+        String codigo = codigos.findByIdArtista(num).getCodigo();
+        System.out.println("CODIGOOOOOOOOO: " + codigo);
+
+        if (codigo.equals(codigoRecebido)) {
+            artista.setSenha(novaSenha);
+            grupoArtistas.save(artista);
+            return ResponseEntity.status(201).build();
+        }
+        return ResponseEntity.status(404).build();
     }
 }

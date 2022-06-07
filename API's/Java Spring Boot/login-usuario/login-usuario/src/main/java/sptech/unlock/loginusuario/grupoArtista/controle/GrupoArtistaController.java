@@ -1,6 +1,5 @@
 package sptech.unlock.loginusuario.grupoArtista.controle;
 
-import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 @RestController
 @RequestMapping(path = "/grupo-artista")
 public class GrupoArtistaController implements Registravel<ResponseEntity, GrupoArtista>, Autenticavel {
@@ -208,7 +206,6 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
         if (!existeArtista) {
             return ResponseEntity.status(404).build();
         }
-//        RandomString codigo = new RandomString(8, ThreadLocalRandom.current());
 
         GrupoArtista artista = grupoArtistas.findByEmail(email);
         Integer idArtista = artista.getId();
@@ -238,9 +235,7 @@ public class GrupoArtistaController implements Registravel<ResponseEntity, Grupo
     ) {
         GrupoArtista artista = grupoArtistas.findByEmail(emailRecebido);
         Integer idArtista = artista.getId();
-        Integer num = 1;
-        String codigo = codigos.findByIdArtista(num).getCodigo();
-        System.out.println("CODIGOOOOOOOOO: " + codigo);
+        String codigo = codigos.findByIdArtista(idArtista).getCodigo();
 
         if (codigo.equals(codigoRecebido)) {
             artista.setSenha(novaSenha);

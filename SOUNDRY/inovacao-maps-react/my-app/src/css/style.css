@@ -114,10 +114,10 @@ html {
     border-radius: 20px;
 }
 
-.imagem_background span {
+.body-home-soundry .imagem_background span {
     font-size: 100px;
     color: white;
-    font-weight: 900 ;
+    font-weight: 400 ;
 }
 
 .blocks {

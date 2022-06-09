@@ -6,7 +6,7 @@ import LinhasCirculo from '../imgs/decoration laranja.png'
 import LinhaLaranja from '../imgs/path (Stroke).png'
 import SetaVoltar from '../imgs/seta voltar tela.png'
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import "../css/style_pagina.css"
@@ -93,7 +93,11 @@ function CadastroArtista() {
                     <div className="logo">
                         <img src={Logo} alt="Logo do servico Soundry" />
                     </div>
-                    <img src={SetaVoltar} alt="" className="seta-voltar" />
+
+                    <Link to="/">
+                        <img src={SetaVoltar} alt="" className="seta-voltar" />
+                    </Link>
+                    
                     <div className="formulario-login">
                         <div className='titulo-login'>
                             <h2>Cadastre-se</h2>

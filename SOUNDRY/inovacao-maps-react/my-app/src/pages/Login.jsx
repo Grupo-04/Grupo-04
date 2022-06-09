@@ -8,7 +8,7 @@ import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import { useState } from 'react';
 import api from "../api/api";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../css/style_formulario.css'
 import '../css/style_pagina.css'
@@ -54,11 +54,12 @@ function Login(){
             <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
             <div className="pagina">
                 <div className="div-esquerda">
+                    <Link to="/">
                     <div className="logo">
                         <img src={Logo} alt="Logo do servico Soundry"/>
                     </div>
-                    
-                    <img src={SetaVoltar} alt="" className="seta-voltar-login"/>
+                    </Link>
+
                     <div className="formulario-login">
                         <div className='titulo-login'>
                             <h2>Login</h2>

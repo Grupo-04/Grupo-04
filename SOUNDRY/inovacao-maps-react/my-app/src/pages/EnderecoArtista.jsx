@@ -8,7 +8,7 @@ import SetaVoltar from '../imgs/seta voltar tela.png'
 
 import React, { useEffect, useState } from "react";
 import api from "../api/api"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import "../css/style_pagina.css"
 import "../css/style_formulario.css"
@@ -91,8 +91,9 @@ function EnderecoArtista(){
                     <div className="logo">
                         <img src={Logo} alt="Logo do servico Soundry"/>
                     </div>
-                    
-                    <img src={SetaVoltar} alt="" className="seta-voltar"/>
+                    <Link to="/">
+                        <img src={SetaVoltar} alt="" className="seta-voltar"/>
+                    </Link>
                     <div className="formulario-login">
                         <div className='titulo-login'>
                             <h2>Cadastre-se</h2>

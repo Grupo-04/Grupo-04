@@ -69,8 +69,11 @@ public class EstabelecimentoAvaliacaoAgendamentoController implements Avaliavel<
         return ResponseEntity.status(204).build();
     }
 
-    public PilhaObj<EstabelecimentoAvaliacaoAgendamento> empilharAvaliacao(List<EstabelecimentoAvaliacaoAgendamento> listaEstabelecimentoAvaliacaoAgendamento) {
-        PilhaObj<EstabelecimentoAvaliacaoAgendamento> pilhaEstabelecimentoAvaliacaoAgendamento = new PilhaObj<>(listaEstabelecimentoAvaliacaoAgendamento.size());
+    public PilhaObj<EstabelecimentoAvaliacaoAgendamento> empilharAvaliacao(
+            List<EstabelecimentoAvaliacaoAgendamento> listaEstabelecimentoAvaliacaoAgendamento
+    ) {
+        PilhaObj<EstabelecimentoAvaliacaoAgendamento> pilhaEstabelecimentoAvaliacaoAgendamento =
+                new PilhaObj<>(listaEstabelecimentoAvaliacaoAgendamento.size());
 
         for (int i = 0; i < listaEstabelecimentoAvaliacaoAgendamento.size(); i++) {
             pilhaEstabelecimentoAvaliacaoAgendamento.push(listaEstabelecimentoAvaliacaoAgendamento.get(i));

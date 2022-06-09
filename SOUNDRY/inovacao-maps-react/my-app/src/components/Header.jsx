@@ -4,13 +4,16 @@ import userQtdBoneco from '../imgs/user-3-line (1).png'
 import lupa from '../imgs/lupa.png'
 import notificationIcon from '../imgs/notification_normal.png'
 import userImg from '../imgs/user.png'
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
         <>
             <header className="header">
                 <div className="div_logo">
+                    <Link to={"/"}>
                     <img className="logo_img" src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="div_pesquisa">
 

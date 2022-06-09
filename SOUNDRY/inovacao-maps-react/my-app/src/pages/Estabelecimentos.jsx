@@ -6,6 +6,7 @@ import TableEstabelecimento from '../components/TableEstabelecimento';
 import Header from '../components/Header';
 
 import '../css/pos_login.css'
+import { Link } from 'react-router-dom';
 
 // function Teste(enderecos) {
 
@@ -76,10 +77,12 @@ function Estabelecimentos() {
 
                     {
                         estabelecimentos.map((estabelecimentoDaVez) => (
+                            <Link to={"/restaurante"}>
                                 <TableEstabelecimento nome={estabelecimentoDaVez.nome} avgNota={estabelecimentoDaVez.avgNota}
                                     tipo={estabelecimentoDaVez.tipo}
                                     cidade={estabelecimentoDaVez.endereco.cidade} bairro={estabelecimentoDaVez.endereco.bairro}
                                     logradouro={estabelecimentoDaVez.endereco.logradouro} />
+                            </Link>
                         ))
                     }
                     

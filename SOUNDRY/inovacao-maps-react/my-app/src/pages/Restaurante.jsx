@@ -12,13 +12,16 @@ import Avaliacao from "../components/Avaliacao";
 import Footer from "../components/Footer";
 
 import '../css/restaurantes-encontrados.css'
+import { Link } from "react-router-dom";
 
 function Restaurante() {
     return (
         <>
             <body className="body-restaurantes-encontrados">
 
+                <Link to={"/estabelecimentos"}>
                 <Voltar />
+                </Link>
                 <div class="container">
                     <h1><span class="sublinha">Led's</span> Burguer</h1>
                     <br />

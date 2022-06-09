@@ -389,12 +389,12 @@ public class AgendamentoController {
                     Agendamento a = new Agendamento(id, codigo_agendamento, status_agendamento, data_evento, valor_cobrado);
 
                     //Para importar para o banco de dados pode-se fazer:
-                    //agendamentos.save(a);
+                    agendamentos.save(a);
 
                     // No nosso exemplo vamos adicionar o objeto a na listaLida;
-                    listaLida.add(a);
+                    //listaLida.add(a);
                     //System.out.println(listaLida);
-                    agendamentos.saveAll(listaLida);
+                    //agendamentos.saveAll(listaLida);
 
                 } else if (tipoRegistro.equals("AC")){
                     System.out.println("É um registro de corpo de Grupo Artista");
@@ -415,13 +415,13 @@ public class AgendamentoController {
                     GrupoArtista grupoArtista = new GrupoArtista(idArtista, nome, telefone, email, senha, nomeArtistico, cpf, tipo, grupo, estilo, integrantes);
 
                     //Para importar para o banco de dados pode-se fazer:
-                    //grupoArtistaEntrada.save(grupoArtista);
+                    grupoArtistaEntrada.save(grupoArtista);
 
                     // No nosso exemplo vamos adicionar o objeto a na listaLida;
-                    listaLidaArtista.add(grupoArtista);
+                    //listaLidaArtista.add(grupoArtista);
                     //System.out.println(listaLidaArtista);
 
-                    grupoArtistaEntrada.saveAll(listaLidaArtista);
+                    //grupoArtistaEntrada.saveAll(listaLidaArtista);
 
                 }
                 else {

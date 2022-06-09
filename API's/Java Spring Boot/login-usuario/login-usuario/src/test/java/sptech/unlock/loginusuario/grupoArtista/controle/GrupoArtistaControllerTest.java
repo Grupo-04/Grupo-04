@@ -34,15 +34,15 @@ class GrupoArtistaControllerTest {
     @MockBean
     private EmailSenderService senderService;
 
-    @Test
-    @DisplayName("Cadastro grupo de artistas")
-    void cadastrar() {
-        GrupoArtista grupoArtista = mock(GrupoArtista.class);
-
-        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
-
-        assertEquals(201, controller.cadastrar(grupoArtista).getStatusCodeValue());
-    }
+//    @Test
+//    @DisplayName("Cadastro grupo de artistas")
+//    void cadastrar() {
+//        GrupoArtista grupoArtista = mock(GrupoArtista.class);
+//
+//        when(repository.save(grupoArtista)).thenReturn(grupoArtista);
+//
+//        assertEquals(201, controller.cadastrar(grupoArtista).getStatusCodeValue());
+//    }
 
     @Test
     @DisplayName("Exibir todos")
